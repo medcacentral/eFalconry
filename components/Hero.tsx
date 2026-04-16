@@ -1,81 +1,38 @@
-
-import React from 'react';
-
+import React, { useEffect, useRef } from 'react';
+const TICKER = ['Web Design','AI Chatbots','Online Booking','Google Ads','Local SEO','Review Management','Lead Generation','Brand Kits','Website Hosting','AI Automation'];
 const Hero: React.FC = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (ref.current) ref.current.innerHTML += ref.current.innerHTML; }, []);
+  const f = (d: number): React.CSSProperties => ({ opacity: 0, animation: `fadeUp 0.7s ${d}s forwards` });
   return (
-    <div className="relative pt-44 pb-32 px-6 md:px-12 flex flex-col items-center text-center max-w-7xl mx-auto min-h-[90vh] justify-center overflow-hidden">
-      {/* Background Digital Falcon Motif */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.04] pointer-events-none select-none">
-        <svg viewBox="0 0 200 200" className="w-full h-full text-amber-600">
-          <path 
-            d="M20,60 L100,20 L180,60 L100,180 Z M100,20 V180 M60,40 L140,40 M40,80 L160,80 M100,40 L100,60" 
-            stroke="currentColor" 
-            strokeWidth="0.5" 
-            fill="none" 
-          />
-          <path d="M50 100 Q100 50 150 100" stroke="currentColor" strokeWidth="0.2" fill="none" />
-        </svg>
+    <>
+      <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}.tk{animation:ticker 40s linear infinite}`}</style>
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '130px 2rem 90px', maxWidth: 1100, margin: '0 auto' }}>
+        <p style={{ ...f(0.1), fontFamily: 'Syne,sans-serif', fontSize: 12, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#F07A20', marginBottom: '1.75rem', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ width: 30, height: 2, background: '#F07A20', display: 'block', flexShrink: 0 }}/>Web Design &amp; Digital Services — Local Business
+        </p>
+        <h1 style={{ ...f(0.22), fontFamily: 'Bebas Neue,cursive', fontSize: 'clamp(66px,11vw,146px)', lineHeight: 0.9, color: '#EDE9DF', marginBottom: '2rem' }}>
+          WE ALREADY<br/>BUILT YOUR<br/><span style={{ color: '#F07A20' }}>NEW WEBSITE.</span>
+        </h1>
+        <p style={{ ...f(0.38), fontSize: 'clamp(16px,2vw,19px)', fontWeight: 300, color: '#7C8494', maxWidth: 560, lineHeight: 1.72, marginBottom: '2.75rem' }}>
+          We scanned your business, audited your current site, and designed a modern replacement — before ever contacting you. For $99, it's yours. No contracts. No waiting. No risk.
+        </p>
+        <div style={{ ...f(0.52), display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '4rem' }}>
+          <a href="#cta" style={{ background: '#F07A20', color: '#fff', fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 15, padding: '14px 32px', borderRadius: 8, textDecoration: 'none' }}>Claim Your Site for $99</a>
+          <a href="#how-it-works" style={{ color: '#EDE9DF', fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 15, padding: '13px 32px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.13)', textDecoration: 'none' }}>See How It Works ↓</a>
+        </div>
+        <div style={{ ...f(0.64), display: 'flex', gap: '3rem', flexWrap: 'wrap', paddingTop: '2.5rem', borderTop: '1px solid rgba(255,255,255,0.063)' }}>
+          {[['$99','Entry price — one-time'],['48hr','Average delivery'],['$0','Hidden fees. Zero.'],['AI+','Powered upgrades available']].map(([n,l]) => (
+            <div key={l}><div style={{ fontFamily: 'Bebas Neue,cursive', fontSize: 50, lineHeight: 1, color: '#EDE9DF' }}>{n}</div><div style={{ fontSize: 12, color: '#7C8494', marginTop: 5, fontFamily: 'Syne,sans-serif' }}>{l}</div></div>
+          ))}
+        </div>
       </div>
-
-      {/* Floating Falcon Icon */}
-      <div className="mb-8 soft-float">
-        <svg 
-          viewBox="0 0 100 100" 
-          className="w-16 h-16 text-amber-500 drop-shadow-[0_10px_20px_rgba(245,158,11,0.2)]"
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path 
-            d="M50 20 L20 40 L35 45 L15 65 L40 60 L50 85 L60 60 L85 65 L65 45 L80 40 Z" 
-            stroke="currentColor" 
-            strokeWidth="2.5" 
-            strokeLinejoin="round"
-            className="fill-amber-500/10"
-          />
-          <circle cx="50" cy="45" r="3" fill="currentColor" />
-          <path d="M45 45 L55 45" stroke="white" strokeWidth="1" />
-        </svg>
+      <div style={{ overflow: 'hidden', background: '#0F1218', borderTop: '1px solid rgba(255,255,255,0.063)', borderBottom: '1px solid rgba(255,255,255,0.063)', padding: '14px 0' }}>
+        <div className="tk" ref={ref} style={{ display: 'flex', gap: '3rem', whiteSpace: 'nowrap' }}>
+          {TICKER.map((item,i) => <span key={i} style={{ fontFamily: 'Syne,sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#40455A', flexShrink: 0 }}>{item}<span style={{ color: '#F07A20', marginLeft: '1.5rem' }}> ✦</span></span>)}
+        </div>
       </div>
-      
-      <h1 className="text-6xl md:text-9xl font-bold text-zinc-900 mb-8 leading-[0.95] max-w-5xl tracking-tighter">
-        Dominate The <br/>
-        <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-500 via-orange-600 to-zinc-900">Amazon Canopy.</span>
-      </h1>
-
-      <p className="text-xl md:text-2xl text-zinc-500 max-w-3xl mb-14 leading-relaxed font-medium">
-        Precision-led Advertising and Full Account Management for high-volume sellers. From the shadow of the Seattle Spheres, we strike with surgical PPC and absolute Buy Box dominance.
-      </p>
-
-      <div className="flex flex-col sm:flex-row gap-6 relative z-10">
-        <button 
-          onClick={() => document.getElementById('audit')?.scrollIntoView({ behavior: 'smooth' })}
-          className="px-12 py-6 bg-zinc-900 hover:bg-amber-600 text-white rounded-2xl font-bold text-xl transition-all shadow-2xl shadow-zinc-900/30 hover:-translate-y-1"
-        >
-          Initiate Digital Dive
-        </button>
-        <button 
-          onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-          className="px-12 py-6 bg-white border border-zinc-200 hover:border-zinc-300 text-zinc-900 rounded-2xl font-bold text-xl transition-all hover:bg-zinc-50 shadow-sm"
-        >
-          View The Flight Path
-        </button>
-      </div>
-
-      <div className="mt-32 grid grid-cols-2 lg:grid-cols-4 gap-16 w-full max-w-5xl border-t border-zinc-100 pt-16">
-        <Metric label="Buy Box Retention" value="99.2%" />
-        <Metric label="Average ROAS Lift" value="+142%" />
-        <Metric label="Account Health" value="A+" />
-        <Metric label="Headquarters" value="Seattle" />
-      </div>
-    </div>
+    </>
   );
 };
-
-const Metric: React.FC<{ label: string; value: string }> = ({ label, value }) => (
-  <div className="flex flex-col items-center">
-    <div className="text-4xl font-bold text-zinc-900 tracking-tighter">{value}</div>
-    <div className="text-[10px] text-zinc-400 font-black uppercase tracking-[0.2em] mt-3">{label}</div>
-  </div>
-);
-
 export default Hero;
