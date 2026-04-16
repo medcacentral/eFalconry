@@ -1,49 +1,26 @@
-
 import React from 'react';
-import Logo from './Logo';
-
-interface NavbarProps {
-  activeSection: string;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-6 flex justify-center">
-      <div className="w-full max-w-5xl flex items-center justify-between glass-nav px-8 py-4 rounded-3xl shadow-xl shadow-black/5">
-        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => scrollTo('home')}>
-          <Logo className="w-8 h-8 group-hover:scale-110 transition-transform duration-300" />
-          <span className="text-xl font-bold tracking-tight text-zinc-900">e-Falconry</span>
-        </div>
-
-        <div className="hidden md:flex items-center gap-10">
-          <NavLink label="Expertise" active={activeSection === 'services'} onClick={() => scrollTo('services')} />
-          <NavLink label="Precision Audit" active={activeSection === 'audit'} onClick={() => scrollTo('audit')} />
-          <NavLink label="Philosophy" active={activeSection === 'about'} onClick={() => scrollTo('about')} />
-        </div>
-
-        <button 
-          onClick={() => scrollTo('audit')}
-          className="bg-zinc-900 hover:bg-zinc-800 text-white px-6 py-2.5 rounded-2xl font-semibold text-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
-        >
-          Partner With Us
-        </button>
-      </div>
-    </nav>
-  );
-};
-
-const NavLink: React.FC<{ label: string; active: boolean; onClick: () => void }> = ({ label, active, onClick }) => (
-  <button 
-    onClick={onClick}
-    className={`text-sm font-semibold transition-all ${active ? 'text-amber-600' : 'text-zinc-500 hover:text-zinc-900'}`}
-  >
-    {label}
-  </button>
+const FalconMark = () => (
+  <svg width="22" height="26" viewBox="0 0 22 26" fill="none" aria-hidden="true">
+    <polygon points="11,0 15,9 12.5,26 9.5,26 7,9" fill="#F07A20"/>
+    <polygon points="7,9 0,14 11,23" fill="#EDE9DF" opacity="0.88"/>
+    <polygon points="15,9 22,14 11,23" fill="#EDE9DF" opacity="0.88"/>
+  </svg>
 );
-
+interface NavbarProps { scrolled: boolean; }
+const Navbar: React.FC<NavbarProps> = ({ scrolled }) => (
+  <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 66, padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: scrolled ? 'rgba(7,9,12,0.92)' : 'transparent', backdropFilter: scrolled ? 'blur(16px)' : 'none', borderBottom: scrolled ? '1px solid rgba(255,255,255,0.063)' : '1px solid transparent', transition: 'background 0.35s, border-color 0.35s' }}>
+    <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+      <FalconMark />
+      <span style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 17, letterSpacing: '-0.03em' }}>
+        <span style={{ color: '#F07A20' }}>e-</span><span style={{ color: '#EDE9DF' }}>Falconry</span>
+      </span>
+    </a>
+    <ul style={{ display: 'flex', gap: '2.25rem', listStyle: 'none', margin: 0, padding: 0 }}>
+      {[['How It Works','#how-it-works'],['Services','#services'],['AI Upgrades','#ai'],['Industries','#industries']].map(([l,h]) => (
+        <li key={h}><a href={h} style={{ fontFamily: 'Syne,sans-serif', fontSize: 13, color: '#7C8494', textDecoration: 'none' }}>{l}</a></li>
+      ))}
+    </ul>
+    <a href="#cta" style={{ background: '#F07A20', color: '#fff', fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 13, padding: '10px 22px', borderRadius: 7, textDecoration: 'none' }}>Claim Your Site →</a>
+  </nav>
+);
 export default Navbar;
