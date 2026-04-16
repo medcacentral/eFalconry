@@ -301,27 +301,130 @@ hr.div{border:none;border-top:1px solid var(--bdr);}
 @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
+/* ── TABLET (≤1100px) ── */
 @media(max-width:1100px){
   .acard,.hiw::before{display:none;}
   .ai-hero-inner{grid-template-columns:1fr;}
-  .ai-hero-photo{height:350px;}
+  .ai-hero-photo{height:320px;}
   .ai-hero-photo::after{background:linear-gradient(to top,var(--bg2) 0%,transparent 60%);}
   .ai-grid{grid-template-columns:repeat(2,1fr);}
   .tw{grid-template-columns:repeat(2,1fr);}
-  .hiw{grid-template-columns:repeat(2,1fr);gap:3rem;}
+  .hiw{grid-template-columns:repeat(2,1fr);gap:2.5rem;}
   .oi{grid-template-columns:1fr;padding:3rem;gap:3rem;}
   .trust-row{grid-template-columns:1fr;}
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:2rem;}
-  .ba-intro-grid{grid-template-columns:1fr !important;}
-  .gbp-outer-grid{grid-template-columns:1fr !important;}
-  .level-grid{grid-template-columns:1fr !important;}
+  .ba-intro-inner{grid-template-columns:1fr !important;gap:2rem !important;}
+  .gbp-main-grid{grid-template-columns:1fr !important;gap:3rem !important;}
+  .level-main-grid{grid-template-columns:1fr !important;gap:3rem !important;}
+  .trust-inner-grid{grid-template-columns:1fr !important;gap:3rem !important;}
+  .gbp-cards-row{grid-template-columns:1fr 1fr !important;}
+  .gbp-label-row{grid-template-columns:1fr 1fr !important;}
+  .sec{padding:80px 0;}
+  .ai-box{padding:3rem 2.5rem;}
+  .stats-band{padding:40px 0;}
 }
+/* ── MOBILE (≤640px) ── */
 @media(max-width:640px){
-  .tw,.ai-grid{grid-template-columns:1fr;}
+  /* NAV */
   .nl{display:none;}
-  .hst{gap:2rem;}
-  .m-item{font-size:36px;}
-  .ai-hero-copy{padding:3rem 2rem;}
+  .ncta{font-size:12px;padding:8px 16px;}
+  nav{height:64px;padding:0 1.25rem;}
+
+  /* HERO */
+  .hero{padding:90px 1.25rem 60px;}
+  .hsub{font-size:16px;margin-top:1.5rem;margin-bottom:2rem;}
+  .hact{gap:.75rem;}
+  .bp,.bg{padding:13px 22px;font-size:13px;}
+  .hst{margin-top:2.5rem;padding-top:2rem;gap:1.5rem;}
+  .sv{font-size:40px;}
+  .sl{font-size:10px;}
+
+  /* SECTIONS */
+  .sec{padding:60px 0;}
+  .wrap{padding:0 1.25rem;}
+  .sh2{font-size:clamp(36px,10vw,56px);}
+  .slead{font-size:15px;margin-bottom:2.5rem;}
+  .eye{font-size:10px;}
+
+  /* BEFORE/AFTER */
+  .ba-container{height:55vh;min-height:280px;}
+  .ba-intro-inner{grid-template-columns:1fr !important;gap:1.5rem !important;}
+
+  /* SCORE TOOL */
+  .sc-card{padding:2rem 1.25rem;}
+  .sc-row{flex-direction:column;}
+  .sc-h2{font-size:clamp(32px,9vw,52px);}
+  .sc-sub{font-size:14px;}
+  .res-top{flex-direction:column;gap:1.5rem;align-items:flex-start;}
+  .res-cat{grid-template-columns:100px 1fr 32px;}
+
+  /* TRUST */
+  .trust-row{grid-template-columns:1fr;}
+  .ts-item{padding:2rem 1.25rem;}
+  .ts-num{font-size:72px;}
+  .trust-copy{padding:60px 0;}
+  .trust-inner-grid{grid-template-columns:1fr !important;gap:2.5rem !important;}
+
+  /* HOW IT WORKS */
+  .hiw{grid-template-columns:1fr;gap:2.5rem;}
+  .hiw::before{display:none;}
+  .hs:first-child,.hs:last-child{padding:0;}
+  .hs{padding:0;}
+
+  /* OFFER */
+  .oi{padding:2rem 1.25rem;gap:2rem;}
+  .o-nu{font-size:100px;}
+  .o-sy{font-size:30px;}
+
+  /* PRICING */
+  .tw{grid-template-columns:1fr;}
+  .ai-grid{grid-template-columns:1fr;}
+  .ag{grid-template-columns:1fr;}
+
+  /* LEVEL THE PLAYING FIELD */
+  .level-main-grid{grid-template-columns:1fr !important;gap:2.5rem !important;}
+
+  /* GBP */
+  .gbp-main-grid{grid-template-columns:1fr !important;gap:2rem !important;}
+  .gbp-cards-row{grid-template-columns:1fr !important;gap:1rem !important;}
+  .gbp-label-row{grid-template-columns:1fr 1fr !important;}
+
+  /* AI SECTION */
+  .ai-hero-copy{padding:2.5rem 1.25rem;}
+  .ai-hero-photo{height:240px;}
+  .ai-box{padding:2rem 1.25rem;}
+  .ai-g{grid-template-columns:1fr;gap:2.5rem;}
+  .ai-pills{gap:6px;}
+  .ai-pill{font-size:11px;padding:5px 12px;}
+
+  /* STATS BAND */
+  .stats-band{padding:40px 0;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:1.5rem;padding:0 1.25rem;}
+  .stat-box .n{font-size:48px;}
+
+  /* LAUNCH ADD-ON callout */
+  .launch-addon-inner{flex-direction:column !important;align-items:flex-start !important;}
+
+  /* MARQUEE */
+  .m-item{font-size:32px;padding:0 1.5rem;}
+  .ind-sec{padding:50px 0;}
+
+  /* CTA BAND */
+  .cta-sec{padding:70px 1.25rem;}
+  .cta-sec h2{font-size:clamp(40px,12vw,72px);}
+  .cta-sec p{font-size:15px;}
+  .cf{flex-direction:column;border-radius:10px;}
+  .ci{border-radius:8px 8px 0 0;padding:15px 18px;}
+  .cb{border-radius:0 0 8px 8px;padding:14px 18px;text-align:center;}
+
+  /* FOOTER */
+  .fi{flex-direction:column;align-items:flex-start;gap:1.5rem;}
+  .fl{gap:1.25rem;}
+
+  /* SECTION PADDING for inline-padded sections */
+  [style*="padding:100px 0"]{padding:60px 0 !important;}
+  [style*="padding:80px 0"]{padding:50px 0 !important;}
+  [style*="padding:120px 0"]{padding:70px 0 !important;}
 }
 </style>
 </head>
@@ -457,7 +560,7 @@ hr.div{border:none;border-top:1px solid var(--bdr);}
 
   <!-- INTRO COPY -->
   <div style="background:var(--bg2);padding:80px 0 60px;border-top:1px solid var(--bdr);">
-    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end">
+    <div class="wrap ba-intro-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end">
       <div>
         <div class="eye">The Transformation</div>
         <h2 class="sh2" style="margin-bottom:0">THIS IS WHAT YOUR<br><em>CUSTOMERS SEE TODAY.</em></h2>
@@ -701,7 +804,7 @@ hr.div{border:none;border-top:1px solid var(--bdr);}
 <!-- GOOGLE BUSINESS PROFILE SECTION -->
 <div style="background:var(--bg2);padding:100px 0;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+    <div class="gbp-main-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
 
       <!-- LEFT: Copy -->
       <div>
@@ -746,13 +849,13 @@ hr.div{border:none;border-top:1px solid var(--bdr);}
       <!-- RIGHT: Side-by-side GBP cards -->
       <div style="display:flex;flex-direction:column;gap:1rem">
         <!-- Label row -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.25rem">
+        <div class="gbp-label-row" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.25rem">
           <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E03030;text-align:center">Your Profile Today</div>
           <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);text-align:center">After e-Falconry</div>
         </div>
 
         <!-- Two GBP mockup cards -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+        <div class="gbp-cards-row" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
 
           <!-- BAD GBP -->
           <div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.3)">
@@ -874,7 +977,7 @@ hr.div{border:none;border-top:1px solid var(--bdr);}
   <!-- LEVEL THE PLAYING FIELD -->
   <div style="background:var(--bg);padding:100px 0;border-top:1px solid var(--bdr)">
     <div class="wrap">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center">
+      <div class="level-main-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center">
 
         <!-- Left: headline -->
         <div>
