@@ -1,71 +1,21 @@
-
 import React from 'react';
-import Logo from './Logo';
-
-const Footer: React.FC = () => {
-  return (
-    <footer id="contact" className="bg-white pt-32 pb-16 border-t border-zinc-100">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-8">
-              <Logo className="w-8 h-8" />
-              <span className="text-2xl font-bold tracking-tighter text-zinc-900">e-Falconry</span>
-            </div>
-            <p className="text-zinc-500 font-medium max-w-sm mb-10 leading-relaxed">
-              Surgical precision in Amazon Advertising. Headquartered in Seattle, we scale professional brands through native-level platform intelligence and elite management.
-            </p>
-            <div className="flex gap-4">
-              <SocialIcon icon="LI" />
-              <SocialIcon icon="X" />
-              <SocialIcon icon="IG" />
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-zinc-900 font-bold mb-8 uppercase text-[10px] tracking-widest">The Toolkit</h4>
-            <ul className="space-y-4 text-zinc-500 font-medium text-sm">
-              <li><a href="#" className="hover:text-amber-600 transition-colors">Amazon PPC Optimization</a></li>
-              <li><a href="#" className="hover:text-amber-600 transition-colors">Full Account Dominance</a></li>
-              <li><a href="#" className="hover:text-amber-600 transition-colors">Listing Design & SEO</a></li>
-              <li><a href="#" className="hover:text-amber-600 transition-colors">IP & Brand Protection</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-zinc-900 font-bold mb-8 uppercase text-[10px] tracking-widest">Connect</h4>
-            <ul className="space-y-4 text-zinc-500 font-medium text-sm">
-              <li className="flex items-center gap-3">
-                <span className="text-amber-500">✉</span>
-                <a href="mailto:hello@efalconry.com" className="hover:text-zinc-900">hello@efalconry.com</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="text-amber-500">📍</span>
-                <span>Seattle, WA (HQ)</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="pt-10 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-8 text-xs font-bold uppercase tracking-widest text-zinc-400">
-          <div className="text-center md:text-left">
-            <p>© 2024 e-Falconry Studio. Seattle Native. Built for Scale.</p>
-            <p className="mt-1 text-[9px] opacity-70">e-Falconry is owned and operated by Docley LLC</p>
-          </div>
-          <div className="flex gap-10">
-            <a href="#" className="hover:text-zinc-900 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-zinc-900 transition-colors">Terms</a>
-          </div>
-        </div>
+const FalconMark=()=><svg width="22" height="26" viewBox="0 0 22 26" fill="none"><polygon points="11,0 15,9 12.5,26 9.5,26 7,9" fill="#F07A20"/><polygon points="7,9 0,14 11,23" fill="#EDE9DF" opacity="0.88"/><polygon points="15,9 22,14 11,23" fill="#EDE9DF" opacity="0.88"/></svg>;
+const Footer: React.FC = () => (
+  <footer style={{borderTop:'1px solid rgba(255,255,255,0.063)'}}>
+    <div style={{maxWidth:1100,margin:'0 auto',padding:'2.5rem 2rem',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap' as const,gap:'1rem'}}>
+      <div style={{display:'flex',alignItems:'center',gap:9}}>
+        <FalconMark/>
+        <span style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:16,letterSpacing:'-0.03em'}}>
+          <span style={{color:'#F07A20'}}>e-</span><span style={{color:'#EDE9DF'}}>Falconry</span>
+        </span>
       </div>
-    </footer>
-  );
-};
-
-const SocialIcon: React.FC<{ icon: string }> = ({ icon }) => (
-  <div className="w-12 h-12 rounded-2xl border border-zinc-100 flex items-center justify-center text-zinc-400 hover:border-amber-600 hover:text-amber-600 cursor-pointer transition-all bg-zinc-50">
-    <span className="text-xs font-bold">{icon}</span>
-  </div>
+      <ul style={{display:'flex',gap:'2rem',listStyle:'none',padding:0,margin:0,flexWrap:'wrap' as const}}>
+        {[['How It Works','#how-it-works'],['Services','#services'],['AI Upgrades','#ai'],['Industries','#industries'],['Contact','mailto:hello@efalconry.com']].map(([l,h])=>(
+          <li key={l}><a href={h} style={{fontSize:13,color:'#40455A',textDecoration:'none'}}>{l}</a></li>
+        ))}
+      </ul>
+      <div style={{fontSize:12,color:'#40455A'}}>© 2025 e-Falconry — Seattle, WA</div>
+    </div>
+  </footer>
 );
-
 export default Footer;
