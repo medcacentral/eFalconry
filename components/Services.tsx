@@ -1,69 +1,42 @@
-
 import React from 'react';
-
-const services = [
-  {
-    title: "Surgical PPC Strikes",
-    description: "Deep-layer keyword harvesting and predictive bidding. We identify 'prey' traffic with high intent and strike when conversion is guaranteed.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-      </svg>
-    )
-  },
-  {
-    title: "Account Guarding",
-    description: "Full FBA operational management. We protect your listing integrity, resolve IP complaints, and ensure your 'nest' remains undisturbed by hijackers.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    )
-  },
-  {
-    title: "Predatory Creative",
-    description: "Visual indexing that commands authority. Premium A+ Content and Brand Store architectures designed to convert the most skeptical shoppers.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    )
-  },
-  {
-    title: "10k Foot Analytics",
-    description: "Direct-from-Seattle market intelligence. We track category velocity and competitor movement before it affects your bottom line.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    )
-  }
-];
-
-const Services: React.FC = () => {
-  return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12">
-      <div className="mb-24 text-center">
-        <span className="text-amber-600 font-black tracking-[0.3em] text-[10px] uppercase mb-4 block">Marketplace Capabilities</span>
-        <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-zinc-900">The Falcon's Edge.</h2>
-        <p className="text-zinc-500 text-xl max-w-2xl mx-auto font-medium">Specialized Amazon tools and strategies for sellers who demand apex performance.</p>
+const tiers=[{name:'Launch',price:'99',cadence:'one-time',featured:false,items:['New website — designed & built','Mobile-responsive layout','Contact form & map integration','On-page SEO basics','Hosting setup assistance','1 revision included']},{name:'Maintain',price:'49',cadence:'per month',featured:false,items:['Everything in Launch','Hosting & uptime monitoring','Monthly content updates','Security patches & backups','Google Business setup','Priority email support']},{name:'Growth',price:'199',cadence:'per month',featured:true,items:['Everything in Maintain','Local SEO & citation building','Automated review management','Google Analytics reporting','Monthly keyword rankings','Dedicated account manager']},{name:'AI Pro',price:'399',cadence:'per month',featured:false,items:['Everything in Growth','AI chatbot — 24/7 lead capture','AI lead generation & outreach','Google Ads management','AI content engine','Weekly performance calls']}];
+const addons=[{name:'AI Chatbot Integration',price:'$299'},{name:'Online Booking System',price:'$199'},{name:'Google Business Optimization',price:'$99'},{name:'Logo & Brand Kit',price:'$149'},{name:'Google Ads Setup & Launch',price:'$199'},{name:'Hosting & Domain Migration',price:'$79'}];
+const Chk=()=><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="#F07A20" strokeWidth="1.4" strokeLinecap="round"/></svg>;
+const Services: React.FC = () => (
+  <section id="services" style={{padding:'100px 0'}}>
+    <div style={{maxWidth:1100,margin:'0 auto',padding:'0 2rem'}}>
+      <p style={{fontFamily:'Syne,sans-serif',fontSize:11,fontWeight:700,letterSpacing:'0.16em',textTransform:'uppercase' as const,color:'#F07A20',marginBottom:'1rem'}}>Services & Subscriptions</p>
+      <h2 style={{fontFamily:'Bebas Neue,cursive',fontSize:'clamp(40px,6vw,78px)',lineHeight:0.93,color:'#EDE9DF',marginBottom:'1.5rem'}}>BUILD YOUR <span style={{color:'#F07A20'}}>DIGITAL STACK</span></h2>
+      <p style={{fontSize:15,color:'#7C8494',lineHeight:1.7,marginBottom:'3.5rem',borderLeft:'2px solid #F07A20',paddingLeft:'1.25rem',maxWidth:640}}>Start with your $99 website. Then choose a monthly plan to keep growing. Every plan is powered by AI working for your business around the clock. No lock-ins. Cancel any time.</p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:'1rem',marginBottom:'4rem'}}>
+        {tiers.map(t=>(
+          <div key={t.name} style={{background:'#0F1218',border:t.featured?'1px solid rgba(240,122,32,0.45)':'1px solid rgba(255,255,255,0.063)',borderRadius:18,padding:'2rem 1.75rem',position:'relative' as const}}>
+            {t.featured&&<span style={{position:'absolute' as const,top:-1,left:'50%',transform:'translateX(-50%)',background:'#F07A20',color:'#fff',fontFamily:'Syne,sans-serif',fontSize:10,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,padding:'4px 14px',borderRadius:'0 0 8px 8px',whiteSpace:'nowrap' as const}}>Most Popular</span>}
+            <div style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:12,letterSpacing:'0.12em',textTransform:'uppercase' as const,color:'#7C8494',marginBottom:'1.5rem'}}>{t.name}</div>
+            <div style={{display:'flex',alignItems:'baseline',gap:3,marginBottom:'0.4rem'}}><span style={{fontFamily:'Bebas Neue,cursive',fontSize:22,color:'#7C8494'}}>$</span><span style={{fontFamily:'Bebas Neue,cursive',fontSize:56,lineHeight:1,color:'#EDE9DF'}}>{t.price}</span></div>
+            <div style={{fontSize:12,color:'#40455A',fontFamily:'Syne,sans-serif',marginBottom:'1.75rem'}}>{t.cadence}</div>
+            <div style={{height:1,background:'rgba(255,255,255,0.063)',marginBottom:'1.75rem'}}/>
+            <ul style={{listStyle:'none',padding:0,margin:0,display:'flex',flexDirection:'column' as const,gap:10}}>
+              {t.items.map(i=>(
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:9,fontSize:13,color:'#7C8494',lineHeight:1.5}}>
+                  <span style={{flexShrink:0,width:16,height:16,marginTop:1,borderRadius:'50%',background:'rgba(240,122,32,0.15)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}><Chk/></span>{i}
+                </li>
+              ))}
+            </ul>
+            <a href="#cta" style={{display:'block',textAlign:'center' as const,marginTop:'2rem',padding:11,borderRadius:7,border:t.featured?'none':'1px solid rgba(255,255,255,0.13)',background:t.featured?'#F07A20':'transparent',fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:13,color:'#EDE9DF',textDecoration:'none'}}>Get Started →</a>
+          </div>
+        ))}
       </div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-        {services.map((s, idx) => (
-          <div key={idx} className="light-card p-12 rounded-[3rem] transition-all duration-700 group relative overflow-hidden bg-white">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 -mr-8 -mt-8 rounded-full blur-2xl group-hover:bg-amber-500/10 transition-all duration-700"></div>
-            <div className="w-14 h-14 bg-zinc-900 text-white rounded-2xl flex items-center justify-center mb-10 group-hover:bg-amber-600 group-hover:scale-110 transition-all duration-500 shadow-xl">
-              {s.icon}
-            </div>
-            <h3 className="text-2xl font-bold mb-5 tracking-tight text-zinc-900 group-hover:text-amber-600 transition-colors">{s.title}</h3>
-            <p className="text-zinc-500 text-sm leading-relaxed font-medium">{s.description}</p>
+      <p style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:13,color:'#7C8494',textTransform:'uppercase' as const,letterSpacing:'0.1em',marginBottom:'1.25rem'}}>One-Time Add-Ons</p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))',gap:'1rem'}}>
+        {addons.map(a=>(
+          <div key={a.name} style={{background:'#0F1218',border:'1px solid rgba(255,255,255,0.063)',borderRadius:10,padding:'1.25rem 1.5rem',display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem'}}>
+            <span style={{fontFamily:'Syne,sans-serif',fontWeight:600,fontSize:14,color:'#EDE9DF'}}>{a.name}</span>
+            <span style={{fontFamily:'Syne,sans-serif',fontWeight:700,fontSize:14,color:'#F07A20',whiteSpace:'nowrap' as const}}>{a.price}</span>
           </div>
         ))}
       </div>
     </div>
-  );
-};
-
+  </section>
+);
 export default Services;
