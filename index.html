@@ -1524,7 +1524,7 @@ async function runScore(){
   } catch(e) {
     console.error('Score error:', e);
     result = {total:31,design:7,mobile:6,trust:5,seo:7,content:6,issues:['No mobile-responsive design — most visitors are on phones','Missing trust signals — no reviews, credentials, or certifications visible','Slow page load — Google penalizes sites over 3 seconds','Weak local SEO — not appearing in nearby searches'],summary:'This site is losing customers every day to competitors with modern websites.',grade:'Poor'};
-  }}
+  }
   clearInterval(progInterval);
   // Jump to 100%
   pct=100;progBar.style.width='100%';progPct.textContent='100%';
