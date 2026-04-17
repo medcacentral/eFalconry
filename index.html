@@ -1682,8 +1682,7 @@ function formatMsg(text) {
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
     .replace(/\*(.+?)\*/g,'<em>$1</em>')
     .replace(/`(.+?)`/g,'<code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;font-size:12px">$1</code>')
-    .replace(/
-/g,'<br>');
+    .replace(/\n/g,'<br>');
 }
 function addMessage(role, text) {
   const msgs = document.getElementById('chat-messages');
