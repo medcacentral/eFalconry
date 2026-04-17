@@ -33,7 +33,7 @@ About e-Falconry:
 - Based in Seattle, WA — serving businesses nationwide
 - Free website score tool at efalconry.com
 
-Keep replies short (2–4 sentences max). Be helpful and honest. If someone wants to get started, direct them to the $99 offer or the free score tool. Never make up prices or services not listed above.`,
+Keep replies concise — 2 to 5 sentences. Use **bold** only for prices and plan names. Never use bullet lists or headers. Write in plain conversational sentences. If someone wants to get started, direct them to the $99 offer or the free score tool. Never make up prices or services not listed above.`,
         messages: messages.slice(-10) // keep last 10 messages for context
       })
     });
