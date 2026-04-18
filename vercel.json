@@ -4,8 +4,7 @@
     { "source": "/preview",        "destination": "/api/p" },
     { "source": "/ref/:slug*",     "destination": "/api/refer" },
     { "source": "/pay",            "destination": "/api/checkout" },
-    { "source": "/merch",          "destination": "/api/merch" },
-    { "source": "/mockup",         "destination": "/api/mockup-form" }
+    { "source": "/merch",          "destination": "/api/merch" }
   ],
   "crons": [
     {
