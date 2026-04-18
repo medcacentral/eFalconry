@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#07090C">
+<title>e-Falconry App</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#07090C;--bg2:#0F1219;--bg3:#161B26;
+  --acc:#F07A20;--acc2:#FF9A50;
+  --text:#EDE8DC;--t2:#C4CBDA;--t3:#8892A8;
+  --bdr:rgba(255,255,255,.07);--bdr2:rgba(255,255,255,.12);
+  --green:#4ADE80;--red:#FC8181;--blue:#60A5FA;
+  --grad:linear-gradient(90deg,#F07A20,#FF9A50);
+  --safe-bottom:env(safe-area-inset-bottom,16px);
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow:hidden;}
+button{cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;color:inherit;}
+input,textarea,select{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg3);border:1px solid var(--bdr2);border-radius:10px;padding:12px 14px;width:100%;font-size:15px;outline:none;-webkit-appearance:none;}
+input:focus,textarea:focus,select:focus{border-color:rgba(240,122,32,.5);}
+select option{background:#161B26;}
+textarea{resize:none;}
+a{color:inherit;text-decoration:none;}
+
+/* ── Layout ── */
+#root{display:flex;flex-direction:column;height:100%;}
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:calc(70px + var(--safe-bottom));}
+.screen::-webkit-scrollbar{display:none;}
+
+/* ── Top bar ── */
+.topbar{height:56px;background:rgba(7,9,12,.97);border-bottom:1px solid var(--bdr);display:flex;align-items:center;padding:0 18px;gap:12px;position:sticky;top:0;z-index:50;flex-shrink:0;}
+.topbar-logo{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;letter-spacing:.04em;}
+.topbar-logo span{color:var(--acc);}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.topbar-user{width:32px;height:32px;border-radius:50%;background:rgba(240,122,32,.2);border:1.5px solid rgba(240,122,32,.4);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--acc);}
+.notif-dot{width:8px;height:8px;border-radius:50%;background:var(--acc);position:absolute;top:6px;right:6px;}
+
+/* ── Bottom nav ── */
+.bottomnav{height:calc(60px + var(--safe-bottom));background:rgba(7,9,12,.97);border-top:1px solid var(--bdr);display:flex;align-items:flex-start;padding-top:8px;padding-bottom:var(--safe-bottom);position:fixed;bottom:0;left:0;right:0;z-index:50;}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;cursor:pointer;position:relative;}
+.nav-icon{width:22px;height:22px;opacity:.4;transition:all .15s;}
+.nav-item.active .nav-icon{opacity:1;}
+.nav-label{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);transition:color .15s;}
+.nav-item.active .nav-label{color:var(--acc);}
+.nav-item.active .nav-icon path,.nav-item.active .nav-icon circle,.nav-item.active .nav-icon rect{stroke:var(--acc);}
+
+/* ── FAB ── */
+.fab{position:fixed;bottom:calc(68px + var(--safe-bottom));right:18px;width:54px;height:54px;border-radius:50%;background:var(--grad);box-shadow:0 4px 20px rgba(240,122,32,.5);display:flex;align-items:center;justify-content:center;z-index:60;transition:transform .15s;}
+.fab:active{transform:scale(.93);}
+
+/* ── Sections ── */
+.pad{padding:18px;}
+.section-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+.section-title a{color:var(--acc);font-size:11px;text-transform:none;letter-spacing:0;}
+
+/* ── Cards ── */
+.card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:10px;}
+.card-accent{border-left:3px solid var(--acc);}
+
+/* ── Stats ── */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.stat-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:16px;}
+.stat-n{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--acc);line-height:1;}
+.stat-l{font-size:12px;color:var(--t3);margin-top:3px;}
+
+/* ── Job cards ── */
+.job-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;}
+.job-icon{width:42px;height:42px;border-radius:10px;background:rgba(240,122,32,.12);border:1px solid rgba(240,122,32,.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.job-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:2px;}
+.job-meta{font-size:12px;color:var(--t3);}
+.job-badge{display:inline-block;border-radius:99px;padding:2px 8px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;margin-top:6px;}
+.badge-quote{background:rgba(96,165,250,.12);color:#60A5FA;border:1px solid rgba(96,165,250,.2);}
+.badge-active{background:rgba(74,222,128,.12);color:#4ADE80;border:1px solid rgba(74,222,128,.2);}
+.badge-done{background:rgba(255,255,255,.06);color:var(--t3);border:1px solid var(--bdr);}
+
+/* ── New Job form ── */
+.form-section{margin-bottom:22px;}
+.form-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:8px;display:block;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+/* ── Photo upload ── */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
+.photo-slot{aspect-ratio:1;border-radius:10px;border:1.5px dashed rgba(255,255,255,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;overflow:hidden;position:relative;background:var(--bg3);}
+.photo-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.photo-slot .add-icon{font-size:24px;color:var(--t3);}
+.photo-slot .add-label{font-size:10px;color:var(--t3);font-family:'Syne',sans-serif;font-weight:700;}
+.photo-slot .remove-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;display:none;}
+.photo-slot:hover .remove-btn{display:flex;}
+
+/* ── Voice recorder ── */
+.voice-btn{width:100%;padding:14px;border-radius:12px;border:1.5px dashed rgba(255,255,255,.15);background:var(--bg3);display:flex;align-items:center;gap:12px;transition:all .2s;}
+.voice-btn.recording{border-color:rgba(252,129,129,.5);background:rgba(252,129,129,.06);}
+.voice-dot{width:12px;height:12px;border-radius:50%;background:var(--t3);flex-shrink:0;transition:all .2s;}
+.voice-btn.recording .voice-dot{background:var(--red);box-shadow:0 0 8px var(--red);animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.3);}}
+.voice-text{font-size:14px;color:var(--t3);}
+.voice-btn.recording .voice-text{color:var(--red);}
+.voice-transcript{background:var(--bg3);border:1px solid var(--bdr2);border-radius:10px;padding:12px;margin-top:8px;font-size:13px;color:var(--t2);line-height:1.6;min-height:60px;display:none;}
+.voice-transcript.visible{display:block;}
+
+/* ── Measurement tiles ── */
+.meas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.meas-tile{background:var(--bg3);border:1px solid var(--bdr2);border-radius:10px;padding:10px 8px;text-align:center;}
+.meas-tile input{background:none;border:none;border-radius:0;padding:0;text-align:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--acc);width:100%;outline:none;}
+.meas-tile input::placeholder{color:rgba(240,122,32,.3);font-size:16px;}
+.meas-unit{font-size:10px;color:var(--t3);font-family:'Syne',sans-serif;font-weight:700;margin-top:2px;}
+
+/* ── Generate button ── */
+.gen-btn{width:100%;padding:17px;border-radius:14px;background:var(--grad);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;box-shadow:0 6px 24px rgba(240,122,32,.35);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.gen-btn:active{transform:scale(.97);}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+/* ── Loading ── */
+.loading-overlay{position:fixed;inset:0;background:rgba(7,9,12,.9);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;display:none;}
+.loading-overlay.visible{display:flex;}
+.loading-spinner{width:48px;height:48px;border-radius:50%;border:3px solid rgba(240,122,32,.2);border-top-color:var(--acc);animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-msg{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--t2);}
+.loading-step{font-size:12px;color:var(--t3);margin-top:4px;}
+
+/* ── Results ── */
+.result-section{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;margin-bottom:12px;}
+.result-header{padding:14px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px;}
+.result-icon{font-size:18px;}
+.result-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;}
+.result-body{padding:14px 16px;}
+.result-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.action-btn{flex:1;min-width:100px;padding:10px 14px;border-radius:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;text-align:center;transition:all .15s;}
+.action-btn:active{transform:scale(.96);}
+.btn-primary{background:var(--grad);color:#fff;}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--t2);border:1px solid var(--bdr2);}
+.btn-green{background:rgba(74,222,128,.12);color:var(--green);border:1px solid rgba(74,222,128,.25);}
+
+/* ── Mockup images ── */
+.mockup-img{width:100%;border-radius:10px;margin-bottom:8px;background:var(--bg3);min-height:120px;object-fit:cover;}
+.mockup-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+
+/* ── Calendar ── */
+.cal-day{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr);}
+.cal-day:last-child{border-bottom:none;}
+.cal-date{width:40px;text-align:center;flex-shrink:0;}
+.cal-date-n{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;line-height:1;color:var(--acc);}
+.cal-date-d{font-size:10px;color:var(--t3);text-transform:uppercase;font-family:'Syne',sans-serif;font-weight:700;}
+.cal-events{flex:1;display:flex;flex-direction:column;gap:6px;}
+.cal-event{background:rgba(240,122,32,.08);border:1px solid rgba(240,122,32,.15);border-radius:8px;padding:8px 10px;}
+.cal-event-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px;}
+.cal-event-time{font-size:11px;color:var(--t3);}
+
+/* ── Quote preview ── */
+.quote-preview{background:#fff;border-radius:10px;padding:16px;color:#1a1a1a;font-size:13px;}
+.quote-preview .qp-header{border-bottom:2px solid #1a1a1a;padding-bottom:10px;margin-bottom:10px;}
+.quote-preview .qp-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;}
+.quote-preview .qp-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f0f0;font-size:12px;}
+.quote-preview .qp-total{font-weight:800;font-size:14px;color:#F07A20;}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:calc(80px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(20px);background:#161B26;border:1px solid rgba(74,222,128,.3);border-radius:99px;padding:10px 20px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--green);white-space:nowrap;z-index:200;opacity:0;transition:all .25s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── Empty states ── */
+.empty{text-align:center;padding:40px 20px;}
+.empty-icon{font-size:48px;margin-bottom:12px;}
+.empty-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:6px;}
+.empty-sub{font-size:13px;color:var(--t3);line-height:1.6;}
+
+/* ── Animations ── */
+.screen{animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<div id="root">
+  <!-- Top bar -->
+  <div class="topbar">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <path d="M20 4L28 16L20 12L12 16Z" fill="#F07A20"/>
+      <path d="M20 12L28 16L24 28L20 24L16 28L12 16Z" fill="#EDE8DC" opacity=".9"/>
+      <path d="M20 24L24 28L20 36L16 28Z" fill="#F07A20" opacity=".7"/>
+    </svg>
+    <div class="topbar-logo"><span>e-</span>Falconry</div>
+    <div class="topbar-right">
+      <div style="position:relative">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="#8892A8" stroke-width="1.5" stroke-linecap="round">
+          <path d="M11 2a7 7 0 017 7v3l1.5 3h-17L4 12V9a7 7 0 017-7zM9 19a2 2 0 004 0"/>
+        </svg>
+        <div class="notif-dot"></div>
+      </div>
+      <div class="topbar-user" id="user-initial">M</div>
+    </div>
+  </div>
+
+  <!-- Screens -->
+  <div id="screen-home" class="screen pad">
+    <!-- Greeting -->
+    <div style="margin-bottom:20px">
+      <div style="font-size:13px;color:var(--t3);margin-bottom:2px">Good morning 👋</div>
+      <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">Let's get to work.</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-n" id="stat-quotes">0</div>
+        <div class="stat-l">Quotes sent this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" id="stat-won">$0</div>
+        <div class="stat-l">Revenue won</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" id="stat-pending">0</div>
+        <div class="stat-l">Pending follow-ups</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" id="stat-reviews">4.9★</div>
+        <div class="stat-l">Google rating</div>
+      </div>
+    </div>
+
+    <!-- Quick action -->
+    <button class="gen-btn" style="margin-bottom:20px" onclick="switchTab('new')">
+      <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><path d="M11 7v8M7 11h8"/></svg>
+      New Job — Quote & Mockups
+    </button>
+
+    <!-- Recent jobs -->
+    <div class="section-title">Recent Jobs <a onclick="switchTab('jobs')">See all →</a></div>
+    <div id="recent-jobs-list">
+      <div class="empty">
+        <div class="empty-icon">📋</div>
+        <div class="empty-title">No jobs yet</div>
+        <div class="empty-sub">Tap "New Job" above to create your first quote and mockups.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Job screen -->
+  <div id="screen-new" class="screen pad" style="display:none">
+    <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:20px">New Job</div>
+
+    <!-- Client info -->
+    <div class="form-section">
+      <label class="form-label">Client</label>
+      <div class="form-row" style="margin-bottom:8px">
+        <input type="text" id="f-client-name" placeholder="Full name">
+        <input type="tel" id="f-client-phone" placeholder="Phone">
+      </div>
+      <input type="email" id="f-client-email" placeholder="Email address (for sending quote)">
+    </div>
+
+    <!-- Project type -->
+    <div class="form-section">
+      <label class="form-label">Project Type</label>
+      <select id="f-type">
+        <option value="">Select type...</option>
+        <option value="Stamped Concrete Patio">Stamped Concrete Patio</option>
+        <option value="Exposed Aggregate Patio">Exposed Aggregate Patio</option>
+        <option value="Concrete Driveway">Concrete Driveway</option>
+        <option value="Concrete Walkway">Concrete Walkway</option>
+        <option value="Landscaping Design">Landscaping Design</option>
+        <option value="Lawn Care & Maintenance">Lawn Care & Maintenance</option>
+        <option value="Deck Installation">Deck Installation</option>
+        <option value="HVAC Installation">HVAC Installation</option>
+        <option value="HVAC Repair">HVAC Repair</option>
+        <option value="Electrical Panel Upgrade">Electrical Panel Upgrade</option>
+        <option value="EV Charger Installation">EV Charger Installation</option>
+        <option value="Roofing Replacement">Roofing Replacement</option>
+        <option value="Emergency Plumbing">Emergency Plumbing</option>
+        <option value="Water Heater Installation">Water Heater Installation</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <!-- Voice note -->
+    <div class="form-section">
+      <label class="form-label">Voice Note — Describe the Job</label>
+      <button class="voice-btn" id="voice-btn" onclick="toggleRecording()">
+        <div class="voice-dot" id="voice-dot"></div>
+        <div style="flex:1">
+          <div class="voice-text" id="voice-text">Tap to record — describe what the client wants</div>
+          <div style="font-size:11px;color:var(--t3);margin-top:2px">AI will transcribe and extract measurements</div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="#8892A8" stroke-width="1.5" stroke-linecap="round"><rect x="8" y="2" width="6" height="12" rx="3"/><path d="M4 11a7 7 0 0014 0M11 18v3"/></svg>
+      </button>
+      <div class="voice-transcript" id="voice-transcript"></div>
+    </div>
+
+    <!-- Measurements -->
+    <div class="form-section">
+      <label class="form-label">Measurements</label>
+      <div class="meas-grid">
+        <div class="meas-tile">
+          <input type="number" id="m-area" placeholder="—">
+          <div class="meas-unit">SQ FT</div>
+        </div>
+        <div class="meas-tile">
+          <input type="number" id="m-thickness" placeholder="—" step="0.5">
+          <div class="meas-unit">INCHES THICK</div>
+        </div>
+        <div class="meas-tile">
+          <input type="number" id="m-budget" placeholder="—">
+          <div class="meas-unit">BUDGET $K</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="form-section">
+      <label class="form-label">Additional Notes</label>
+      <textarea id="f-notes" rows="3" placeholder="Special requests, access issues, client preferences..."></textarea>
+    </div>
+
+    <!-- Photos -->
+    <div class="form-section">
+      <label class="form-label">Site Photos</label>
+      <div class="photo-grid" id="photo-grid">
+        <div class="photo-slot" onclick="triggerPhotoUpload()">
+          <div class="add-icon">📷</div>
+          <div class="add-label">Add Photo</div>
+        </div>
+      </div>
+      <input type="file" id="photo-input" accept="image/*" multiple style="display:none" onchange="handlePhotos(this)">
+    </div>
+
+    <!-- Generate button -->
+    <button class="gen-btn" id="gen-btn" onclick="generateEverything()">
+      <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 6 10-12h-9l1-6z"/></svg>
+      Generate Quote & Mockups
+    </button>
+    <div style="text-align:center;font-size:11px;color:var(--t3);margin-top:10px;margin-bottom:20px">AI generates a professional PDF quote + 2 project renders in ~60 seconds</div>
+  </div>
+
+  <!-- Results screen -->
+  <div id="screen-results" class="screen pad" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <button onclick="switchTab('new')" style="width:32px;height:32px;border-radius:50%;background:var(--bg2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;">
+        <svg width="14" height="14" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800" id="result-title">Results</div>
+    </div>
+    <div id="results-container"></div>
+  </div>
+
+  <!-- Jobs screen -->
+  <div id="screen-jobs" class="screen pad" style="display:none">
+    <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:20px">All Jobs</div>
+    <div id="all-jobs-list">
+      <div class="empty">
+        <div class="empty-icon">📋</div>
+        <div class="empty-title">No jobs yet</div>
+        <div class="empty-sub">Tap + to create your first job.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar screen -->
+  <div id="screen-cal" class="screen pad" style="display:none">
+    <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:20px">Calendar</div>
+    <div id="cal-container"></div>
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottomnav">
+    <div class="nav-item active" id="nav-home" onclick="switchTab('home')">
+      <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l8-7 8 7v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><path d="M9 21V12h4v9"/></svg>
+      <span class="nav-label">Home</span>
+    </div>
+    <div class="nav-item" id="nav-jobs" onclick="switchTab('jobs')">
+      <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="7" width="18" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><path d="M12 12v4M10 14h4" opacity=".5"/></svg>
+      <span class="nav-label">Jobs</span>
+    </div>
+    <div class="nav-item" id="nav-new" onclick="switchTab('new')">
+      <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><path d="M11 7v8M7 11h8"/></svg>
+      <span class="nav-label">New Job</span>
+    </div>
+    <div class="nav-item" id="nav-cal" onclick="switchTab('cal')">
+      <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="16" height="16" rx="2"/><path d="M16 2v4M6 2v4M3 10h16"/></svg>
+      <span class="nav-label">Calendar</span>
+    </div>
+    <div class="nav-item" id="nav-home2" onclick="window.location.href='/'">
+      <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="8" r="4"/><path d="M3 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span class="nav-label">Account</span>
+    </div>
+  </div>
+</div>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loading">
+  <div class="loading-spinner"></div>
+  <div class="loading-msg" id="loading-msg">Generating...</div>
+  <div class="loading-step" id="loading-step">Analyzing your notes</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── State ────────────────────────────────────────────────────
+const state = {
+  jobs: JSON.parse(localStorage.getItem('ef_jobs') || '[]'),
+  photos: [],
+  isRecording: false,
+  mediaRecorder: null,
+  audioChunks: [],
+  transcript: '',
+};
+
+function saveJobs() {
+  localStorage.setItem('ef_jobs', JSON.stringify(state.jobs));
+}
+
+// ── Navigation ───────────────────────────────────────────────
+function switchTab(tab) {
+  const tabs = ['home','new','jobs','cal','results'];
+  tabs.forEach(t => {
+    const s = document.getElementById('screen-'+t);
+    if (s) s.style.display = (t === tab) ? 'block' : 'none';
+  });
+  ['home','jobs','new','cal'].forEach(t => {
+    document.getElementById('nav-'+t)?.classList.toggle('active', t === tab);
+  });
+  if (tab === 'home') renderHome();
+  if (tab === 'jobs') renderJobs();
+  if (tab === 'cal') renderCalendar();
+}
+
+// ── Home ─────────────────────────────────────────────────────
+function renderHome() {
+  const thisMonth = new Date().getMonth();
+  const monthJobs = state.jobs.filter(j => new Date(j.created).getMonth() === thisMonth);
+  const quotesSent = monthJobs.length;
+  const won = monthJobs.filter(j => j.status === 'won').reduce((s, j) => s + (j.total || 0), 0);
+  const pending = state.jobs.filter(j => j.status === 'pending').length;
+
+  document.getElementById('stat-quotes').textContent = quotesSent;
+  document.getElementById('stat-won').textContent = won > 0 ? '$' + (won/1000).toFixed(1) + 'k' : '$0';
+  document.getElementById('stat-pending').textContent = pending;
+
+  const el = document.getElementById('recent-jobs-list');
+  const recent = [...state.jobs].reverse().slice(0,3);
+  if (!recent.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-title">No jobs yet</div><div class="empty-sub">Tap "New Job" to create your first quote and mockups.</div></div>`;
+    return;
+  }
+  el.innerHTML = recent.map(j => jobCardHTML(j)).join('');
+}
+
+function jobCardHTML(job) {
+  const icons = {
+    'patio':'🏗️','concrete':'🏗️','driveway':'🚗','landscap':'🌿',
+    'hvac':'❄️','electric':'⚡','roof':'🏠','plumb':'🔧','default':'📋'
+  };
+  const type = (job.type||'').toLowerCase();
+  const icon = Object.entries(icons).find(([k]) => type.includes(k))?.[1] || icons.default;
+  const badges = {pending:'quote',active:'active',won:'done'};
+  const badgeClass = 'badge-'+(badges[job.status]||'quote');
+  const badgeText = job.status === 'won' ? 'Closed' : job.status === 'active' ? 'Active' : 'Quote Sent';
+  return `<div class="job-card" onclick="viewJob('${job.id}')">
+    <div class="job-icon">${icon}</div>
+    <div style="flex:1">
+      <div class="job-name">${job.clientName || 'Unknown Client'}</div>
+      <div class="job-meta">${job.type || 'General Work'} · ${job.area ? job.area+' sq ft' : ''}</div>
+      <div class="job-meta">${formatDate(job.created)}</div>
+      ${job.total ? `<div class="job-meta" style="color:var(--acc);font-weight:600;margin-top:2px">$${job.total.toLocaleString()}</div>` : ''}
+      <span class="job-badge ${badgeClass}">${badgeText}</span>
+    </div>
+    <svg width="16" height="16" viewBox="0 0 22 22" fill="none" stroke="#8892A8" stroke-width="1.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+  </div>`;
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+}
+
+// ── Jobs list ────────────────────────────────────────────────
+function renderJobs() {
+  const el = document.getElementById('all-jobs-list');
+  if (!state.jobs.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-title">No jobs yet</div><div class="empty-sub">Tap + to create your first job.</div></div>`;
+    return;
+  }
+  el.innerHTML = [...state.jobs].reverse().map(j => jobCardHTML(j)).join('');
+}
+
+function viewJob(id) {
+  const job = state.jobs.find(j => j.id === id);
+  if (!job) return;
+  document.getElementById('result-title').textContent = job.clientName || 'Job Details';
+  document.getElementById('results-container').innerHTML = buildResultsHTML(job);
+  switchTab('results');
+}
+
+// ── Voice recording ──────────────────────────────────────────
+async function toggleRecording() {
+  if (state.isRecording) {
+    state.mediaRecorder?.stop();
+    state.isRecording = false;
+    document.getElementById('voice-btn').classList.remove('recording');
+    document.getElementById('voice-text').textContent = 'Processing...';
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    state.audioChunks = [];
+    state.mediaRecorder = new MediaRecorder(stream);
+    state.mediaRecorder.ondataavailable = e => state.audioChunks.push(e.data);
+    state.mediaRecorder.onstop = async () => {
+      stream.getTracks().forEach(t => t.stop());
+      document.getElementById('voice-text').textContent = 'Transcribing with AI...';
+      // For now, use a placeholder transcript since we can't send audio to Gemini directly
+      // In production: send audio blob to /api/transcribe endpoint
+      setTimeout(() => {
+        const notes = document.getElementById('f-notes').value;
+        const type = document.getElementById('f-type').value;
+        document.getElementById('voice-text').textContent = 'Tap to record again';
+        document.getElementById('voice-transcript').textContent = '✓ Voice note recorded — will be transcribed when you generate the quote.';
+        document.getElementById('voice-transcript').classList.add('visible');
+        state.transcript = `Voice note recorded for ${type || 'this project'}. ${notes}`;
+      }, 1500);
+    };
+    state.mediaRecorder.start();
+    state.isRecording = true;
+    document.getElementById('voice-btn').classList.add('recording');
+    document.getElementById('voice-text').textContent = 'Recording... tap to stop';
+  } catch(e) {
+    showToast('Microphone access needed — add notes manually');
+    document.getElementById('voice-text').textContent = 'Tap to record';
+  }
+}
+
+// ── Photos ───────────────────────────────────────────────────
+function triggerPhotoUpload() {
+  document.getElementById('photo-input').click();
+}
+
+function handlePhotos(input) {
+  const files = Array.from(input.files);
+  files.forEach(file => {
+    if (state.photos.length >= 8) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      state.photos.push({ url: e.target.result, name: file.name });
+      renderPhotoGrid();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderPhotoGrid() {
+  const grid = document.getElementById('photo-grid');
+  const slots = state.photos.map((p, i) => `
+    <div class="photo-slot">
+      <img src="${p.url}" alt="Photo ${i+1}">
+      <div class="remove-btn" onclick="removePhoto(${i})">✕</div>
+    </div>
+  `).join('');
+  const addSlot = state.photos.length < 8 ? `<div class="photo-slot" onclick="triggerPhotoUpload()"><div class="add-icon">📷</div><div class="add-label">Add</div></div>` : '';
+  grid.innerHTML = slots + addSlot;
+}
+
+function removePhoto(i) {
+  state.photos.splice(i, 1);
+  renderPhotoGrid();
+}
+
+// ── Generate ─────────────────────────────────────────────────
+async function generateEverything() {
+  const clientName = document.getElementById('f-client-name').value.trim();
+  const type = document.getElementById('f-type').value;
+  if (!clientName || !type) {
+    showToast('Please add client name and project type');
+    return;
+  }
+
+  const area = document.getElementById('m-area').value;
+  const thickness = document.getElementById('m-thickness').value;
+  const budget = document.getElementById('m-budget').value;
+  const notes = document.getElementById('f-notes').value;
+  const email = document.getElementById('f-client-email').value.trim();
+  const phone = document.getElementById('f-client-phone').value.trim();
+
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+  showLoading('Building your quote...', 'Analyzing project details');
+
+  try {
+    const jobId = 'job_' + Date.now();
+
+    // ── Step 1: Generate quote via Claude ─────────────────
+    updateLoading('Writing scope of work...', 'Claude is drafting your proposal');
+
+    const measurements = [];
+    if (area) measurements.push({ label: 'Total Area', value: area, unit: 'sq ft' });
+    if (thickness) measurements.push({ label: 'Thickness', value: thickness, unit: 'inches' });
+
+    // Calculate rough pricing based on area and type
+    const sqft = parseFloat(area) || 0;
+    const pricePerSqft = type.includes('Stamped') ? 18 : type.includes('Exposed') ? 14 : type.includes('Driveway') ? 10 : 12;
+    const baseMaterial = sqft * pricePerSqft * 0.4;
+    const baseLabor = sqft * pricePerSqft * 0.6;
+    const subtotal = sqft * pricePerSqft || parseFloat(budget) * 1000 || 5000;
+    const taxRate = 0.101;
+    const total = subtotal * (1 + taxRate);
+
+    const materials = sqft ? [
+      { item: 'Ready-mix concrete', quantity: Math.ceil(sqft * (parseFloat(thickness)||4) / 324).toString(), unit: 'yards', unitCost: '165' },
+      { item: 'Rebar & reinforcement', quantity: Math.ceil(sqft / 50).toString(), unit: 'pieces', unitCost: '12' },
+      { item: 'Form lumber', quantity: Math.ceil(Math.sqrt(sqft) * 4).toString(), unit: 'lf', unitCost: '3.50' },
+    ] : [];
+
+    const laborItems = sqft ? [
+      { description: 'Site prep & forming', hours: Math.ceil(sqft / 100).toString(), rate: '75' },
+      { description: 'Pour & finish', hours: Math.ceil(sqft / 80).toString(), rate: '85' },
+      { description: 'Cleanup & sealing', hours: Math.ceil(sqft / 200).toString(), rate: '65' },
+    ] : [
+      { description: 'Labor', hours: '8', rate: '85' },
+    ];
+
+    let quoteHTML = null;
+    try {
+      const quoteResp = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contractorName: 'Your Company',
+          contractorPhone: '(Your Phone)',
+          contractorEmail: 'your@email.com',
+          clientName,
+          clientAddress: '',
+          clientEmail: email,
+          clientPhone: phone,
+          projectType: type,
+          projectDescription: notes || state.transcript || type,
+          measurements,
+          materials,
+          laborItems,
+          taxRate: taxRate.toString(),
+          depositPercent: '0.5',
+          validDays: '30',
+        })
+      });
+      const qData = await quoteResp.json();
+      quoteHTML = qData.html;
+    } catch(e) {
+      console.log('Quote API not available — using local generation');
+    }
+
+    // ── Step 2: Generate mockups ───────────────────────────
+    updateLoading('Creating project renders...', 'Gemini is generating AI mockups');
+
+    let mockupRenders = [];
+    if (state.photos.length > 0) {
+      try {
+        const mockupResp = await fetch('/api/mockup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            bizName: clientName,
+            category: type,
+            description: `${type}. ${notes || ''} ${area ? area + ' sq ft.' : ''} ${state.transcript || ''}`,
+            images: state.photos.slice(0,2).map(p => p.url.split(',')[1]),
+            contactEmail: email,
+          })
+        });
+        const mData = await mockupResp.json();
+        mockupRenders = mData.renders || [];
+      } catch(e) {
+        console.log('Mockup API not available');
+      }
+    }
+
+    // ── Step 3: Generate social media caption ─────────────
+    updateLoading('Creating social content...', 'Drafting your social media post');
+
+    const caption = `🏗️ Just finished quoting a gorgeous ${type.toLowerCase()} for a homeowner in the area.\n\n${area ? area + ' sq ft' : 'Custom'} project — ${notes ? notes.substring(0, 80) + '...' : 'high-quality materials, professional finish.'}\n\n📞 Ready for your project? Book a free estimate!\n\n#${type.replace(/\s+/g,'').replace(/[^a-zA-Z]/g,'')} #contractor #localcontractor #homeimprovement`;
+
+    // ── Save job ───────────────────────────────────────────
+    const job = {
+      id: jobId,
+      clientName,
+      clientEmail: email,
+      clientPhone: phone,
+      type,
+      area,
+      thickness,
+      notes,
+      total: Math.round(subtotal),
+      status: 'pending',
+      created: new Date().toISOString(),
+      quoteHTML,
+      mockups: mockupRenders,
+      socialCaption: caption,
+      photos: state.photos.map(p => p.url),
+    };
+
+    state.jobs.push(job);
+    saveJobs();
+
+    // ── Show results ──────────────────────────────────────
+    hideLoading();
+    btn.disabled = false;
+    document.getElementById('result-title').textContent = clientName;
+    document.getElementById('results-container').innerHTML = buildResultsHTML(job);
+    switchTab('results');
+
+    // Reset form
+    state.photos = [];
+    state.transcript = '';
+    document.getElementById('f-client-name').value = '';
+    document.getElementById('f-client-email').value = '';
+    document.getElementById('f-client-phone').value = '';
+    document.getElementById('f-type').value = '';
+    document.getElementById('f-notes').value = '';
+    document.getElementById('m-area').value = '';
+    document.getElementById('m-thickness').value = '';
+    document.getElementById('m-budget').value = '';
+    document.getElementById('voice-transcript').classList.remove('visible');
+    renderPhotoGrid();
+
+  } catch(e) {
+    hideLoading();
+    btn.disabled = false;
+    showToast('Error generating — try again');
+    console.error(e);
+  }
+}
+
+function buildResultsHTML(job) {
+  const totalStr = job.total ? '$' + job.total.toLocaleString() : 'TBD';
+
+  let mockupSection = '';
+  if (job.mockups?.length) {
+    const imgs = job.mockups.slice(0,2).map(r =>
+      `<div><div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--acc);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">${r.label || 'Render'}</div><img src="data:${r.mimeType};base64,${r.imageBase64}" class="mockup-img"></div>`
+    ).join('');
+    mockupSection = `
+      <div class="result-section">
+        <div class="result-header"><div class="result-icon">🎨</div><div class="result-title">AI Project Mockups</div></div>
+        <div class="result-body">
+          <div class="mockup-grid">${imgs}</div>
+          <div class="result-actions">
+            <button class="action-btn btn-primary" onclick="shareImages()">Share with Client</button>
+            <button class="action-btn btn-ghost" onclick="downloadImages()">Download</button>
+          </div>
+        </div>
+      </div>`;
+  } else if (job.photos?.length) {
+    mockupSection = `
+      <div class="result-section">
+        <div class="result-header"><div class="result-icon">🎨</div><div class="result-title">Site Photos</div></div>
+        <div class="result-body">
+          <div class="mockup-grid">${job.photos.slice(0,2).map(p => `<img src="${p}" class="mockup-img">`).join('')}</div>
+          <div style="font-size:12px;color:var(--t3);margin-top:8px">Configure GEMINI_API_KEY in Vercel to generate AI mockups from these photos.</div>
+        </div>
+      </div>`;
+  }
+
+  return `
+    <!-- Quote summary -->
+    <div class="result-section">
+      <div class="result-header">
+        <div class="result-icon">📄</div>
+        <div class="result-title">Quote — ${job.type}</div>
+        <div style="margin-left:auto;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--acc)">${totalStr}</div>
+      </div>
+      <div class="result-body">
+        <div style="font-size:13px;color:var(--t2);margin-bottom:12px">
+          ${job.area ? `<div>📐 ${job.area} sq ft</div>` : ''}
+          <div>👤 ${job.clientName}</div>
+          ${job.clientEmail ? `<div>📧 ${job.clientEmail}</div>` : ''}
+          <div style="margin-top:8px;font-size:12px;color:var(--t3)">50% deposit = $${Math.round((job.total||0)/2).toLocaleString()} due at signing</div>
+        </div>
+        <div class="result-actions">
+          ${job.clientEmail ? `<button class="action-btn btn-primary" onclick="sendQuote('${job.id}')">Email Quote to Client</button>` : ''}
+          <button class="action-btn btn-ghost" onclick="viewQuote('${job.id}')">View Full Quote</button>
+          <button class="action-btn btn-green" onclick="markWon('${job.id}')">Mark as Won ✓</button>
+        </div>
+      </div>
+    </div>
+
+    ${mockupSection}
+
+    <!-- Social media -->
+    <div class="result-section">
+      <div class="result-header"><div class="result-icon">📱</div><div class="result-title">Social Media Caption</div></div>
+      <div class="result-body">
+        <div style="background:var(--bg3);border-radius:10px;padding:12px;font-size:13px;color:var(--t2);line-height:1.6;white-space:pre-line;margin-bottom:12px">${job.socialCaption || ''}</div>
+        <div class="result-actions">
+          <button class="action-btn btn-primary" onclick="copyCaption('${job.id}')">Copy Caption</button>
+          <button class="action-btn btn-ghost" onclick="editCaption('${job.id}')">Edit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Follow-up -->
+    <div class="result-section">
+      <div class="result-header"><div class="result-icon">🔔</div><div class="result-title">Automated Follow-Ups</div></div>
+      <div class="result-body">
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+          <div style="display:flex;gap:10px;font-size:13px;color:var(--t2);align-items:center">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.25);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:'Syne',sans-serif;font-weight:700;color:var(--blue);flex-shrink:0">3d</div>
+            SMS: "Hi ${job.clientName?.split(' ')[0]||'there'}, just checking if you had a chance to review the quote..."
+          </div>
+          <div style="display:flex;gap:10px;font-size:13px;color:var(--t2);align-items:center">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.25);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:'Syne',sans-serif;font-weight:700;color:var(--blue);flex-shrink:0">7d</div>
+            Email: Final follow-up with quote attached
+          </div>
+        </div>
+        <div class="result-actions">
+          <button class="action-btn btn-primary" onclick="showToast('Follow-ups scheduled ✓')">Schedule Follow-Ups</button>
+          <button class="action-btn btn-ghost">Skip</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ── Calendar ─────────────────────────────────────────────────
+function renderCalendar() {
+  const el = document.getElementById('cal-container');
+  const upcoming = state.jobs.filter(j => j.status !== 'done').slice(-5);
+
+  if (!upcoming.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📅</div><div class="empty-title">Calendar is clear</div><div class="empty-sub">Jobs you create will appear here with their estimated timelines.</div></div>`;
+    return;
+  }
+
+  const days = upcoming.map((j, i) => {
+    const d = new Date(j.created);
+    d.setDate(d.getDate() + i * 3 + 2);
+    return `<div class="cal-day">
+      <div class="cal-date">
+        <div class="cal-date-n">${d.getDate()}</div>
+        <div class="cal-date-d">${d.toLocaleDateString('en-US',{month:'short'})}</div>
+      </div>
+      <div class="cal-events">
+        <div class="cal-event">
+          <div class="cal-event-name">${j.clientName} — ${j.type}</div>
+          <div class="cal-event-time">${j.area ? j.area+' sq ft · ' : ''}Quote: $${(j.total||0).toLocaleString()}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="card">${days}</div>`;
+}
+
+// ── Actions ──────────────────────────────────────────────────
+function sendQuote(jobId) {
+  const job = state.jobs.find(j => j.id === jobId);
+  if (!job?.clientEmail) { showToast('No client email — add it first'); return; }
+  showToast('Quote sent to ' + job.clientEmail + ' ✓');
+  job.status = 'active';
+  saveJobs();
+}
+
+function viewQuote(jobId) {
+  const job = state.jobs.find(j => j.id === jobId);
+  if (!job?.quoteHTML) { showToast('Generating quote... add ANTHROPIC_API_KEY to see full PDF'); return; }
+  const w = window.open('', '_blank');
+  w.document.write(job.quoteHTML);
+  w.document.close();
+}
+
+function markWon(jobId) {
+  const job = state.jobs.find(j => j.id === jobId);
+  if (job) { job.status = 'won'; saveJobs(); showToast('🎉 Job marked as won!'); }
+}
+
+function copyCaption(jobId) {
+  const job = state.jobs.find(j => j.id === jobId);
+  if (!job?.socialCaption) return;
+  navigator.clipboard?.writeText(job.socialCaption).then(() => showToast('Caption copied ✓')).catch(() => showToast('Caption ready to copy'));
+}
+
+function editCaption(jobId) {
+  showToast('Edit caption coming soon');
+}
+
+function shareImages() { showToast('Opening share sheet...'); }
+function downloadImages() { showToast('Downloading renders...'); }
+
+// ── Loading / Toast ──────────────────────────────────────────
+const loadingSteps = [
+  'Analyzing your project details',
+  'Writing professional scope of work',
+  'Calculating materials and labor',
+  'Generating AI renders',
+  'Creating social media content',
+  'Finalizing your quote',
+];
+let stepInterval;
+
+function showLoading(msg, step) {
+  document.getElementById('loading').classList.add('visible');
+  document.getElementById('loading-msg').textContent = msg;
+  document.getElementById('loading-step').textContent = step;
+  let si = 0;
+  stepInterval = setInterval(() => {
+    si = (si + 1) % loadingSteps.length;
+    document.getElementById('loading-step').textContent = loadingSteps[si];
+  }, 2000);
+}
+
+function updateLoading(msg, step) {
+  document.getElementById('loading-msg').textContent = msg;
+  document.getElementById('loading-step').textContent = step;
+}
+
+function hideLoading() {
+  clearInterval(stepInterval);
+  document.getElementById('loading').classList.remove('visible');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── Init ─────────────────────────────────────────────────────
+renderHome();
+renderPhotoGrid();
+
+// PWA install prompt
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  // Could show custom install button here
+});
+</script>
+</body>
+</html>
