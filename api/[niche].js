@@ -174,7 +174,7 @@ const NICHES = {
         'Monthly performance report',
       ],
       addons: ['Ads Management — $299/mo add-on'],
-      note: 'Storm season or not - roofers with strong online presence get 4x more calls than those without.',
+      note: 'Storm season or not — roofers with strong online presence get 4x more calls than those without.',
     },
   },
 
@@ -235,7 +235,7 @@ const NICHES = {
       { icon: '📐', title: 'AI Quote Generator', desc: 'Professional plumbing proposals for remodels, installations, and service work — branded and signed.' },
       { icon: '🗺️', title: 'Online Presence (38+ directories)', desc: 'Google Maps, Yelp, HomeAdvisor, Angi, and every other place plumbers get found.' },
       { icon: '⭐', title: 'Review Automation', desc: 'Post-job review requests sent automatically. Emergency customers are the best reviewers.' },
-      { icon: '🤖', title: 'AI Chatbot', desc: 'Answers calls and questions at 3am. Captures leads when you cannot answer the phone.' },
+      { icon: '🤖', title: 'AI Chatbot', desc: 'Answers calls and questions at 3am. Captures leads when you can't answer the phone.' },
       { icon: '📱', title: 'Ads Management', desc: 'Google Local Services Ads for plumbers — the highest-converting ad format for emergency services.' },
     ],
     stats: ['3am', 'When most plumbing emergencies happen', '$450', 'Average emergency service call value', '5x', 'ROI on Google Local Services Ads for plumbers'],
@@ -245,7 +245,7 @@ const NICHES = {
       { name: 'AI Quote Generator', price: '$79', period: '/mo', desc: 'Branded plumbing proposals with scope, materials, and warranty terms' },
       { name: 'Online Presence (38+ directories)', price: '$149', period: '/mo', desc: 'Every directory where homeowners find emergency plumbers' },
       { name: 'Review Automation', price: '$49', period: '/mo', desc: 'Automatic review requests after every job — emergency customers review fast' },
-      { name: 'AI Chatbot', price: '$99', period: '/mo', desc: 'Answers emergency inquiries 24/7 and captures lead info when you are on a job' },
+      { name: 'AI Chatbot', price: '$99', period: '/mo', desc: 'Answers emergency inquiries 24/7 and captures lead info when you're on a job' },
       { name: 'Ads Management', price: '$299', period: '/mo', desc: 'Google Local Services Ads — highest ROI ad format for plumbers' },
     ],
     bundle: {
@@ -692,15 +692,18 @@ ${data.alacarte ? `
 }
 
 export default function handler(req, res) {
-  // Vercel rewrites pass the niche as ?niche=concrete query param
-  const nicheParam = (req.query && req.query.niche)
-    ? req.query.niche
-    : (req.url || '').split('?')[0].replace(/^\/api\/niche\/?/, '').replace(/^\//, '');
-  const niche = nicheParam.toLowerCase().trim();
+  // Vercel dynamic routing: api/[niche].js receives req.query.niche
+  // Also fallback: read from URL path or query string
+  const niche = (
+    req.query?.niche ||
+    (req.url || '').split('?')[0].replace(/^\/api\//, '').replace(/^\//, '')
+  ).toLowerCase().trim();
+
   const data = NICHES[niche];
 
   if (!data) {
-    return res.status(404).send('Niche page not found. Available: ' + Object.keys(NICHES).join(', '));
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    return res.status(404).send('<html><body style="font-family:sans-serif;padding:40px;background:#07090C;color:#EDE8DC"><h2 style="color:#F07A20">Page not found</h2><p style="color:#8892A8">Available pages: ' + Object.keys(NICHES).map(n => '<a href="/'+n+'" style="color:#F07A20">'+n+'</a>').join(' · ') + '</p></body></html>');
   }
 
   const html = renderNichePage(niche, data);

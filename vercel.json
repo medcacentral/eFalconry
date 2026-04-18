@@ -4,13 +4,7 @@
     { "source": "/preview",       "destination": "/api/p" },
     { "source": "/ref/:slug*",    "destination": "/api/refer" },
     { "source": "/pay",           "destination": "/api/checkout" },
-    { "source": "/merch",         "destination": "/api/merch" },
-    { "source": "/concrete",      "destination": "/api/concrete" },
-    { "source": "/landscaping",   "destination": "/api/landscaping" },
-    { "source": "/hvac",          "destination": "/api/hvac" },
-    { "source": "/roofing",       "destination": "/api/roofing" },
-    { "source": "/electrician",   "destination": "/api/electrician" },
-    { "source": "/plumber",       "destination": "/api/plumber" }
+    { "source": "/merch",         "destination": "/api/merch" }
   ],
   "crons": [
     {
