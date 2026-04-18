@@ -1,5 +1,6 @@
 {
-  "buildCommand": "",
+  "framework": null,
+  "buildCommand": "echo 'no build needed'",
   "outputDirectory": ".",
   "rewrites": [
     { "source": "/p/:slug*",  "destination": "/api/p" },
