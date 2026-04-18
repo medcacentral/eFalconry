@@ -75,8 +75,8 @@ Keep the call under 2 minutes. Be natural. Allow silences. Don't interrupt.`;
             voiceId: 'rachel', // warm, professional female voice
           },
           model: {
-            provider: 'anthropic',
-            model: 'claude-haiku-4-5-20251001',
+            provider: 'openai',
+            model: 'gpt-4o',
             messages: [{ role: 'system', content: systemPrompt }],
           },
           firstMessage: `Hi ${firstName}, my name is Aria — I'm an AI assistant calling from e-Falconry. I'll keep this quick — we actually built a website specifically for ${bizName}, and I wanted to make sure you had a chance to see it before we move on. Do you have about 30 seconds?`,
