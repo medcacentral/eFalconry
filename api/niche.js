@@ -54,6 +54,35 @@ const NICHES = {
     ],
     stats: ['$28K', 'Average project closed using AI mockup', '3 hrs', 'To generate a professional quote package', '47%', 'More Google calls after GBP optimization'],
     cta: 'Get Your Free Concrete Contractor Website',
+    alacarte: [
+      { name: 'Professional Website', price: '$99', period: 'one-time', desc: 'Mobile-optimized, fast, built for concrete contractors', tag: 'Start here' },
+      { name: 'AI Quote Generator', price: '$79', period: '/mo', desc: 'Branded PDF proposals with measurements, scope, and signature lines' },
+      { name: 'Project Mockups', price: '$149', period: '/project', desc: '3 photorealistic renders of the finished project — before you pour' },
+      { name: 'Online Presence (38+ directories)', price: '$149', period: '/mo', desc: 'Google Maps, Yelp, HomeAdvisor, Angi, Apple Maps, and 33 more' },
+      { name: 'Review Automation', price: '$49', period: '/mo', desc: 'Auto-request reviews after every job. Grow your Google rating on autopilot' },
+      { name: 'AI Chatbot', price: '$99', period: '/mo', desc: 'Answers customer questions 24/7 on your website' },
+      { name: 'Ads Management', price: '$299', period: '/mo', desc: 'Google, Facebook, and TikTok ads. You set the budget, we do everything else' },
+    ],
+    bundle: {
+      name: 'The Full Stack',
+      price: '$549',
+      period: '/mo',
+      savings: 'Save $175/mo vs à la carte',
+      includes: [
+        'Website hosting & monthly updates',
+        'AI Quote Generator',
+        'Online Presence (38+ directories)',
+        'Review Automation',
+        'AI Chatbot 24/7',
+        'Google Business Profile optimization',
+        'Monthly performance report',
+      ],
+      addons: [
+        'Project Mockups — $149/project',
+        'Ads Management — $299/mo add-on',
+      ],
+      note: 'Most concrete contractors start with The Full Stack + Ads Management and see 3x more inbound calls within 90 days.',
+    },
   },
 
   landscaping: {
@@ -74,6 +103,35 @@ const NICHES = {
     ],
     stats: ['4.8★', 'Average Google rating after review automation', '$149', 'Per project for AI yard renderings', '2x', 'More website leads after redesign'],
     cta: 'Get Your Free Landscaping Website',
+    alacarte: [
+      { name: 'Professional Website', price: '$99', period: 'one-time', desc: 'Photo gallery, service areas, mobile-optimized', tag: 'Start here' },
+      { name: 'AI Project Mockups', price: '$149', period: '/project', desc: '3 photorealistic renders of the finished landscape design' },
+      { name: 'AI Quote Generator', price: '$79', period: '/mo', desc: 'Branded proposals with plant specs, measurements, and pricing' },
+      { name: 'Online Presence (38+ directories)', price: '$149', period: '/mo', desc: 'Every directory where landscapers get found — managed for you' },
+      { name: 'Review Automation', price: '$49', period: '/mo', desc: 'Auto-request reviews after every lawn care or design job' },
+      { name: 'Smart Booking', price: '$79', period: '/mo', desc: 'Online booking for consultations, seasonal cleanups, and maintenance' },
+      { name: 'Ads Management', price: '$299', period: '/mo', desc: 'Google, Facebook, and TikTok. Before/after content that gets shared' },
+    ],
+    bundle: {
+      name: 'The Full Stack',
+      price: '$499',
+      period: '/mo',
+      savings: 'Save $156/mo vs à la carte',
+      includes: [
+        'Website hosting & monthly updates',
+        'AI Quote Generator',
+        'Online Presence (38+ directories)',
+        'Review Automation',
+        'Smart Booking System',
+        'AI Chatbot 24/7',
+        'Monthly performance report',
+      ],
+      addons: [
+        'Project Mockups — $149/project',
+        'Ads Management — $299/mo add-on',
+      ],
+      note: 'Most landscapers start here in spring and have a full calendar by summer.',
+    },
   },
 
   hvac: {
@@ -94,6 +152,34 @@ const NICHES = {
     ],
     stats: ['24/7', 'AI answers customer questions', '58%', 'Of HVAC searches happen on mobile', '$0', 'Extra cost to you for AI features'],
     cta: 'Get Your Free HVAC Website',
+    alacarte: [
+      { name: 'Professional Website', price: '$99', period: 'one-time', desc: 'Fast, mobile-first HVAC website built to convert', tag: 'Start here' },
+      { name: 'AI Chatbot', price: '$99', period: '/mo', desc: 'Handles after-hours inquiries, emergency calls, and booking requests' },
+      { name: 'AI Quote Generator', price: '$79', period: '/mo', desc: 'System specs, labor, warranty, and financing options in one PDF' },
+      { name: 'Online Presence (38+ directories)', price: '$149', period: '/mo', desc: 'Show up everywhere homeowners search for HVAC — managed monthly' },
+      { name: 'Review Automation', price: '$49', period: '/mo', desc: 'Every service call triggers a review request. Google rating climbs automatically' },
+      { name: 'Smart Booking', price: '$79', period: '/mo', desc: 'Online scheduling for tune-ups, installs, and emergency service' },
+      { name: 'Ads Management', price: '$299', period: '/mo', desc: 'Google Local Services Ads — you only pay per call, not per click' },
+    ],
+    bundle: {
+      name: 'The Full Stack',
+      price: '$499',
+      period: '/mo',
+      savings: 'Save $155/mo vs à la carte',
+      includes: [
+        'Website hosting & monthly updates',
+        'AI Chatbot 24/7',
+        'AI Quote Generator',
+        'Online Presence (38+ directories)',
+        'Review Automation',
+        'Smart Booking System',
+        'Monthly performance report',
+      ],
+      addons: [
+        'Google Local Services Ads — $299/mo add-on (highly recommended for HVAC)',
+      ],
+      note: 'HVAC is one of the highest-competition local service categories. The Full Stack + Google LSAs puts you ahead of 90% of competitors.',
+    },
   },
 };
 
@@ -186,6 +272,7 @@ footer{background:#060E18;border-top:1px solid rgba(255,255,255,.06);padding:28p
 footer p{font-size:12px;color:#8892A8;}
 footer a{color:#F07A20;text-decoration:none;}
 @media(max-width:768px){.svc-grid{grid-template-columns:1fr 1fr;}.mockup-panels{grid-template-columns:1fr;}.stats-row{flex-wrap:wrap;}.stat{min-width:50%;border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:16px;}.stat:last-child{border-bottom:none;}.cta-block{padding:40px 24px;}}
+@media(max-width:860px){[style*="grid-template-columns:1fr 1fr"][style*="align-items:start"]{grid-template-columns:1fr !important;} [style*="position:sticky"]{position:relative !important;top:auto !important;}}
 @media(max-width:480px){.svc-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -371,6 +458,91 @@ ${data.mockupBefore ? `
     </div>`).join('')}
   </div>
 </section>
+
+<!-- PRICING -->
+${data.alacarte ? `
+<section style="padding:88px 5%;background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);">
+<div style="max-width:1100px;margin:0 auto">
+
+  <div class="eye">Pricing</div>
+  <h2>Pick What<br><em style="font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">You Need.</em></h2>
+  <p style="font-size:16px;color:#C4CBDA;max-width:540px;line-height:1.75;margin-bottom:56px;font-weight:300">Every service is available individually. No contracts, no minimums. Or take everything at once with The Full Stack and save.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start">
+
+    <!-- À la carte menu -->
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:${accent};margin-bottom:20px">À La Carte — Pick Any Service</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        \${data.alacarte.map(item => \`
+        <div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:border-color .15s"
+             onmouseover="this.style.borderColor='rgba(255,255,255,.15)'" 
+             onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+              <span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">\${item.name}</span>
+              \${item.tag ? \`<span style="background:rgba(255,255,255,.08);border-radius:99px;padding:2px 8px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:#8892A8;text-transform:uppercase">\${item.tag}</span>\` : ''}
+            </div>
+            <div style="font-size:12px;color:#8892A8;line-height:1.5">\${item.desc}</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0">
+            <div style="font-family:'Bebas Neue',cursive;font-size:24px;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">\${item.price}</div>
+            <div style="font-size:10px;color:#8892A8">\${item.period}</div>
+          </div>
+        </div>\`).join('')}
+      </div>
+    </div>
+
+    <!-- Bundle -->
+    <div style="position:sticky;top:80px">
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:${accent};margin-bottom:20px">The Full Stack — Everything at Once</div>
+      <div style="background:#0F1219;border:2px solid rgba(255,255,255,.15);border-radius:20px;overflow:hidden;position:relative">
+        <!-- Most popular badge -->
+        <div style="background:var(--grad);padding:10px 24px;text-align:center">
+          <span style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff">Most Popular</span>
+        </div>
+        <div style="padding:28px 28px 24px">
+          <div style="font-family:'Bebas Neue',cursive;font-size:18px;color:#EDE8DC;margin-bottom:4px">\${data.bundle.name}</div>
+          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:4px">
+            <span style="font-family:'Bebas Neue',cursive;font-size:56px;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">\${data.bundle.price}</span>
+            <span style="font-size:14px;color:#8892A8">\${data.bundle.period}</span>
+          </div>
+          <div style="display:inline-block;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);border-radius:99px;padding:4px 12px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#4ADE80;margin-bottom:20px">\${data.bundle.savings}</div>
+          
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+            \${data.bundle.includes.map(inc => \`
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C4CBDA">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="rgba(74,222,128,.15)" stroke="rgba(74,222,128,.4)"/><path d="M5 8l2 2 4-4" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>
+              \${inc}
+            </div>\`).join('')}
+          </div>
+
+          \${data.bundle.addons?.length ? \`
+          <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:16px;margin-bottom:20px">
+            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8892A8;margin-bottom:10px">Popular Add-Ons</div>
+            \${data.bundle.addons.map(a => \`
+            <div style="font-size:12px;color:#C4CBDA;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)">\${a}</div>
+            \`).join('')}
+          </div>\` : ''}
+
+          <button class="btn-p" style="width:100%;font-size:15px;padding:15px" onclick="window.location.href='/#score'">Get Started — Free Audit First →</button>
+          
+          \${data.bundle.note ? \`<p style="font-size:12px;color:#8892A8;margin-top:14px;line-height:1.6;text-align:center">\${data.bundle.note}</p>\` : ''}
+        </div>
+      </div>
+
+      <!-- Or start small -->
+      <div style="margin-top:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;text-align:center">
+        <div style="font-size:13px;color:#8892A8;margin-bottom:8px">Or start small — no commitment</div>
+        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#EDE8DC;margin-bottom:4px">$99 Website Only</div>
+        <div style="font-size:12px;color:#8892A8;margin-bottom:14px">One-time · Nothing required from you · Live in 48hrs</div>
+        <button onclick="window.location.href='/#score'" style="background:transparent;border:1px solid rgba(255,255,255,.15);color:#C4CBDA;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px 22px;border-radius:8px;cursor:pointer;width:100%">Start with $99 →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>` : ''}
 
 <!-- CTA -->
 <div class="cta-block">
