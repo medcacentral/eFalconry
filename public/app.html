@@ -26,7 +26,7 @@
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow:hidden;font-size:16px;}
 button{cursor:pointer;border:none;background:none;font-family:inherit;color:inherit;}
-input,textarea,select{font-family:inherit;color:var(--text);background:var(--bg3);border:1px solid var(--bdr2);border-radius:12px;padding:13px 15px;width:100%;font-size:15px;outline:none;-webkit-appearance:none;appearance:none;}
+input,textarea,select{font-family:inherit;color:var(--text);background:var(--bg3);border:1px solid var(--bdr2);border-radius:12px;padding:14px 15px;width:100%;font-size:16px;outline:none;-webkit-appearance:none;appearance:none;}
 input::placeholder,textarea::placeholder{color:var(--t3);}
 input:focus,textarea:focus,select:focus{border-color:rgba(240,122,32,.5);background:rgba(22,27,38,1);}
 select option{background:#161B26;}
@@ -40,7 +40,7 @@ textarea{resize:none;line-height:1.6;}
 /* Top bar */
 .topbar{height:58px;background:rgba(7,9,12,.98);border-bottom:1px solid var(--bdr);display:flex;align-items:center;padding:0 16px;gap:10px;position:sticky;top:0;z-index:50;flex-shrink:0;}
 .t-logo{display:flex;align-items:center;gap:8px;}
-.t-wordmark{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;letter-spacing:.02em;}
+.t-wordmark{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;letter-spacing:.02em;}
 .t-wordmark em{font-style:normal;color:var(--acc);}
 .t-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 .t-avatar{width:30px;height:30px;border-radius:50%;background:rgba(240,122,32,.15);border:1.5px solid rgba(240,122,32,.3);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--acc);}
@@ -51,7 +51,7 @@ textarea{resize:none;line-height:1.6;}
 .nav{height:calc(58px + var(--sb));padding-bottom:var(--sb);background:rgba(7,9,12,.98);border-top:1px solid var(--bdr);display:flex;position:fixed;bottom:0;left:0;right:0;z-index:50;}
 .ni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 0 0;cursor:pointer;}
 .ni svg{opacity:.35;transition:opacity .15s;}
-.ni span{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);transition:color .15s;}
+.ni span{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);transition:color .15s;}
 .ni.on svg{opacity:1;}
 .ni.on svg path,.ni.on svg rect,.ni.on svg circle{stroke:var(--acc);}
 .ni.on span{color:var(--acc);}
@@ -60,7 +60,7 @@ textarea{resize:none;line-height:1.6;}
 .p{padding:18px 16px;}
 
 /* Headings */
-.page-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:18px;}
+.page-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:18px;}
 
 /* Cards */
 .card{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;margin-bottom:10px;}
@@ -74,15 +74,15 @@ textarea{resize:none;line-height:1.6;}
 .pill-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
 
 /* Form */
-.f-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:7px;}
+.f-label{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:7px;}
 .f-group{margin-bottom:20px;}
 .f-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.f-hint{font-size:13px;color:var(--t3);margin-top:6px;line-height:1.5;}
+.f-hint{font-size:14px;color:var(--t3);margin-top:6px;line-height:1.5;}
 
 /* Measurement tiles */
 .m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .m-tile{background:var(--bg3);border:1px solid var(--bdr2);border-radius:12px;padding:12px 8px;text-align:center;}
-.m-tile input{background:none;border:none;border-radius:0;padding:0;text-align:center;font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--acc);width:100%;outline:none;}
+.m-tile input{background:none;border:none;border-radius:0;padding:0;text-align:center;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--acc);width:100%;outline:none;}
 .m-tile input::placeholder{color:rgba(240,122,32,.25);font-size:20px;}
 .m-unit{font-size:10px;color:var(--t3);font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:3px;}
 
@@ -101,9 +101,9 @@ textarea{resize:none;line-height:1.6;}
 .v-dot{width:10px;height:10px;border-radius:50%;background:var(--t3);flex-shrink:0;transition:all .2s;}
 .v-btn.rec .v-dot{background:#FC8181;box-shadow:0 0 8px #FC8181;animation:vp 1s infinite;}
 @keyframes vp{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
-.v-main{font-size:14px;color:var(--t3);transition:color .2s;}
+.v-main{font-size:16px;color:var(--t3);transition:color .2s;}
 .v-btn.rec .v-main{color:#FC8181;}
-.v-sub{font-size:11px;color:var(--t3);margin-top:2px;opacity:.7;}
+.v-sub{font-size:13px;color:var(--t3);margin-top:2px;opacity:.7;}
 .v-transcript{background:var(--bg3);border:1px solid rgba(240,122,32,.2);border-radius:10px;padding:12px;margin-top:8px;font-size:13px;color:var(--t2);line-height:1.65;display:none;}
 .v-transcript.on{display:block;}
 
@@ -111,23 +111,23 @@ textarea{resize:none;line-height:1.6;}
 .sub-btn{width:100%;padding:16px;border-radius:14px;background:var(--grad);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 6px 24px rgba(240,122,32,.3);transition:all .15s;margin-bottom:8px;}
 .sub-btn:active{transform:scale(.97);}
 .sub-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
-.sub-note{text-align:center;font-size:12px;color:var(--t3);line-height:1.5;}
+.sub-note{text-align:center;font-size:14px;color:var(--t3);line-height:1.5;}
 
 /* Job card */
 .jc{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:15px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;transition:border-color .15s;}
 .jc:active{border-color:var(--bdr2);}
 .jc-icon{width:40px;height:40px;border-radius:10px;background:rgba(240,122,32,.1);border:1px solid rgba(240,122,32,.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-.jc-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:2px;}
-.jc-sub{font-size:13px;color:var(--t3);margin-bottom:6px;}
+.jc-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:2px;}
+.jc-sub{font-size:14px;color:var(--t3);margin-bottom:6px;}
 
 /* Inbox */
 .ib-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;margin-bottom:12px;}
 .ib-header{padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--bdr);}
 .ib-icon{font-size:20px;}
-.ib-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;flex:1;}
+.ib-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;flex:1;}
 .ib-time{font-size:11px;color:var(--t3);}
 .ib-body{padding:14px 16px;}
-.ib-preview{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:12px;}
+.ib-preview{font-size:15px;color:var(--t2);line-height:1.6;margin-bottom:12px;}
 
 /* Action buttons */
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;}
@@ -149,11 +149,11 @@ textarea{resize:none;line-height:1.6;}
 .success-ov{position:fixed;inset:0;background:rgba(7,9,12,.97);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;display:none;padding:32px;}
 .success-ov.on{display:flex;}
 .success-check{width:72px;height:72px;border-radius:50%;background:rgba(74,222,128,.12);border:2px solid rgba(74,222,128,.3);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:8px;}
-.success-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;text-align:center;}
-.success-sub{font-size:15px;color:var(--t2);text-align:center;line-height:1.7;max-width:300px;}
+.success-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;text-align:center;}
+.success-sub{font-size:16px;color:var(--t2);text-align:center;line-height:1.7;max-width:300px;}
 .success-eta{background:rgba(240,122,32,.08);border:1px solid rgba(240,122,32,.2);border-radius:12px;padding:14px 20px;text-align:center;margin-top:8px;}
 .success-eta-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--t3);margin-bottom:4px;}
-.success-eta-val{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--acc);}
+.success-eta-val{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--acc);}
 
 /* Toast */
 .toast{position:fixed;bottom:calc(76px + var(--sb));left:50%;transform:translateX(-50%) translateY(12px);background:#161B26;border:1px solid rgba(74,222,128,.3);border-radius:99px;padding:9px 18px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--green);white-space:nowrap;z-index:400;opacity:0;transition:all .22s;pointer-events:none;}
@@ -162,8 +162,8 @@ textarea{resize:none;line-height:1.6;}
 /* Empty */
 .empty{padding:48px 24px;text-align:center;}
 .empty-icon{font-size:44px;margin-bottom:12px;}
-.empty-t{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:6px;}
-.empty-s{font-size:13px;color:var(--t3);line-height:1.65;}
+.empty-t{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:6px;}
+.empty-s{font-size:15px;color:var(--t3);line-height:1.65;}
 
 /* Animations */
 .screen{animation:fi .18s ease;}
@@ -184,11 +184,11 @@ textarea{resize:none;line-height:1.6;}
   <!-- Topbar -->
   <div class="topbar">
     <div class="t-logo">
-        <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
         <path d="M20 4L28 16L20 12L12 16Z" fill="#F07A20"/>
-        <path d="M20 12L28 16L24 28L20 24L16 28L12 16Z" fill="#EDE8DC" opacity=".9"/>
-        <path d="M20 24L24 28L20 36L16 28Z" fill="#F07A20" opacity=".7"/>
-      </svg><div class="t-wordmark"><em>e-</em>Falconry</div>
+        <path d="M20 12L28 16L24 28L20 24L16 28L12 16Z" fill="#EDE8DC" opacity=".92"/>
+        <path d="M20 24L24 28L20 36L16 28Z" fill="#F07A20" opacity=".75"/>
+      </svg>
     </div>
     <div class="t-right">
       <div class="t-notif" id="notif-icon" style="display:none">
@@ -203,8 +203,8 @@ textarea{resize:none;line-height:1.6;}
   <div id="s-home" class="screen">
     <div class="p">
       <div style="margin-bottom:20px">
-        <div style="font-size:13px;color:var(--t3);margin-bottom:2px" id="home-greeting">Good morning 👋</div>
-        <div style="font-family:'Syne',sans-serif;font-size:21px;font-weight:800" id="home-name">Welcome back</div>
+        <div style="font-size:15px;color:var(--t3);margin-bottom:2px" id="home-greeting">Good morning 👋</div>
+        <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800" id="home-name">Welcome back</div>
       </div>
 
       <!-- Submit new job CTA -->
@@ -216,26 +216,26 @@ textarea{resize:none;line-height:1.6;}
       <!-- How it works -->
       <div class="card" style="margin-bottom:20px">
         <div class="card-body">
-          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:12px">How It Works</div>
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:14px">How It Works</div>
           <div style="display:flex;flex-direction:column;gap:12px">
             <div style="display:flex;gap:12px;align-items:flex-start">
-              <div style="width:28px;height:28px;border-radius:50%;background:rgba(240,122,32,.12);border:1px solid rgba(240,122,32,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--acc);flex-shrink:0">1</div>
-              <div><div style="font-size:14px;font-weight:500;margin-bottom:1px">You submit job details</div><div style="font-size:12px;color:var(--t3)">Photos, voice note, measurements — takes 2 minutes</div></div>
+              <div style="width:32px;height:32px;border-radius:50%;background:rgba(240,122,32,.12);border:1px solid rgba(240,122,32,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--acc);flex-shrink:0">1</div>
+              <div><div style="font-size:16px;font-weight:500;margin-bottom:2px">You submit job details</div><div style="font-size:14px;color:var(--t3)">Photos, voice note, measurements — takes 2 minutes</div></div>
             </div>
             <div style="display:flex;gap:12px;align-items:flex-start">
-              <div style="width:28px;height:28px;border-radius:50%;background:rgba(240,122,32,.12);border:1px solid rgba(240,122,32,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--acc);flex-shrink:0">2</div>
-              <div><div style="font-size:14px;font-weight:500;margin-bottom:1px">We generate everything</div><div style="font-size:12px;color:var(--t3)">Quote PDF, AI project renders, social caption — within 2 hours</div></div>
+              <div style="width:32px;height:32px;border-radius:50%;background:rgba(240,122,32,.12);border:1px solid rgba(240,122,32,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--acc);flex-shrink:0">2</div>
+              <div><div style="font-size:16px;font-weight:500;margin-bottom:2px">We generate everything</div><div style="font-size:14px;color:var(--t3)">Quote PDF, AI project renders, social caption — within 2 hours</div></div>
             </div>
             <div style="display:flex;gap:12px;align-items:flex-start">
-              <div style="width:28px;height:28px;border-radius:50%;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--green);flex-shrink:0">3</div>
-              <div><div style="font-size:14px;font-weight:500;margin-bottom:1px">Delivered to your email</div><div style="font-size:12px;color:var(--t3)">Ready to send to your client. Close the job.</div></div>
+              <div style="width:32px;height:32px;border-radius:50%;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--green);flex-shrink:0">3</div>
+              <div><div style="font-size:16px;font-weight:500;margin-bottom:2px">Delivered to your email</div><div style="font-size:14px;color:var(--t3)">Ready to send to your client. Close the job.</div></div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Recent activity -->
-      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
         Recent Jobs
         <span style="cursor:pointer;color:var(--acc);font-size:11px;letter-spacing:0;text-transform:none" onclick="switchTab('jobs')">See all</span>
       </div>
