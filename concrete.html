@@ -1,425 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>e-Falconry Concrete Contractors</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>e-Falconry — Concrete Contractors</title>
 <meta name="description" content="Win more patio, driveway, and foundation jobs with AI tools built for concrete work.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--acc:#F59E0B;--grad:linear-gradient(90deg,#F59E0B,#FCD34D);}
-body{background:#07090C;color:#EDE8DC;font-family:'DM Sans',sans-serif;}
-/* Nav */
-nav{background:rgba(7,9,12,.97);border-bottom:1px solid rgba(255,255,255,.07);padding:0 5%;height:66px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.n-brand{font-family:'Bebas Neue',cursive;font-size:20px;letter-spacing:.08em;}
-.n-brand a{color:#EDE8DC;text-decoration:none;}
+:root{--acc:#F59E0B;--bg:#07090C;--bg2:#0F1219;--bg3:#161B26;--text:#EDE8DC;--t2:#C4CBDA;--t3:#8892A8;--bdr:rgba(255,255,255,.07);}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;}
+a{color:inherit;text-decoration:none;}
+nav{background:rgba(7,9,12,.97);border-bottom:1px solid rgba(240,122,32,.2);padding:0 5%;height:66px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.n-logo{display:flex;align-items:center;gap:10px;}
+.n-brand{font-family:'Bebas Neue',cursive;font-size:20px;letter-spacing:.08em;color:#EDE8DC;}
 .n-brand span{color:#F07A20;}
-.n-cta{background:var(--grad);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:10px 22px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;}
-/* Hero */
-.hero{min-height:85vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 5%;}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#07090C 0%,#0F1219 60%,#07090C 100%);}
-.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,#F59E0B18 0%,transparent 70%);top:-100px;right:-100px;}
+.n-cta{background:linear-gradient(90deg,#F07A20,#FF9A50);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:10px 22px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;}
+.hero{min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 5%;background:linear-gradient(160deg,#07090C 0%,#0F1219 60%,#07090C 100%);}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,#F59E0B18 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
 .hero-inner{position:relative;z-index:2;max-width:960px;width:100%;}
-.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:99px;padding:6px 16px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C4CBDA;margin-bottom:24px;}
-.pill span{color:var(--acc);}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(240,122,32,.1);border:1px solid rgba(240,122,32,.25);border-radius:99px;padding:6px 16px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F07A20;margin-bottom:24px;}
 h1{font-family:'Bebas Neue',cursive;font-size:clamp(60px,11vw,100px);line-height:.92;margin-bottom:24px;}
-h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+h1 em{font-style:normal;color:#F59E0B;}
 .hero-sub{font-size:17px;color:#C4CBDA;line-height:1.8;max-width:600px;margin-bottom:40px;font-weight:300;}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
-.btn-p{background:var(--grad);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:15px 32px;border-radius:10px;border:none;cursor:pointer;}
-.btn-s{background:transparent;color:#C4CBDA;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:15px 32px;border-radius:10px;border:1px solid rgba(255,255,255,.12);cursor:pointer;}
-/* Stats */
-.stats-row{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:28px 5%;background:rgba(0,0,0,.2);}
-.stat{flex:1;text-align:center;border-right:1px solid rgba(255,255,255,.07);padding:0 20px;}
-.stat:last-child{border-right:none;}
-.stat-n{font-family:'Bebas Neue',cursive;font-size:42px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
-.stat-l{font-size:12px;color:#8892A8;margin-top:4px;line-height:1.4;}
-/* Section */
-.section{padding:88px 5%;max-width:1100px;margin:0 auto;}
-.eye{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--acc);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.eye::before{content:'';width:24px;height:2px;background:var(--grad);border-radius:2px;}
+.btn-p{background:linear-gradient(90deg,#F07A20,#FF9A50);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:15px 32px;border-radius:10px;border:none;cursor:pointer;display:inline-block;}
+.btn-s{background:transparent;color:#C4CBDA;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:15px 32px;border-radius:10px;border:1px solid rgba(255,255,255,.12);cursor:pointer;display:inline-block;margin-left:12px;}
+.stats-row{display:flex;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:28px 5%;background:rgba(0,0,0,.2);}
+.stats-row div:last-child{border-right:none !important;}
+.eye{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;color:#F07A20;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.eye::before{content:'';width:24px;height:2px;background:linear-gradient(90deg,#F07A20,#FF9A50);border-radius:2px;}
 h2{font-family:'Bebas Neue',cursive;font-size:clamp(40px,7vw,64px);line-height:.93;margin-bottom:16px;}
+h2 em{font-style:normal;color:#F59E0B;}
 .section-sub{font-size:16px;color:#C4CBDA;max-width:560px;line-height:1.75;margin-bottom:48px;font-weight:300;}
-/* Mockup demo */
-.mockup-demo{background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;margin-bottom:48px;}
-.mockup-header{padding:20px 28px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;}
-.mockup-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;}
-.mockup-badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:4px 12px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8892A8;}
-.mockup-panels{display:grid;grid-template-columns:1fr 1fr;}
-.panel{position:relative;}
-.panel-label{position:absolute;top:12px;left:12px;z-index:2;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:99px;}
-.panel-label.before{background:rgba(0,0,0,.7);color:#C4CBDA;}
-.panel-label.after{background:var(--acc);color:#fff;}
-.panel-img{height:280px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.panel-desc{padding:14px 18px;font-size:12px;color:#8892A8;border-top:1px solid rgba(255,255,255,.06);}
-/* Before SVG */
-.before-svg{width:100%;height:100%;background:linear-gradient(160deg,#1a1a0a,#2a2a15);display:flex;align-items:center;justify-content:center;}
-/* After SVG */
-.after-svg{width:100%;height:100%;background:linear-gradient(160deg,#0a1a0a,#0a2a0a);display:flex;align-items:center;justify-content:center;position:relative;}
-/* Quote demo */
-.quote-demo{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5);}
-.qd-header{background:#1a1a1a;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;}
-.qd-brand{color:#fff;font-weight:800;font-size:16px;}
-.qd-number{color:#888;font-size:12px;}
-.qd-body{padding:20px 24px;color:#1a1a1a;}
-.qd-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px;}
-.qd-row:last-child{border-bottom:none;font-weight:800;font-size:15px;}
-.qd-label{color:#666;}
-.qd-section-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#999;margin:16px 0 8px;}
-/* Services grid */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.svc-card{background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s;}
-.svc-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.15);}
-.svc-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);border-radius:2px 0 0 2px;}
-.svc-icon{font-size:28px;margin-bottom:14px;display:block;}
-.svc-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;}
-.svc-desc{font-size:13px;color:#8892A8;line-height:1.65;}
-/* CTA */
 .cta-block{background:linear-gradient(135deg,#0F1219,#161B26);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:60px;text-align:center;margin:0 5% 80px;}
 .cta-block h2{font-size:clamp(40px,7vw,60px);margin-bottom:16px;}
 .cta-block p{font-size:16px;color:#C4CBDA;max-width:500px;margin:0 auto 32px;line-height:1.7;}
-/* Footer */
 footer{background:#060E18;border-top:1px solid rgba(255,255,255,.06);padding:28px 5%;text-align:center;}
 footer p{font-size:12px;color:#8892A8;}
-footer a{color:#F07A20;text-decoration:none;}
-@media(max-width:768px){.svc-grid{grid-template-columns:1fr 1fr;}.mockup-panels{grid-template-columns:1fr;}.stats-row{flex-wrap:wrap;}.stat{min-width:50%;border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:16px;}.stat:last-child{border-bottom:none;}.cta-block{padding:40px 24px;}}
-@media(max-width:860px){[style*="grid-template-columns:1fr 1fr"][style*="align-items:start"]{grid-template-columns:1fr !important;} [style*="position:sticky"]{position:relative !important;top:auto !important;}}
-@media(max-width:480px){.svc-grid{grid-template-columns:1fr;}}
+footer a{color:#F07A20;}
+.mockup-panels{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.08);}
+.mockup-panel{position:relative;}
+.mockup-panel img{width:100%;height:280px;object-fit:cover;display:block;}
+.panel-label{position:absolute;top:12px;left:12px;z-index:2;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:99px;}
+.panel-desc{padding:14px 18px;font-size:12px;color:#8892A8;background:#0F1219;border-top:1px solid rgba(255,255,255,.06);}
+.price-section{padding:88px 5%;background:#0F1219;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.price-inner{max-width:1100px;margin:0 auto;}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:48px;}
+.bundle-card{background:#07090C;border:2px solid rgba(255,255,255,.15);border-radius:20px;overflow:hidden;position:sticky;top:80px;}
+.bundle-banner{background:linear-gradient(90deg,#F07A20,#FF9A50);padding:10px 24px;text-align:center;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;}
+.bundle-body{padding:28px 28px 24px;}
+.bundle-price{font-family:'Bebas Neue',cursive;font-size:56px;line-height:1;color:#F07A20;}
+.savings-pill{display:inline-block;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);border-radius:99px;padding:4px 12px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#4ADE80;margin:8px 0 20px;}
+.start-small{margin-top:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;text-align:center;}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr 1fr;}.price-grid{grid-template-columns:1fr;}.mockup-panels{grid-template-columns:1fr;}.bundle-card{position:static;}}
+@media(max-width:480px){.svc-grid{grid-template-columns:1fr;}.stats-row{flex-wrap:wrap;}.hero{padding:60px 5% 48px;}}
 </style>
 </head>
 <body>
-
 <nav>
-  <div class="n-brand"><a href="/"><span>e-</span>Falconry</a></div>
-  <button class="n-cta" onclick="window.location.href='/#score'">Get Free Website Audit →</button>
+<div class="n-logo"><svg width="32" height="32" viewBox="0 0 40 40" fill="none"><path d="M20 4 L28 16 L20 12 L12 16 Z" fill="#F07A20"/><path d="M20 12 L28 16 L24 28 L20 24 L16 28 L12 16 Z" fill="#EDE8DC" opacity=".9"/><path d="M20 24 L24 28 L20 36 L16 28 Z" fill="#F07A20" opacity=".7"/></svg><div class="n-brand"><a href="/"><span>e-</span>Falconry</a></div></div>
+<button class="n-cta" onclick="window.location.href='/#score'">Get Free Website Audit →</button>
 </nav>
-
-<!-- Hero -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-inner">
-    <div class="pill"><span>AI-First Agency</span> · Built for Concrete Contractors</div>
-    <h1>For Concrete<br><em>Contractors.</em></h1>
-    <p class="hero-sub">Every concrete contractor in your market is quoting the same way they did 20 years ago. Handwritten estimates, blurry phone photos, and "I'll get back to you." You can close jobs same-day — with professional AI-generated quotes, photorealistic patio renderings, and a website that actually shows up on Google.</p>
-    <div class="hero-cta">
-      <button class="btn-p" onclick="window.location.href='/#score'">Get Your Free Website Audit</button>
-      <button class="btn-s" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See What We Offer ↓</button>
-    </div>
-  </div>
-</section>
-
-<!-- Stats -->
-<div class="stats-row">
-  <div class="stat"><div class="stat-n">$28K</div><div class="stat-l">Average project closed using AI mockup</div></div><div class="stat"><div class="stat-n">3 hrs</div><div class="stat-l">To generate a professional quote package</div></div><div class="stat"><div class="stat-n">47%</div><div class="stat-l">More Google calls after GBP optimization</div></div>
+<div class="hero-glow"></div>
+<div class="hero-inner">
+<div class="pill">AI-First Agency &nbsp;·&nbsp; Built for Concrete Contractors</div>
+<h1>For Concrete<br><em>Contractors.</em></h1>
+<p class="hero-sub">Every concrete contractor in your market is quoting the same way they did 20 years ago. Handwritten estimates, blurry phone photos, and "I'll get back to you." You can close jobs same-day with professional AI-generated quotes, photorealistic patio renderings, and a website that actually shows up on Google.</p>
+<button class="btn-p" onclick="window.location.href='/#score'">Get Your Free Website Audit</button><button class="btn-s" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See What We Offer ↓</button>
 </div>
-
-<!-- Mockup Demo (concrete/landscaping only) -->
-
-<div style="padding:88px 5% 0">
-  <div style="max-width:1100px;margin:0 auto">
-    <div class="eye">AI Project Mockups</div>
-    <h2>Show Clients the<br><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Finished Project</span></h2>
-    <p class="section-sub">Before you move a single yard of dirt or pour a single yard of concrete — show your customer exactly what they're getting. AI-rendered mockups close jobs that would otherwise stall on "I need to think about it."</p>
-
-    <div class="mockup-demo">
-      <div class="mockup-header">
-        <div class="mockup-title">AI Project Rendering — Concrete Project</div>
-        <div class="mockup-badge">Powered by e-Falconry AI</div>
-      </div>
-      <div class="mockup-panels">
-        <div class="panel">
-          <div class="panel-label before">Before</div>
-          <div class="panel-img">
-            <div class="before-svg">
-              <svg width="280" height="180" viewBox="0 0 280 180" fill="none">
-                <rect width="280" height="180" fill="#1a1a0a"/>
-                <!-- Rough ground -->
-                <path d="M0 120 Q70 110 140 115 Q210 120 280 112 L280 180 L0 180 Z" fill="#2a2a12"/>
-                <!-- Patchy grass -->
-                <rect x="20" y="100" width="8" height="15" fill="#3a4a1a" rx="2"/>
-                <rect x="35" y="95" width="6" height="20" fill="#2a3a12" rx="2"/>
-                <rect x="50" y="105" width="10" height="12" fill="#3a4a1a" rx="2"/>
-                <rect x="80" y="98" width="7" height="18" fill="#2a3a12" rx="2"/>
-                <rect x="120" y="102" width="9" height="14" fill="#3a4a1a" rx="2"/>
-                <rect x="160" y="96" width="8" height="20" fill="#2a3a12" rx="2"/>
-                <rect x="200" y="105" width="11" height="11" fill="#3a4a1a" rx="2"/>
-                <rect x="240" y="100" width="7" height="16" fill="#2a3a12" rx="2"/>
-                <!-- House wall -->
-                <rect x="0" y="0" width="280" height="85" fill="#2a2520"/>
-                <rect x="40" y="20" width="60" height="45" fill="#1a1a15" stroke="#3a3530" stroke-width="1"/>
-                <rect x="170" y="25" width="45" height="40" fill="#1a1a15" stroke="#3a3530" stroke-width="1"/>
-                <text x="140" y="55" font-family="system-ui" font-size="12" fill="#555" text-anchor="middle">Existing backyard</text>
-                <text x="140" y="145" font-family="system-ui" font-size="11" fill="#555" text-anchor="middle">No patio · Patchy grass · Wasted space</text>
-              </svg>
-            </div>
-          </div>
-          <div class="panel-desc">Overgrown grass, no patio, wasted space</div>
-        </div>
-        <div class="panel">
-          <div class="panel-label after">AI Mockup</div>
-          <div class="panel-img">
-            <div class="after-svg">
-              <svg width="280" height="180" viewBox="0 0 280 180" fill="none">
-                <rect width="280" height="180" fill="#0a1a0a"/>
-                <!-- Sky -->
-                <rect width="280" height="70" fill="#0a0f1a"/>
-                <!-- Lush lawn -->
-                <rect x="0" y="70" width="280" height="110" fill="#0d2a0d"/>
-                <!-- Concrete patio -->
-                <path d="M30 105 L250 105 L260 175 L20 175 Z" fill="#4a4a45" stroke="#5a5a55" stroke-width="1"/>
-                <!-- Patio grid lines -->
-                <line x1="30" y1="120" x2="248" y2="120" stroke="#5a5a55" stroke-width="0.5" opacity="0.6"/>
-                <line x1="30" y1="135" x2="252" y2="135" stroke="#5a5a55" stroke-width="0.5" opacity="0.6"/>
-                <line x1="30" y1="150" x2="255" y2="150" stroke="#5a5a55" stroke-width="0.5" opacity="0.6"/>
-                <line x1="30" y1="165" x2="258" y2="165" stroke="#5a5a55" stroke-width="0.5" opacity="0.6"/>
-                <!-- Furniture -->
-                <rect x="95" y="115" width="90" height="45" fill="#3a2a1a" rx="4"/>
-                <rect x="88" y="112" width="104" height="8" fill="#4a3a2a" rx="3"/>
-                <rect x="85" y="120" width="12" height="38" fill="#3a2a1a" rx="2"/>
-                <rect x="183" y="120" width="12" height="38" fill="#3a2a1a" rx="2"/>
-                <!-- Fire pit -->
-                <circle cx="200" cy="145" r="15" fill="#2a1a0a" stroke="#8B4513" stroke-width="2"/>
-                <circle cx="200" cy="145" r="8" fill="#cc4400" opacity="0.7"/>
-                <!-- Plants -->
-                <circle cx="15" cy="90" r="18" fill="#1a4a1a" opacity="0.8"/>
-                <circle cx="265" cy="88" r="20" fill="#1a4a1a" opacity="0.8"/>
-                <circle cx="15" cy="90" r="12" fill="#2a6a2a" opacity="0.6"/>
-                <!-- String lights -->
-                <path d="M50 75 Q140 68 230 75" stroke="#FCD34D" stroke-width="1" fill="none"/>
-                <circle cx="80" cy="73" r="2" fill="#FCD34D"/>
-                <circle cx="110" cy="71" r="2" fill="#FCD34D"/>
-                <circle cx="140" cy="70" r="2" fill="#FCD34D"/>
-                <circle cx="170" cy="71" r="2" fill="#FCD34D"/>
-                <circle cx="200" cy="73" r="2" fill="#FCD34D"/>
-                <text x="140" y="52" font-family="system-ui" font-size="10" fill="#F59E0B" text-anchor="middle" font-weight="bold">AI MOCKUP</text>
-                <text x="140" y="95" font-family="system-ui" font-size="10" fill="#4a8a4a" text-anchor="middle">Stamped concrete · Fire pit · String lights</text>
-              </svg>
-            </div>
-          </div>
-          <div class="panel-desc">Stamped concrete patio with fire pit area — shown to client before you pour a single yard</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quote Demo -->
-    <div style="margin-top:48px">
-      <div class="eye">AI Quote Generator</div>
-      <h2>Professional Quotes<br><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">That Close Jobs</span></h2>
-      <p class="section-sub">Input measurements, materials, and labor — we generate a branded PDF proposal with scope of work, itemized costs, and signature lines. Send it from your phone before you leave the driveway.</p>
-
-      
-      <div class="quote-demo">
-        <div class="qd-header">
-          <div class="qd-brand">Stamped Concrete Patio</div>
-          <div class="qd-number">Quote Q-767808</div>
-        </div>
-        <div class="qd-body" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-          <div>
-            <div class="qd-section-label">Measurements</div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Total Area</span>
-                <span style="font-weight:600">620 sq ft</span>
-              </div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Thickness</span>
-                <span style="font-weight:600">4 inches</span>
-              </div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Concrete Needed</span>
-                <span style="font-weight:600">7.6 yards</span>
-              </div>
-            
-            <div class="qd-section-label">Materials</div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Ready-mix concrete (4000 PSI)</span>
-                <span style="font-weight:600">$1,320</span>
-              </div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Stamping mats (Ashlar pattern)</span>
-                <span style="font-weight:600">$0</span>
-              </div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Color hardener (Terra Cotta)</span>
-                <span style="font-weight:600">$540</span>
-              </div>
-            
-          </div>
-          <div>
-            <div class="qd-section-label">Labor</div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Form setting and prep</span>
-                <span style="font-weight:600">$600</span>
-              </div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Pour and finish</span>
-                <span style="font-weight:600">$1,020</span>
-              </div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Stamping and coloring</span>
-                <span style="font-weight:600">$760</span>
-              </div>
-            
-              <div class="qd-row">
-                <span class="qd-label">Sealing (2 visits)</span>
-                <span style="font-weight:600">$300</span>
-              </div>
-            
-            <div class="qd-section-label">Totals</div>
-            <div class="qd-row"><span class="qd-label">Subtotal</span><span>$5,204.00</span></div>
-            <div class="qd-row" style="font-size:16px"><span><strong>Total</strong></span><strong style="color:#F59E0B">$5,698.38</strong></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Services -->
-<section class="section" id="services">
-  <div class="eye">Everything We Offer</div>
-  <h2>Built for<br><em style="font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Concrete Contractors</em></h2>
-  <p class="section-sub">Every tool designed specifically for how concrete contractors win, quote, and close jobs.</p>
-  <div class="svc-grid">
-    
-    <div class="svc-card">
-      <span class="svc-icon">📐</span>
-      <div class="svc-name">AI Quote Generator</div>
-      <div class="svc-desc">Input measurements and materials — get a professional branded PDF quote with scope of work, itemized costs, and signature lines. Close jobs on the spot.</div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-icon">🎨</span>
-      <div class="svc-name">Project Mockups</div>
-      <div class="svc-desc">Show clients a photorealistic render of their finished patio, driveway, or pool deck before you pour. Eliminates hesitation. Closes bigger jobs.</div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-icon">🌐</span>
-      <div class="svc-name">$99 Website</div>
-      <div class="svc-desc">A professional concrete contractor website that shows up on Google. Mobile-optimized, fast, with your real projects and reviews.</div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-icon">📱</span>
-      <div class="svc-name">TikTok & Paid Ads</div>
-      <div class="svc-desc">AI-generated before/after videos of your concrete work go on TikTok and Facebook. We manage Google Ads targeting homeowners searching for concrete near you.</div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-icon">🗺️</span>
-      <div class="svc-name">Online Presence (38+ directories)</div>
-      <div class="svc-desc">We manage every directory — Google Maps, Yelp, HomeAdvisor, Angi, Nextdoor, Apple Maps, and 30 more. Consistent info everywhere = more calls.</div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-icon">⭐</span>
-      <div class="svc-name">Review Automation</div>
-      <div class="svc-desc">Every completed job triggers an automatic review request. More 5-star reviews = more calls from Google Maps.</div>
-    </div>
-  </div>
 </section>
-
-<!-- PRICING -->
-
-<section style="padding:88px 5%;background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);">
+<div class="stats-row"><div style="flex:1;text-align:center;padding:0 20px;border-right:1px solid rgba(255,255,255,.07)"><div style="font-family:'Bebas Neue',cursive;font-size:42px;color:#F59E0B;line-height:1">$28K</div><div style="font-size:12px;color:#8892A8;margin-top:4px;line-height:1.4">Avg job closed with AI mockup</div></div><div style="flex:1;text-align:center;padding:0 20px;border-right:1px solid rgba(255,255,255,.07)"><div style="font-family:'Bebas Neue',cursive;font-size:42px;color:#F59E0B;line-height:1">3 hrs</div><div style="font-size:12px;color:#8892A8;margin-top:4px;line-height:1.4">To generate a professional quote</div></div><div style="flex:1;text-align:center;padding:0 20px;border-right:1px solid rgba(255,255,255,.07)"><div style="font-family:'Bebas Neue',cursive;font-size:42px;color:#F59E0B;line-height:1">47%</div><div style="font-size:12px;color:#8892A8;margin-top:4px;line-height:1.4">More Google calls after optimization</div></div></div>
+<section style="padding:88px 5% 0">
 <div style="max-width:1100px;margin:0 auto">
-
-  <div class="eye">Pricing</div>
-  <h2>Pick What<br><em style="font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">You Need.</em></h2>
-  <p style="font-size:16px;color:#C4CBDA;max-width:540px;line-height:1.75;margin-bottom:56px;font-weight:300">Every service is available individually. No contracts, no minimums. Or take everything at once with The Full Stack and save.</p>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start">
-
-    <!-- À la carte menu -->
-    <div>
-      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F59E0B;margin-bottom:20px">À La Carte — Pick Any Service</div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        ${data.alacarte.map(item => `
-        <div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:border-color .15s"
-             onmouseover="this.style.borderColor='rgba(255,255,255,.15)'" 
-             onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
-          <div style="flex:1">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-              <span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">${item.name}</span>
-              ${item.tag ? `<span style="background:rgba(255,255,255,.08);border-radius:99px;padding:2px 8px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:#8892A8;text-transform:uppercase">${item.tag}</span>` : ''}
-            </div>
-            <div style="font-size:12px;color:#8892A8;line-height:1.5">${item.desc}</div>
-          </div>
-          <div style="text-align:right;flex-shrink:0">
-            <div style="font-family:'Bebas Neue',cursive;font-size:24px;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">${item.price}</div>
-            <div style="font-size:10px;color:#8892A8">${item.period}</div>
-          </div>
-        </div>`).join('')}
-      </div>
-    </div>
-
-    <!-- Bundle -->
-    <div style="position:sticky;top:80px">
-      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F59E0B;margin-bottom:20px">The Full Stack — Everything at Once</div>
-      <div style="background:#0F1219;border:2px solid rgba(255,255,255,.15);border-radius:20px;overflow:hidden;position:relative">
-        <!-- Most popular badge -->
-        <div style="background:var(--grad);padding:10px 24px;text-align:center">
-          <span style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff">Most Popular</span>
-        </div>
-        <div style="padding:28px 28px 24px">
-          <div style="font-family:'Bebas Neue',cursive;font-size:18px;color:#EDE8DC;margin-bottom:4px">${data.bundle.name}</div>
-          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:4px">
-            <span style="font-family:'Bebas Neue',cursive;font-size:56px;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">${data.bundle.price}</span>
-            <span style="font-size:14px;color:#8892A8">${data.bundle.period}</span>
-          </div>
-          <div style="display:inline-block;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);border-radius:99px;padding:4px 12px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#4ADE80;margin-bottom:20px">${data.bundle.savings}</div>
-          
-          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
-            ${data.bundle.includes.map(inc => `
-            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C4CBDA">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="rgba(74,222,128,.15)" stroke="rgba(74,222,128,.4)"/><path d="M5 8l2 2 4-4" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>
-              ${inc}
-            </div>`).join('')}
-          </div>
-
-          ${data.bundle.addons?.length ? `
-          <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:16px;margin-bottom:20px">
-            <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8892A8;margin-bottom:10px">Popular Add-Ons</div>
-            ${data.bundle.addons.map(a => `
-            <div style="font-size:12px;color:#C4CBDA;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)">${a}</div>
-            `).join('')}
-          </div>` : ''}
-
-          <button class="btn-p" style="width:100%;font-size:15px;padding:15px" onclick="window.location.href='/#score'">Get Started — Free Audit First →</button>
-          
-          ${data.bundle.note ? `<p style="font-size:12px;color:#8892A8;margin-top:14px;line-height:1.6;text-align:center">${data.bundle.note}</p>` : ''}
-        </div>
-      </div>
-
-      <!-- Or start small -->
-      <div style="margin-top:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;text-align:center">
-        <div style="font-size:13px;color:#8892A8;margin-bottom:8px">Or start small — no commitment</div>
-        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#EDE8DC;margin-bottom:4px">$99 Website Only</div>
-        <div style="font-size:12px;color:#8892A8;margin-bottom:14px">One-time · Nothing required from you · Live in 48hrs</div>
-        <button onclick="window.location.href='/#score'" style="background:transparent;border:1px solid rgba(255,255,255,.15);color:#C4CBDA;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px 22px;border-radius:8px;cursor:pointer;width:100%">Start with $99 →</button>
-      </div>
-    </div>
-
-  </div>
+<div class="eye">AI Project Mockups</div>
+<h2>Show Clients the<br><em>Finished Project</em></h2>
+<p class="section-sub">Before you move a single yard of material — show your customer exactly what they are getting. AI-rendered mockups close jobs that would otherwise stall.</p>
+<div class="mockup-panels">
+<div class="mockup-panel"><span class="panel-label" style="background:rgba(0,0,0,.75);color:#C4CBDA">Before</span><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=680&h=440&fit=crop&q=80" alt="Their backyard today" loading="lazy"><div class="panel-desc">Their backyard today — Plain grass, no defined space, no patio — customer has no idea what it could look like</div></div>
+<div class="mockup-panel"><span class="panel-label" style="background:#F07A20;color:#fff">AI Mockup</span><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=680&h=440&fit=crop&q=80" alt="After your concrete work" loading="lazy"><div class="panel-desc">After your concrete work — Exposed aggregate patio with fire pit area — shown to customer before a single yard is poured</div></div>
+</div>
+<div style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5);margin-top:48px"><div style="background:#1a1a1a;padding:20px 28px;display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:14px"><div style="width:40px;height:40px;background:#F07A20;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:16px;color:#fff">ONYX</div><div><div style="color:#fff;font-weight:800;font-size:15px">Onyx Concrete LLC</div><div style="color:#888;font-size:11px">License: ONYXCC*756PA · 253-448-7283</div></div></div><div style="color:#666;font-size:12px;text-align:right">Q-877886<br>Valid 30 days</div></div><div style="padding:20px 28px;color:#1a1a1a"><div style="font-size:16px;font-weight:800;color:#1a1a1a;margin-bottom:4px">BID PROPOSAL — EXPOSED AGGREGATE PROJECT</div><div style="font-size:13px;color:#555;margin-bottom:20px">Client: Rodriguez Residence &nbsp;·&nbsp; 4821 Maple Ridge Rd, Tacoma, WA 98422</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px"><div style="background:#f0f7ff;border:1px solid #dbeafe;border-radius:8px;padding:14px;text-align:center"><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1d4ed8;line-height:1">620</div><div style="font-size:11px;color:#3b82f6;font-weight:600;margin:2px 0">sq ft</div><div style="font-size:11px;color:#666">Total Area</div></div><div style="background:#f0f7ff;border:1px solid #dbeafe;border-radius:8px;padding:14px;text-align:center"><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1d4ed8;line-height:1">4.5</div><div style="font-size:11px;color:#3b82f6;font-weight:600;margin:2px 0">inches</div><div style="font-size:11px;color:#666">Thickness</div></div><div style="background:#f0f7ff;border:1px solid #dbeafe;border-radius:8px;padding:14px;text-align:center"><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1d4ed8;line-height:1">5,000–5,500</div><div style="font-size:11px;color:#3b82f6;font-weight:600;margin:2px 0">PSI</div><div style="font-size:11px;color:#666">Concrete PSI</div></div></div><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:8px">Pricing Options</div><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#1a1a1a;color:#fff"><th style="padding:9px 12px;text-align:left;font-size:11px">Option</th><th style="padding:9px 12px;text-align:right;font-size:11px">Base Price</th><th style="padding:9px 12px;text-align:right;font-size:11px">Tax (~10.1%)</th><th style="padding:9px 12px;text-align:right;font-size:11px">Total</th></tr></thead><tbody><tr><td style="padding:10px 12px;font-size:13px;color:#555;border-bottom:1px solid #f0f0f0">Option 1 — Exposed Aggregate / Broom Finish w/ Stamped Border</td><td style="padding:10px 12px;text-align:right;font-size:13px;font-weight:600;border-bottom:1px solid #f0f0f0">$8,500.00</td><td style="padding:10px 12px;text-align:right;font-size:13px;color:#888;border-bottom:1px solid #f0f0f0">$858.50</td><td style="padding:10px 12px;text-align:right;font-size:14px;font-weight:800;border-bottom:1px solid #f0f0f0">$9,358.50</td></tr><tr><td style="padding:10px 12px;font-size:13px;color:#555;border-bottom:1px solid #f0f0f0">Option 2 — Exposed Aggregate w/ Color (Premium)</td><td style="padding:10px 12px;text-align:right;font-size:13px;font-weight:600;border-bottom:1px solid #f0f0f0">$9,500.00</td><td style="padding:10px 12px;text-align:right;font-size:13px;color:#888;border-bottom:1px solid #f0f0f0">$959.50</td><td style="padding:10px 12px;text-align:right;font-size:14px;font-weight:800;border-bottom:1px solid #f0f0f0">$10,459.50</td></tr></tbody></table><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px"><div style="background:#f8f8f8;border-radius:8px;padding:12px 14px;font-size:12px;color:#555"><strong style="color:#1a1a1a">Payment Terms</strong><br>10% due upon signing · 40% due at start · 50% due upon completion</div><div style="background:#f8f8f8;border-radius:8px;padding:12px 14px;font-size:12px;color:#555"><strong style="color:#1a1a1a">Exclusions</strong><br>Excavation beyond scope, landscaping outside work area, utility relocation, permits unless specified</div></div><div style="margin-top:14px;padding:10px 14px;background:#fff8f0;border-left:3px solid #F07A20;border-radius:4px;font-size:12px;color:#666">Delivered as a professional web-based quote — printable, convertible to PDF, and ready to email to your customer.</div></div></div></div>
+</section>
+<section style="padding:88px 5%;" id="services">
+<div style="max-width:1100px;margin:0 auto">
+<div class="eye">Everything We Offer</div>
+<h2>Built for<br><em>Concrete Contractors</em></h2>
+<p class="section-sub">Every tool designed specifically for how concrete contractors win, quote, and close jobs.</p>
+<div class="svc-grid"><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-left:3px solid #F59E0B;border-radius:16px;padding:26px 24px"><div style="font-size:28px;margin-bottom:14px">📐</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#EDE8DC;margin-bottom:8px">AI Quote Generator</div><div style="font-size:13px;color:#8892A8;line-height:1.65">Input measurements, materials, and finish options — get a branded PDF proposal with scope of work, itemized costs, payment terms, and signature lines. Close jobs on the spot, from your phone.</div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-left:3px solid #F59E0B;border-radius:16px;padding:26px 24px"><div style="font-size:28px;margin-bottom:14px">🎨</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#EDE8DC;margin-bottom:8px">Project Mockups</div><div style="font-size:13px;color:#8892A8;line-height:1.65">Show customers a photorealistic render of their finished patio, driveway, or pool deck before you pour a single yard. Eliminates hesitation. Closes bigger jobs.</div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-left:3px solid #F59E0B;border-radius:16px;padding:26px 24px"><div style="font-size:28px;margin-bottom:14px">🌐</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#EDE8DC;margin-bottom:8px">$99 Website</div><div style="font-size:13px;color:#8892A8;line-height:1.65">A professional concrete contractor website that shows up on Google. Mobile-optimized, fast, with your real projects and Google reviews.</div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-left:3px solid #F59E0B;border-radius:16px;padding:26px 24px"><div style="font-size:28px;margin-bottom:14px">📱</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#EDE8DC;margin-bottom:8px">Paid Ads & TikTok</div><div style="font-size:13px;color:#8892A8;line-height:1.65">AI-generated before/after videos of your work on TikTok and Facebook. Google Ads targeting homeowners searching for concrete in your area.</div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-left:3px solid #F59E0B;border-radius:16px;padding:26px 24px"><div style="font-size:28px;margin-bottom:14px">🗺️</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#EDE8DC;margin-bottom:8px">Online Presence (38+ directories)</div><div style="font-size:13px;color:#8892A8;line-height:1.65">Google Maps, Yelp, HomeAdvisor, Angi, Nextdoor, Apple Maps, and 33 more — managed and consistent everywhere customers search.</div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-left:3px solid #F59E0B;border-radius:16px;padding:26px 24px"><div style="font-size:28px;margin-bottom:14px">⭐</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#EDE8DC;margin-bottom:8px">Review Automation</div><div style="font-size:13px;color:#8892A8;line-height:1.65">Every completed job triggers an automatic review request. More 5-star reviews = more calls from Google Maps without paying for ads.</div></div></div>
 </div>
 </section>
-
-<!-- CTA -->
-<div class="cta-block">
-  <h2>Get Your Free Concrete Contractor Website</h2>
-  <p>Start with a $99 website. Add the AI tools that actually move the needle for concrete contractors. No contracts, no commitments.</p>
-  <button class="btn-p" style="font-size:16px;padding:17px 40px" onclick="window.location.href='/#score'">Get Started — Audit My Website Free →</button>
+<div class="price-section">
+<div class="price-inner">
+<div class="eye">Pricing</div>
+<h2>Pick What<br><em>You Need.</em></h2>
+<p class="section-sub">Every service is available individually. No contracts, no minimums. Or take everything at once with The Full Stack and save.</p>
+<div class="price-grid">
+<div>
+<div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F07A20;margin-bottom:20px">A La Carte — Pick Any Service</div>
+<div style="display:flex;flex-direction:column;gap:10px"><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px"><div style="flex:1"><div style="display:flex;align-items:center;margin-bottom:4px"><span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">Professional Website</span><span style="background:rgba(255,255,255,.08);border-radius:99px;padding:2px 9px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:#8892A8;text-transform:uppercase;margin-left:8px">Start here</span></div><div style="font-size:12px;color:#8892A8;line-height:1.5">Mobile-optimized concrete contractor site, built first — you just claim it</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:'Bebas Neue',cursive;font-size:26px;line-height:1;color:#F07A20">$99</div><div style="font-size:10px;color:#8892A8">one-time</div></div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px"><div style="flex:1"><div style="display:flex;align-items:center;margin-bottom:4px"><span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">AI Quote Generator</span></div><div style="font-size:12px;color:#8892A8;line-height:1.5">Branded proposals with scope, measurements, options, and signature lines</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:'Bebas Neue',cursive;font-size:26px;line-height:1;color:#F07A20">$79</div><div style="font-size:10px;color:#8892A8">/mo</div></div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px"><div style="flex:1"><div style="display:flex;align-items:center;margin-bottom:4px"><span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">Project Mockups</span></div><div style="font-size:12px;color:#8892A8;line-height:1.5">3 photorealistic renders of the finished project — before you pour</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:'Bebas Neue',cursive;font-size:26px;line-height:1;color:#F07A20">$149</div><div style="font-size:10px;color:#8892A8">/project</div></div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px"><div style="flex:1"><div style="display:flex;align-items:center;margin-bottom:4px"><span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">Online Presence (38+ directories)</span></div><div style="font-size:12px;color:#8892A8;line-height:1.5">Every directory where concrete contractors get found — managed monthly</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:'Bebas Neue',cursive;font-size:26px;line-height:1;color:#F07A20">$149</div><div style="font-size:10px;color:#8892A8">/mo</div></div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px"><div style="flex:1"><div style="display:flex;align-items:center;margin-bottom:4px"><span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">Review Automation</span></div><div style="font-size:12px;color:#8892A8;line-height:1.5">Auto-request reviews after every job. Google rating climbs on autopilot</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:'Bebas Neue',cursive;font-size:26px;line-height:1;color:#F07A20">$49</div><div style="font-size:10px;color:#8892A8">/mo</div></div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px"><div style="flex:1"><div style="display:flex;align-items:center;margin-bottom:4px"><span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">AI Chatbot</span></div><div style="font-size:12px;color:#8892A8;line-height:1.5">Answers customer questions 24/7 on your website</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:'Bebas Neue',cursive;font-size:26px;line-height:1;color:#F07A20">$99</div><div style="font-size:10px;color:#8892A8">/mo</div></div></div><div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px"><div style="flex:1"><div style="display:flex;align-items:center;margin-bottom:4px"><span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC">Ads Management</span></div><div style="font-size:12px;color:#8892A8;line-height:1.5">Google, Facebook, and TikTok ads. You set the budget, we handle everything</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:'Bebas Neue',cursive;font-size:26px;line-height:1;color:#F07A20">$299</div><div style="font-size:10px;color:#8892A8">/mo</div></div></div></div>
 </div>
-
+<div>
+<div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F07A20;margin-bottom:20px">The Full Stack — Everything at Once</div>
+<div class="bundle-card">
+<div class="bundle-banner">Most Popular</div>
+<div class="bundle-body">
+<div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:4px">The Full Stack</div>
+<div style="display:flex;align-items:baseline;gap:4px"><span class="bundle-price">$549</span><span style="font-size:14px;color:#8892A8">/mo</span></div>
+<div class="savings-pill">Save $175/mo vs a la carte</div>
+<div style="margin-bottom:20px"><div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C4CBDA;margin-bottom:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="rgba(74,222,128,.15)" stroke="rgba(74,222,128,.4)"/><path d="M5 8l2 2 4-4" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>Website hosting & monthly updates</div><div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C4CBDA;margin-bottom:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="rgba(74,222,128,.15)" stroke="rgba(74,222,128,.4)"/><path d="M5 8l2 2 4-4" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>AI Quote Generator</div><div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C4CBDA;margin-bottom:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="rgba(74,222,128,.15)" stroke="rgba(74,222,128,.4)"/><path d="M5 8l2 2 4-4" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>Online Presence (38+ directories)</div><div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C4CBDA;margin-bottom:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="rgba(74,222,128,.15)" stroke="rgba(74,222,128,.4)"/><path d="M5 8l2 2 4-4" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>Review Automation</div><div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C4CBDA;margin-bottom:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="rgba(74,222,128,.15)" stroke="rgba(74,222,128,.4)"/><path d="M5 8l2 2 4-4" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>AI Chatbot 24/7</div><div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C4CBDA;margin-bottom:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="rgba(74,222,128,.15)" stroke="rgba(74,222,128,.4)"/><path d="M5 8l2 2 4-4" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>Monthly performance report</div></div>
+<div style="border-top:1px solid rgba(255,255,255,.07);padding-top:16px;margin-bottom:20px"><div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8892A8;margin-bottom:10px">Popular Add-Ons</div><div style="font-size:12px;color:#C4CBDA;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)">Project Mockups — $149/project</div><div style="font-size:12px;color:#C4CBDA;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)">Ads Management — $299/mo add-on</div></div>
+<button class="btn-p" style="width:100%;font-size:15px;padding:15px" onclick="window.location.href='/#score'">Get Started — Free Audit First →</button>
+<p style="font-size:12px;color:#8892A8;margin-top:14px;line-height:1.6;text-align:center">Most concrete contractors start with The Full Stack plus Ads Management and see 3x more inbound calls within 90 days.</p>
+</div>
+</div>
+<div class="start-small"><div style="font-size:13px;color:#8892A8;margin-bottom:6px">Or start small — no commitment</div><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:4px">$99 Website Only</div><div style="font-size:12px;color:#8892A8;margin-bottom:14px">One-time · Nothing required from you · Live in 48hrs</div><button onclick="window.location.href='/#score'" style="background:transparent;border:1px solid rgba(255,255,255,.15);color:#C4CBDA;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px 22px;border-radius:8px;cursor:pointer;width:100%">Start with $99 →</button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cta-block">
+<h2>Get Your Free Concrete Contractor Website</h2>
+<p>Start with a $99 website. Add the AI tools that move the needle for concrete contractors. No contracts, no commitments.</p>
+<button class="btn-p" style="font-size:16px;padding:17px 40px" onclick="window.location.href='/#score'">Get Started — Audit My Website Free →</button>
+</div>
 <footer>
-  <p><a href="/">← Back to e-Falconry</a> · AI-First Agency for Local Contractors · <a href="mailto:hello@efalconry.com">hello@efalconry.com</a></p>
+<p><a href="/">← Back to e-Falconry</a> &nbsp;·&nbsp; AI-First Agency for Local Contractors &nbsp;·&nbsp; <a href="mailto:hello@efalconry.com">hello@efalconry.com</a></p>
 </footer>
-
 </body>
 </html>
