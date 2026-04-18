@@ -1,10 +1,11 @@
 {
   "rewrites": [
-    { "source": "/p/:slug*",    "destination": "/api/p" },
-    { "source": "/preview",     "destination": "/api/p" },
-    { "source": "/ref/:slug*",  "destination": "/api/refer" },
-    { "source": "/pay",         "destination": "/api/checkout" },
-    { "source": "/merch",       "destination": "/api/merch" }
+    { "source": "/p/:slug*",       "destination": "/api/p" },
+    { "source": "/preview",        "destination": "/api/p" },
+    { "source": "/ref/:slug*",     "destination": "/api/refer" },
+    { "source": "/pay",            "destination": "/api/checkout" },
+    { "source": "/merch",          "destination": "/api/merch" },
+    { "source": "/mockup",         "destination": "/api/mockup-form" }
   ],
   "crons": [
     {
