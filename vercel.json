@@ -1,10 +1,16 @@
 {
   "rewrites": [
-    { "source": "/p/:slug*",       "destination": "/api/p" },
-    { "source": "/preview",        "destination": "/api/p" },
-    { "source": "/ref/:slug*",     "destination": "/api/refer" },
-    { "source": "/pay",            "destination": "/api/checkout" },
-    { "source": "/merch",          "destination": "/api/merch" }
+    { "source": "/p/:slug*",          "destination": "/api/p" },
+    { "source": "/preview",           "destination": "/api/p" },
+    { "source": "/ref/:slug*",        "destination": "/api/refer" },
+    { "source": "/pay",               "destination": "/api/checkout" },
+    { "source": "/merch",             "destination": "/api/merch" },
+    { "source": "/concrete",          "destination": "/api/niche?niche=concrete" },
+    { "source": "/landscaping",       "destination": "/api/niche?niche=landscaping" },
+    { "source": "/hvac",              "destination": "/api/niche?niche=hvac" },
+    { "source": "/roofing",           "destination": "/api/niche?niche=roofing" },
+    { "source": "/electrician",       "destination": "/api/niche?niche=electrician" },
+    { "source": "/plumber",           "destination": "/api/niche?niche=plumber" }
   ],
   "crons": [
     {
