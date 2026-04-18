@@ -134,6 +134,138 @@ const NICHES = {
     },
   },
 
+  roofing: {
+    title: 'Roofing Contractors',
+    headline: ['For Roofing', 'Contractors.'],
+    color: '#1A0A00',
+    accent: '#DC6803',
+    accentGrad: 'linear-gradient(90deg,#DC6803,#F97316)',
+    tagline: 'Win more roof replacements, repairs, and storm jobs with AI tools built for roofers.',
+    hero: 'Storm season brings a flood of calls — but only the contractors with a professional online presence capture them. Most homeowners pick the first roofing company that looks trustworthy online. AI-powered quotes, a professional website, and managed reviews put you at the top of that list.',
+    services: [
+      { icon: '🏠', title: '$99 Website', desc: 'A professional roofing website with your projects, certifications, and service areas. Built to show up on Google.' },
+      { icon: '📐', title: 'AI Quote Generator', desc: 'Professional roofing proposals with measurements, material specs, warranty terms, and insurance documentation.' },
+      { icon: '🗺️', title: 'Online Presence (38+ directories)', desc: 'Google Maps, Yelp, HomeAdvisor, Angi, and 33 more — managed and consistent so homeowners find you first.' },
+      { icon: '⭐', title: 'Review Automation', desc: 'Post-job review requests sent automatically. More Google reviews = more emergency calls after storms.' },
+      { icon: '📱', title: 'Paid Ads', desc: 'Google Local Services Ads for roofing get you to the top of search results. Only pay when someone calls.' },
+      { icon: '🤖', title: 'AI Chatbot', desc: '24/7 answers about your services, warranties, and how to file an insurance claim after storm damage.' },
+    ],
+    stats: ['24hr', 'Typical response time after storm events', '$12K', 'Average roof replacement job', '3x', 'More calls with Google Maps optimization'],
+    cta: 'Get Your Free Roofing Contractor Website',
+    alacarte: [
+      { name: 'Professional Website', price: '$99', period: 'one-time', desc: 'Certifications, project gallery, storm damage info, service areas', tag: 'Start here' },
+      { name: 'AI Quote Generator', price: '$79', period: '/mo', desc: 'Branded proposals with measurements, materials, warranty, and insurance' },
+      { name: 'Online Presence (38+ directories)', price: '$149', period: '/mo', desc: 'Every place homeowners search for roofers — managed monthly' },
+      { name: 'Review Automation', price: '$49', period: '/mo', desc: 'Automatic review requests after every completed roof' },
+      { name: 'AI Chatbot', price: '$99', period: '/mo', desc: 'Handles storm damage inquiries and insurance questions 24/7' },
+      { name: 'Ads Management', price: '$299', period: '/mo', desc: 'Google Local Services Ads — only pay per qualified call' },
+    ],
+    bundle: {
+      name: 'The Full Stack',
+      price: '$499',
+      period: '/mo',
+      savings: 'Save $175/mo vs à la carte',
+      includes: [
+        'Website hosting & monthly updates',
+        'AI Quote Generator',
+        'Online Presence (38+ directories)',
+        'Review Automation',
+        'AI Chatbot 24/7',
+        'Monthly performance report',
+      ],
+      addons: ['Ads Management — $299/mo add-on'],
+      note: 'Storm season or not — roofers with strong online presence get 4x more calls than those without.',
+    },
+  },
+
+  electrician: {
+    title: 'Electricians',
+    headline: ['For Licensed', 'Electricians.'],
+    color: '#0D0D1A',
+    accent: '#F59E0B',
+    accentGrad: 'linear-gradient(90deg,#F59E0B,#FCD34D)',
+    tagline: 'Win more panel upgrades, EV charger installs, and service calls with AI.',
+    hero: 'Electrical work is high-trust — homeowners need to feel confident before they let you in. A professional website with your license number, certifications, and customer reviews does more selling than any cold call. Add AI tools and you quote faster, follow up automatically, and show up everywhere online.',
+    services: [
+      { icon: '⚡', title: '$99 Website', desc: 'Fast, professional electrician website showing your license, certifications, and services. Built to rank locally.' },
+      { icon: '📐', title: 'AI Quote Generator', desc: 'Professional electrical proposals with scope of work, material specs, code compliance notes, and permit info.' },
+      { icon: '🗺️', title: 'Online Presence (38+ directories)', desc: 'Every directory where homeowners find electricians — managed and consistent.' },
+      { icon: '⭐', title: 'Review Automation', desc: 'After every service call, an automatic review request goes out. Builds your Google rating passively.' },
+      { icon: '🤖', title: 'AI Chatbot', desc: 'Answers questions about your services, service area, licensing, and pricing ranges around the clock.' },
+      { icon: '📱', title: 'Ads Management', desc: 'Google Local Services Ads for electricians — appear at the very top of search, pay only per call.' },
+    ],
+    stats: ['$8K', 'Average panel upgrade job', '68%', 'Of homeowners pick the first licensed electrician they find online', '2x', 'More service calls after review automation'],
+    cta: 'Get Your Free Electrician Website',
+    alacarte: [
+      { name: 'Professional Website', price: '$99', period: 'one-time', desc: 'License number, certifications, services, and service area displayed prominently', tag: 'Start here' },
+      { name: 'AI Quote Generator', price: '$79', period: '/mo', desc: 'Electrical proposals with material specs, scope, permit notes, and signature lines' },
+      { name: 'Online Presence (38+ directories)', price: '$149', period: '/mo', desc: 'Every directory where homeowners search for licensed electricians' },
+      { name: 'Review Automation', price: '$49', period: '/mo', desc: 'Automatic review requests after every job' },
+      { name: 'AI Chatbot', price: '$99', period: '/mo', desc: '24/7 answers about licensing, services, and pricing' },
+      { name: 'Ads Management', price: '$299', period: '/mo', desc: 'Google Local Services Ads — verified badge, top placement, pay per call' },
+    ],
+    bundle: {
+      name: 'The Full Stack',
+      price: '$499',
+      period: '/mo',
+      savings: 'Save $175/mo vs à la carte',
+      includes: [
+        'Website hosting & monthly updates',
+        'AI Quote Generator',
+        'Online Presence (38+ directories)',
+        'Review Automation',
+        'AI Chatbot 24/7',
+        'Monthly performance report',
+      ],
+      addons: ['Ads Management — $299/mo add-on (Google LSA highly recommended for electricians)'],
+      note: 'Licensed electricians with strong online presence and Google reviews command 20-30% higher rates than competitors.',
+    },
+  },
+
+  plumber: {
+    title: 'Plumbers',
+    headline: ['For Plumbers', '& Plumbing Pros.'],
+    color: '#0A1628',
+    accent: '#E53E3E',
+    accentGrad: 'linear-gradient(90deg,#E53E3E,#FC8181)',
+    tagline: 'Win more emergency calls, installs, and service contracts with AI built for plumbers.',
+    hero: 'When a pipe bursts at 2am, homeowners Google "emergency plumber near me" and call the first result that looks trustworthy. That means showing up on Google Maps, having a fast website with real reviews, and answering the phone — or having an AI answer it. All of that is what we build for you.',
+    services: [
+      { icon: '🔧', title: '$99 Website', desc: 'Emergency-first plumber website. Fast, mobile-optimized, with your phone number front and center.' },
+      { icon: '📐', title: 'AI Quote Generator', desc: 'Professional plumbing proposals for remodels, installations, and service work — branded and signed.' },
+      { icon: '🗺️', title: 'Online Presence (38+ directories)', desc: 'Google Maps, Yelp, HomeAdvisor, Angi, and every other place plumbers get found.' },
+      { icon: '⭐', title: 'Review Automation', desc: 'Post-job review requests sent automatically. Emergency customers are the best reviewers.' },
+      { icon: '🤖', title: 'AI Chatbot', desc: 'Answers calls and questions at 3am. Captures leads when you can't answer the phone.' },
+      { icon: '📱', title: 'Ads Management', desc: 'Google Local Services Ads for plumbers — the highest-converting ad format for emergency services.' },
+    ],
+    stats: ['3am', 'When most plumbing emergencies happen', '$450', 'Average emergency service call value', '5x', 'ROI on Google Local Services Ads for plumbers'],
+    cta: 'Get Your Free Plumber Website',
+    alacarte: [
+      { name: 'Professional Website', price: '$99', period: 'one-time', desc: 'Emergency plumber website — phone number above the fold, fast on mobile', tag: 'Start here' },
+      { name: 'AI Quote Generator', price: '$79', period: '/mo', desc: 'Branded plumbing proposals with scope, materials, and warranty terms' },
+      { name: 'Online Presence (38+ directories)', price: '$149', period: '/mo', desc: 'Every directory where homeowners find emergency plumbers' },
+      { name: 'Review Automation', price: '$49', period: '/mo', desc: 'Automatic review requests after every job — emergency customers review fast' },
+      { name: 'AI Chatbot', price: '$99', period: '/mo', desc: 'Answers emergency inquiries 24/7 and captures lead info when you're on a job' },
+      { name: 'Ads Management', price: '$299', period: '/mo', desc: 'Google Local Services Ads — highest ROI ad format for plumbers' },
+    ],
+    bundle: {
+      name: 'The Full Stack',
+      price: '$499',
+      period: '/mo',
+      savings: 'Save $175/mo vs à la carte',
+      includes: [
+        'Website hosting & monthly updates',
+        'AI Quote Generator',
+        'Online Presence (38+ directories)',
+        'Review Automation',
+        'AI Chatbot 24/7',
+        'Monthly performance report',
+      ],
+      addons: ['Ads Management — $299/mo add-on (Google LSA essential for emergency plumbers)'],
+      note: 'Emergency plumbers with Google LSA and strong reviews see 5x ROI on ad spend. The Full Stack sets the foundation.',
+    },
+  },
+
   hvac: {
     title: 'HVAC Contractors',
     headline: ['For HVAC', 'Contractors.'],
@@ -560,8 +692,11 @@ ${data.alacarte ? `
 }
 
 export default function handler(req, res) {
-  const path = req.url?.split('?')[0].replace('/', '') || '';
-  const niche = path.toLowerCase();
+  // Vercel rewrites pass the niche as ?niche=concrete query param
+  const nicheParam = (req.query && req.query.niche)
+    ? req.query.niche
+    : (req.url || '').split('?')[0].replace(/^\/api\/niche\/?/, '').replace(/^\//, '');
+  const niche = nicheParam.toLowerCase().trim();
   const data = NICHES[niche];
 
   if (!data) {
