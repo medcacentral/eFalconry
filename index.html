@@ -1573,13 +1573,41 @@ async function runScore(){
   document.getElementById('res-grade').style.color=col;
   document.getElementById('res-grade').textContent=result.grade+' — '+result.total+'/100';
   document.getElementById('res-summary').textContent=result.summary;
+
+  // Show customer loss estimate if available
+  if (result.estimatedCustomersLost) {
+    let lossEl = document.getElementById('res-loss');
+    if (!lossEl) {
+      lossEl = document.createElement('div');
+      lossEl.id = 'res-loss';
+      lossEl.style.cssText = 'background:rgba(240,122,32,.08);border-left:3px solid var(--acc);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px;color:var(--t2);line-height:1.6';
+      document.getElementById('res-summary').after(lossEl);
+    }
+    lossEl.innerHTML = '<strong style="color:var(--acc)">Estimated impact:</strong> ' + result.estimatedCustomersLost;
+  }
+
+  // Show quick wins if available
+  if (result.quickWins?.length) {
+    let winsEl = document.getElementById('res-wins');
+    if (!winsEl) {
+      winsEl = document.createElement('div');
+      winsEl.id = 'res-wins';
+      winsEl.style.cssText = 'margin-top:16px';
+      document.getElementById('res-issues-list').after(winsEl);
+    }
+    winsEl.innerHTML = '<div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#4ADE80;text-transform:uppercase;margin-bottom:8px">Quick Wins</div>' +
+      result.quickWins.map(w => '<div style="font-size:13px;color:var(--t2);padding:7px 0;border-bottom:1px solid var(--bdr);display:flex;gap:8px"><span style="color:#4ADE80;flex-shrink:0">✓</span>' + w + '</div>').join('');
+  }
   const arc=document.getElementById('gauge-arc'),tot=236,tgt=Math.round((result.total/100)*tot);
   const sc=document.getElementById('gauge-score');let c2=0,av=tot;
   const gi=setInterval(()=>{c2=Math.min(c2+1,result.total);av=Math.max(av-((tot-tgt)/result.total),tot-tgt);arc.style.strokeDashoffset=av;arc.style.stroke=col;sc.textContent=c2;sc.style.color=col;if(c2>=result.total)clearInterval(gi);},20);
   const cats=[['Design','design'],['Mobile','mobile'],['Trust','trust'],['SEO','seo'],['Content','content']];
   document.getElementById('res-cats').innerHTML=cats.map(([n,k],i)=>{const c=result[k]||0;const cc=c<8?'#E03030':c<13?'#EAB308':c<17?'#F07A20':'#4ADE80';return`<div class="res-cat"><div class="res-cat-name">${n}</div><div class="res-track"><div class="res-fill" style="width:0;background:${cc};transition-delay:${i*.12}s" data-t="${(c/20)*100}%"></div></div><div class="res-cat-score" style="color:${cc}">${c}/20</div></div>`;}).join('');
   setTimeout(()=>{document.querySelectorAll('.res-fill[data-t]').forEach(el=>{el.style.width=el.dataset.t;});},100);
-  document.getElementById('res-issues-list').innerHTML=result.issues.map(i=>`<div class="res-issue">${i}</div>`).join('');
+  const issues = result.criticalIssues || result.issues || [];
+  document.getElementById('res-issues-list').innerHTML = issues.map(i=>`<div class="res-issue">${i}</div>`).join('');
+  const issueHeader = document.querySelector('.res-issues h4');
+  if (issueHeader) issueHeader.textContent = 'Critical Issues Found';
 }
 function resetScore(){
   document.getElementById('sc-form-state').style.display='block';

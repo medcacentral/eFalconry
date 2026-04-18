@@ -225,8 +225,43 @@ export default async function handler(req, res) {
 
   if (!biz.name) return res.status(400).send(errorPage('Missing business data.'));
 
+  // ── Enrich with real business data ──────────────────────
+  let profile = null;
+  try {
+    const enrichResp = await fetch(`${process.env.SITE_URL || 'https://efalconry.com'}/api/enrich`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        url: biz.website || null,
+        bizName: biz.name,
+        category: biz.category,
+        city: biz.city,
+        placeId: biz.placeId || null,
+      }),
+    });
+    const enrichData = await enrichResp.json();
+    profile = enrichData.profile;
+  } catch(e) {
+    console.log('Enrichment failed, using template data:', e.message);
+  }
+
+  // Merge profile into biz data
+  if (profile) {
+    biz.phone = biz.phone || profile.phone;
+    biz.address = biz.address || profile.address;
+    biz.rating = biz.rating || profile.rating;
+    biz.reviews = biz.reviews || profile.reviewCount;
+    if (profile.photos?.length) biz.photos = profile.photos;
+    if (profile.realReviews?.length) biz.realReviews = profile.realReviews;
+  }
+
   const D = getDesign(biz.category);
-  const services = getServices(biz.category);
+
+  // Use real services from profile, or fall back to category defaults
+  const rawServices = profile?.services?.length
+    ? profile.services
+    : getServices(biz.category).map(s => ({ name: s, description: 'Professional service, fair pricing, guaranteed results.' }));
+
   const cityShort = (biz.city || '').replace(/, [A-Z]{2}$/, '');
   const rating = biz.rating ? parseFloat(biz.rating).toFixed(1) : null;
   const reviews = biz.reviews ? parseInt(biz.reviews) : null;
@@ -273,9 +308,13 @@ Return ONLY a JSON object (no markdown):
   // Use AI copy if generated
   const [fh1, fh2, fTagline] = [aiH1, aiH2, aiTagline];
 
-  // Pick headline and tagline
-  const [h1, h2] = pickRandom(D.headlines);
-  const tagline = fillTemplate(pickRandom(D.taglines), biz, cityShort);
+  // Use profile copy if available, otherwise pick from templates
+  const [h1, h2] = (profile?.heroHeadline1 && profile?.heroHeadline2)
+    ? [profile.heroHeadline1, profile.heroHeadline2]
+    : pickRandom(D.headlines);
+  const tagline = profile?.tagline
+    ? profile.tagline
+    : fillTemplate(pickRandom(D.taglines), biz, cityShort);
 
   // Years in business (fake but plausible based on review count)
   const yearsInBiz = reviews ? Math.min(Math.max(Math.floor(reviews / 15), 3), 30) : 10;
@@ -505,6 +544,34 @@ footer p{font-size:12px;color:var(--t3);margin-bottom:10px;}
   <div class="tb"><b>Serving</b> ${cityShort} & Surrounding Areas</div>
   <div class="tb"><b>100%</b> Satisfaction Guarantee</div>
 </div>
+
+<!-- About + Hours (if available) -->
+\${profile?.about ? `
+<section style="padding:64px 5%;background:rgba(0,0,0,.25);border-bottom:1px solid var(--bdr)">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+    <div>
+      <div class="section-eye">About Us</div>
+      <h2 class="section-h2" style="font-size:clamp(32px,5vw,48px)">Who We Are</h2>
+      <p style="font-size:16px;color:var(--t2);line-height:1.8;font-weight:300">\${profile.about}</p>
+      \${profile.licenseInfo ? `<p style="margin-top:16px;font-size:13px;color:var(--t3)">\${profile.licenseInfo}</p>` : ''}
+    </div>
+    <div>
+      \${profile.hours ? `
+        <div class="section-eye">Hours</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+          \${profile.hours.map(h => `<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bdr);font-size:14px;color:var(--t2)">\${h}</div>`).join('')}
+        </div>
+        \${profile.emergencyAvailable ? '<p style="margin-top:16px;font-size:13px;color:var(--acc);font-weight:700">⚡ 24/7 Emergency Service Available</p>' : ''}
+      ` : ''}
+      \${profile.serviceAreas?.length ? `
+        <div style="margin-top:24px">
+          <div class="section-eye">Service Areas</div>
+          <p style="font-size:14px;color:var(--t2);margin-top:8px">\${profile.serviceAreas.join(' · ')}</p>
+        </div>
+      ` : ''}
+    </div>
+  </div>
+</section>` : ''}
 
 <!-- Services -->
 <section class="services" id="services">
