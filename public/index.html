@@ -466,6 +466,109 @@ hr.div{border:none;border-top:1px solid var(--bdr);}
 #chat-send:hover{background:#e06910;}
 #chat-send:disabled{background:var(--bdr2);cursor:not-allowed;}
 @media(max-width:640px){#chat-box{width:calc(100vw - 32px);right:16px;bottom:88px;max-height:60vh;}#chat-btn{bottom:20px;right:16px;}}
+
+/* ══ VISUAL UPGRADE LAYER ══════════════════════════════════════════════════ */
+
+/* Bigger section headings */
+.sh2{font-size:clamp(54px,9.5vw,112px);letter-spacing:.005em;}
+.eye{font-size:10.5px;letter-spacing:.2em;}
+
+/* Richer hero stats */
+.hst{gap:3rem;margin-top:3.5rem;}
+.sv{font-size:56px;line-height:1;}
+.sl{font-size:11px;letter-spacing:.06em;margin-top:6px;}
+
+/* Pricing card upgrades */
+.tier{border-radius:20px;border:1px solid rgba(255,255,255,.09);overflow:visible;position:relative;}
+.tier.ft{
+  border-color:rgba(240,122,32,.4);
+  background:linear-gradient(160deg,#181E2C 0%,#0F1219 100%);
+  box-shadow:0 0 80px rgba(240,122,32,.12),0 0 40px rgba(240,122,32,.07),inset 0 1px 0 rgba(240,122,32,.15);
+}
+.tier.ft::after{
+  content:'';position:absolute;inset:-1px;border-radius:21px;
+  background:linear-gradient(160deg,rgba(240,122,32,.18) 0%,transparent 55%);
+  pointer-events:none;z-index:0;
+}
+.tier>*{position:relative;z-index:1;}
+.t-badge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(90deg,#F07A20,#FF9A50);color:#fff;
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 18px;border-radius:99px;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(240,122,32,.4);z-index:10;
+}
+.t-nu{font-size:72px;transition:color .2s;}
+.tier.ft .t-nu{color:var(--acc);}
+.t-name{font-size:10.5px;letter-spacing:.16em;margin-bottom:1.5rem;}
+.t-btn{border-radius:10px;padding:13px 20px;font-size:13.5px;letter-spacing:.03em;}
+.tier.ft .t-btn{
+  background:linear-gradient(90deg,#F07A20,#FF9A50);
+  border:none;color:#fff;
+  box-shadow:0 8px 28px rgba(240,122,32,.35);
+  font-size:14px;
+}
+.t-sep{border-top:1px solid rgba(255,255,255,.07);margin:1.25rem 0 1.5rem;}
+.tc2{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.tc2 svg{width:16px;height:16px;}
+
+/* How It Works — oversized step numbers */
+.h-n{
+  font-family:'Bebas Neue',cursive;
+  font-size:68px;line-height:1;
+  color:rgba(240,122,32,.11);
+  letter-spacing:.02em;margin-bottom:.65rem;
+  transition:color .4s;
+}
+.hs:hover .h-n,.hs.in .h-n{color:rgba(240,122,32,.22);}
+.h-t{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:.85rem;}
+.h-d{font-size:15px;color:var(--t2);line-height:1.72;}
+.hs{padding:2.25rem 2rem;border-radius:18px;transition:background .25s;}
+.hs:hover{background:rgba(255,255,255,.025);}
+.hiw{gap:0.5rem;}
+.hiw::before{top:52px;}
+
+/* AI grid — left-border accent on hover */
+.ai-grid-sec{padding:90px 0;}
+.ai-card{padding:2.75rem;transition:background .2s,box-shadow .2s;border-left:2px solid transparent;}
+.ai-card:hover{background:#0D1420;border-left-color:rgba(240,122,32,.5);box-shadow:inset 0 0 40px rgba(240,122,32,.03);}
+.ai-card-title{font-size:19px;letter-spacing:-.01em;}
+.ai-card-desc{font-size:14.5px;line-height:1.7;}
+
+/* Section backgrounds — more varied */
+.sc-sec::before{background-size:64px 64px;opacity:.6;}
+#pricing{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);}
+
+/* Offer section */
+.oi{gap:5rem;align-items:start;}
+.o-nu{font-size:96px;}
+.o-desc{font-size:17px;}
+
+/* CTA */
+.cta-sec{background:linear-gradient(160deg,#06090F 0%,#0F1219 60%,#06090F 100%);}
+.cta-sec h2{font-size:clamp(52px,10vw,116px);}
+
+/* Score section card */
+.sc-card{border-radius:24px;padding:3.75rem;}
+
+/* Add-on row */
+.addon{border-radius:10px;}
+
+/* Dividers */
+.div{border:none;border-top:1px solid rgba(255,255,255,.05);margin:0;}
+
+/* GBP section */
+#gbp-sec{overflow:hidden;}
+
+/* Ticker spacing */
+.ticker{border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);}
+
+@media(max-width:700px){
+  .h-n{font-size:52px;}
+  .sh2{font-size:clamp(42px,11vw,72px);}
+  .t-nu{font-size:58px;}
+}
 </style>
 </head>
 <body>
