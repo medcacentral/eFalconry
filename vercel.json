@@ -1,7 +1,8 @@
 {
   "framework": null,
-  "buildCommand": "echo 'no build needed'",
-  "outputDirectory": ".",
+  "buildCommand": "",
+  "outputDirectory": "public",
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/p/:slug*",  "destination": "/api/p" },
     { "source": "/preview",   "destination": "/api/p" },
