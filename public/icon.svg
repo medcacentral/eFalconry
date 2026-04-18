@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Dark background -->
+  <rect width="512" height="512" fill="#07090C" rx="80"/>
+  <!-- Subtle orange glow behind falcon -->
+  <circle cx="256" cy="248" r="140" fill="rgba(240,122,32,0.08)"/>
+  <!-- Geometric falcon mark — scaled up to center of 512x512 -->
+  <!-- Original was 40x40 viewBox, scale 5.5x and center: offset (256-110, 256-110)=(146,146) -->
+  <g transform="translate(146,130) scale(5.5)">
+    <!-- Top diamond / head -->
+    <path d="M20 4L28 16L20 12L12 16Z" fill="#F07A20"/>
+    <!-- Body -->
+    <path d="M20 12L28 16L24 28L20 24L16 28L12 16Z" fill="#EDE8DC" opacity=".9"/>
+    <!-- Tail -->
+    <path d="M20 24L24 28L20 36L16 28Z" fill="#F07A20" opacity=".7"/>
+  </g>
+</svg>
