@@ -1,6 +1,14 @@
 {
   "rewrites": [
-    { "source": "/p/:slug*", "destination": "/api/p" },
-    { "source": "/preview",  "destination": "/api/p" }
+    { "source": "/p/:slug*",    "destination": "/api/p" },
+    { "source": "/preview",     "destination": "/api/p" },
+    { "source": "/ref/:slug*",  "destination": "/api/refer" },
+    { "source": "/pay",         "destination": "/api/checkout" }
+  ],
+  "crons": [
+    {
+      "path": "/api/followup",
+      "schedule": "0 14 * * *"
+    }
   ]
 }
