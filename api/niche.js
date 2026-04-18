@@ -314,6 +314,36 @@ function buildQuoteMeasurements(measurements) {
   }).join('');
 }
 
+
+function buildPkgCard(name, price, badge, items, featured, hasBadge) {
+  var border = featured ? '2px solid rgba(240,122,32,.35)' : '1px solid rgba(255,255,255,.1)';
+  var bg = featured ? '#0F1219' : '#07090C';
+  var popularBadge = featured ? '<div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#F07A20,#FF9A50);color:#fff;font-family:\'Syne\',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 16px;border-radius:99px;white-space:nowrap">Most Popular</div>' : '';
+  var greenBadge = hasBadge ? '<div style="display:inline-block;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);border-radius:99px;padding:3px 10px;font-family:\'Syne\',sans-serif;font-size:9px;font-weight:700;color:#4ADE80;margin-bottom:18px">&#10003; Website included free</div>' : '<div style="height:22px;margin-bottom:18px"></div>';
+  var liHtml = items.map(function(item, i) {
+    var color = (i === 0 && !hasBadge) ? '#F07A20' : '#F07A20';
+    var fill = (i === 0 && hasBadge) ? 'rgba(74,222,128,.15)' : 'rgba(240,122,32,.15)';
+    var stroke = (i === 0 && hasBadge) ? '#4ADE80' : '#F07A20';
+    return '<li style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#C4CBDA;margin-bottom:8px">'
+      + '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:2px">'
+      + '<circle cx="7" cy="7" r="6" fill="' + fill + '" stroke="' + stroke + '" stroke-width=".8"/>'
+      + '<path d="M4 7l2 2 4-4" stroke="' + stroke + '" stroke-width="1.3" stroke-linecap="round"/>'
+      + '</svg>' + item + '</li>';
+  }).join('');
+  return '<div style="background:' + bg + ';border:' + border + ';border-radius:18px;padding:28px 24px;position:relative">'
+    + popularBadge
+    + '<div style="font-family:\'Bebas Neue\',cursive;font-size:24px;color:#EDE8DC;margin-bottom:4px">' + name + '</div>'
+    + '<div style="display:flex;align-items:baseline;gap:3px;margin-bottom:6px">'
+    + '<span style="font-family:\'Bebas Neue\',cursive;font-size:48px;color:#F07A20;line-height:1">' + price + '</span>'
+    + '<span style="font-size:13px;color:#8892A8">/mo</span>'
+    + '</div>'
+    + greenBadge
+    + '<div style="border-top:1px solid rgba(255,255,255,.07);padding-top:18px">'
+    + '<ul style="list-style:none;margin-bottom:24px">' + liHtml + '</ul>'
+    + '<button class="btn-p" style="width:100%;font-size:14px;padding:13px" onclick="window.location.href=\'/#score\'">Get Started →</button>'
+    + '</div></div>';
+}
+
 function renderNichePage(niche, data) {
   var acc = data.accent;
   var quoteSection = '';
@@ -455,45 +485,42 @@ function renderNichePage(niche, data) {
     + '<div class="svc-grid">' + buildServices(data.services, acc) + '</div>\n'
     + '</div>\n</section>\n'
 
-    // Pricing
+    // ── New 3-package pricing ────────────────────────────
     + '<div class="price-section">\n<div class="price-inner">\n'
     + '<div class="eye">Pricing</div>\n'
-    + '<h2>Pick What<br><em>You Need.</em></h2>\n'
-    + '<p class="section-sub">Every service is available individually. No contracts, no minimums. Or take everything at once with The Full Stack and save.</p>\n'
-    + '<div class="price-grid">\n'
+    + '<h2>Three Simple<br><em>Packages.</em></h2>\n'
+    + '<p class="section-sub">Start with a website included free. Add what you need as you grow. Cancel anytime.</p>\n'
+    + '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px">'
 
-    // Left: a la carte
-    + '<div>\n'
-    + '<div style="font-family:\'Syne\',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F07A20;margin-bottom:20px">A La Carte — Pick Any Service</div>\n'
-    + '<div style="display:flex;flex-direction:column;gap:10px">'
-    + buildAlacarteItems(data.alacarte)
-    + '</div>\n</div>\n'
+    // Starter card
+    + buildPkgCard('Starter','$79','Website included free — shown in green badge',['Professional website built & hosted','AI Quote Generator — PDFs in minutes','Smart Booking & Calendar','Automated quote follow-ups','Review requests after every job','AI Chatbot 24/7'], false, true)
 
-    // Right: bundle
-    + '<div>\n'
-    + '<div style="font-family:\'Syne\',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F07A20;margin-bottom:20px">The Full Stack — Everything at Once</div>\n'
-    + '<div class="bundle-card">\n'
-    + '<div class="bundle-banner">Most Popular</div>\n'
-    + '<div class="bundle-body">\n'
-    + '<div style="font-family:\'Syne\',sans-serif;font-size:18px;font-weight:800;margin-bottom:4px">' + data.bundle_name + '</div>\n'
-    + '<div style="display:flex;align-items:baseline;gap:4px">'
-    + '<span class="bundle-price">' + data.bundle_price + '</span>'
-    + '<span style="font-size:14px;color:#8892A8">/mo</span>'
-    + '</div>\n'
-    + '<div class="savings-pill">' + data.bundle_savings + '</div>\n'
-    + '<div style="margin-bottom:20px">' + buildBundleIncludes(data.bundle_includes) + '</div>\n'
-    + (data.bundle_addons && data.bundle_addons.length ? '<div style="border-top:1px solid rgba(255,255,255,.07);padding-top:16px;margin-bottom:20px"><div style="font-family:\'Syne\',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8892A8;margin-bottom:10px">Popular Add-Ons</div>' + buildBundleAddons(data.bundle_addons) + '</div>\n' : '')
-    + '<button class="btn-p" style="width:100%;font-size:15px;padding:15px" onclick="window.location.href=\'/#score\'">Get Started — Free Audit First →</button>\n'
-    + (data.bundle_note ? '<p style="font-size:12px;color:#8892A8;margin-top:14px;line-height:1.6;text-align:center">' + data.bundle_note + '</p>\n' : '')
+    // Growth card
+    + buildPkgCard('Growth','$199','',['Everything in Starter','Google Business Profile managed monthly','Online Presence (38+ directories)','Social media — 3 AI posts/week','Monthly SEO & ranking updates','Analytics & reporting'], false, false)
+
+    // Pro card (featured)
+    + buildPkgCard('Pro','$399','',['Everything in Growth','Google + Facebook + TikTok Ads','2 AI Project Mockups per month','Dedicated account manager','Monthly performance report','Priority support'], true, false)
+
+    + '</div>'
+
+    // $99 escape valve
+    + '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:32px">'
+    + '<div><div style="font-family:\'Syne\',sans-serif;font-size:14px;font-weight:700;color:#EDE8DC;margin-bottom:4px">Just want a website for now?</div>'
+    + '<div style="font-size:13px;color:#8892A8">One-time · Nothing from you · Live in 48 hours · Upgrade anytime</div></div>'
+    + '<div style="text-align:right;flex-shrink:0"><div style="font-family:\'Bebas Neue\',cursive;font-size:44px;line-height:1;color:#F07A20">$99</div>'
+    + '<a href=\"/#score\" style=\"display:inline-block;margin-top:6px;font-family:\'Syne\',sans-serif;font-size:11px;font-weight:700;color:#F07A20;border:1px solid rgba(240,122,32,.3);padding:5px 16px;border-radius:6px\">Claim Your Website →</a></div>'
+    + '</div>'
+
+    // Add-ons
+    + '<div style="background:#0F1219;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px 28px">'
+    + '<div style="font-family:\'Syne\',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8892A8;margin-bottom:16px">Add-Ons — available on any plan</div>'
+    + '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">'
+    + '<div style="display:flex;justify-content:space-between;background:rgba(255,255,255,.03);border-radius:8px;padding:10px 14px"><span style="font-size:13px;color:#C4CBDA">Extra AI Project Mockups (3)</span><span style="font-family:\'Syne\',sans-serif;font-size:13px;font-weight:700;color:#F07A20">$149</span></div>'
+    + '<div style="display:flex;justify-content:space-between;background:rgba(255,255,255,.03);border-radius:8px;padding:10px 14px"><span style="font-size:13px;color:#C4CBDA">Additional Social Platforms</span><span style="font-family:\'Syne\',sans-serif;font-size:13px;font-weight:700;color:#F07A20">$99/mo</span></div>'
+    + '<div style="display:flex;justify-content:space-between;background:rgba(255,255,255,.03);border-radius:8px;padding:10px 14px"><span style="font-size:13px;color:#C4CBDA">Email Marketing Campaigns</span><span style="font-family:\'Syne\',sans-serif;font-size:13px;font-weight:700;color:#F07A20">$99/mo</span></div>'
+    + '<div style="display:flex;justify-content:space-between;background:rgba(255,255,255,.03);border-radius:8px;padding:10px 14px"><span style="font-size:13px;color:#C4CBDA">Logo & Brand Kit</span><span style="font-family:\'Syne\',sans-serif;font-size:13px;font-weight:700;color:#F07A20">$149</span></div>'
+    + '</div></div>'
     + '</div>\n</div>\n'
-    + '<div class="start-small">'
-    + '<div style="font-size:13px;color:#8892A8;margin-bottom:6px">Or start small — no commitment</div>'
-    + '<div style="font-family:\'Syne\',sans-serif;font-size:18px;font-weight:800;margin-bottom:4px">$99 Website Only</div>'
-    + '<div style="font-size:12px;color:#8892A8;margin-bottom:14px">One-time · Nothing required from you · Live in 48hrs</div>'
-    + '<button onclick="window.location.href=\'/#score\'" style="background:transparent;border:1px solid rgba(255,255,255,.15);color:#C4CBDA;font-family:\'Syne\',sans-serif;font-weight:700;font-size:13px;padding:10px 22px;border-radius:8px;cursor:pointer;width:100%">Start with $99 →</button>'
-    + '</div>\n'
-    + '</div>\n'
-    + '</div>\n</div>\n</div>\n'
 
     // CTA
     + '<div class="cta-block">\n'
