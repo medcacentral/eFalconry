@@ -269,6 +269,77 @@ const NICHES = {
     bundle_note: 'Emergency plumbers with Google LSA and strong reviews see 5x ROI on ad spend. The Full Stack sets the foundation.',
     cta: 'Get Your Free Plumber Website',
   },
+  painters: {
+    title: 'Painting Contractors',
+    h1a: 'For Painters', h1b: '& Paint Pros.',
+    accent: '#F07A20',
+    tagline: 'Win more interior, exterior, and cabinet painting jobs with AI tools built for paint pros.',
+    hero: 'Painting is one of the most visual trades there is — and most painter websites look like they were built in 1998. Show customers photo-realistic color mockups of their house before you open a can of paint. Generate branded quotes in minutes. Rank on Google for every city you serve.',
+    beforeImg: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=680&h=510&fit=crop&q=80',
+    beforeLabel: 'The house today',
+    beforeDesc: 'Faded siding with peeling trim and dated color — customer cannot picture the transformation',
+    designOptions: [
+      {
+        label: 'Option A — Classic White + Charcoal Trim',
+        desc: 'Warm off-white body with charcoal trim and black front door. Timeless. Broad resale appeal.',
+        price: 'From $3.50 / sq ft exterior',
+        img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=680&h=450&fit=crop&q=80'
+      },
+      {
+        label: 'Option B — Modern Dark',
+        desc: 'Iron-ore charcoal body with crisp white trim. Dramatic contrast, modern curb appeal.',
+        price: 'From $3.75 / sq ft exterior',
+        img: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=680&h=450&fit=crop&q=80'
+      },
+      {
+        label: 'Option C — Coastal Navy',
+        desc: 'Deep navy body with white trim and natural wood accents. 2-color plus full prep.',
+        price: 'From $4.00 / sq ft exterior',
+        img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=680&h=450&fit=crop&q=80'
+      },
+      {
+        label: 'Option D — Natural Sage',
+        desc: 'Muted sage-green body with soft cream trim. Earthy, distinctive, holds up in sunlight.',
+        price: 'From $3.75 / sq ft exterior',
+        img: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=680&h=450&fit=crop&q=80'
+      },
+    ],
+    stats: [['3x','More booked jobs with AI color mockups'],['2 hrs','From walkthrough to branded quote'],['$0','Lost jobs to "we went a different direction"']],
+    services: [
+      ['🎨','AI Color Mockups','Upload a photo of the customer\'s house. Show them 4 photorealistic color schemes before a single brush stroke. They pick. You close — same day.'],
+      ['📐','AI Quote Generator','Branded proposals with square footage, prep scope, number of coats, primer specs, and warranty terms. Interior, exterior, or cabinet — no more handwritten quotes.'],
+      ['🏠','Interior & Exterior Pricing','Separate pricing tiers on your site: per-room interior, per-sqft exterior, cabinets per door. Customers self-qualify before you drive out.'],
+      ['🌐','$99 Website','A professional painting contractor website with real project galleries, service areas, and Google Maps integration. Mobile-optimized and fast.'],
+      ['⭐','Review Automation','Every finished job triggers a personalized review request ("How\'s that new trim looking?"). Ratings climb without you asking.'],
+      ['🤖','AI Chatbot','Answers 24/7 — covers prep questions, paint brands, warranty, scheduling, and rough price ranges by photo.'],
+    ],
+    alacarte: [
+      ['Professional Website','$99','one-time','Mobile-optimized painter site with interior + exterior galleries — built first, you just claim it','Start here'],
+      ['AI Quote Generator','$79','/mo','Branded proposals for interior, exterior, or cabinet jobs with prep scope and warranty',''],
+      ['AI Color Mockups','$149','/project','4 photorealistic color scheme renders of the customer\'s actual house',''],
+      ['Online Presence (38+ directories)','$149','/mo','Google, Yelp, HomeAdvisor, Angi, Nextdoor, Apple Maps — managed monthly',''],
+      ['Review Automation','$49','/mo','Auto-request reviews after every job. Google rating climbs on autopilot',''],
+      ['AI Chatbot','$99','/mo','Answers customer questions 24/7, including rough quotes from uploaded photos',''],
+      ['Ads Management','$299','/mo','Google, Facebook, and TikTok ads targeting homeowners in your service area',''],
+    ],
+    bundle_name: 'The Full Stack',
+    bundle_price: '$499',
+    bundle_savings: 'Save $175/mo vs a la carte',
+    bundle_includes: ['Website hosting & monthly updates','AI Quote Generator (interior + exterior + cabinets)','Online Presence (38+ directories)','Review Automation','AI Chatbot 24/7','Monthly performance report'],
+    bundle_addons: ['AI Color Mockups — $149/project','Ads Management — $299/mo add-on'],
+    bundle_note: 'Painters who add AI Color Mockups close 60–80% of bids the same day. Spring and summer bookings fill fast — start now.',
+    cta: 'Close More Paint Jobs. Start With a $99 Painter Website.',
+    quoteTitle: 'BID PROPOSAL — EXTERIOR REPAINT PROJECT',
+    quoteClient: 'Rodriguez Residence',
+    quoteAddress: '4821 Maple Ridge Rd, Tacoma, WA 98422',
+    quoteOptions: [
+      {label:'Option 1 — Classic White + Charcoal Trim (2-color, full prep)', base:7800, tax:787.80, total:8587.80},
+      {label:'Option 2 — Modern Dark (Premium paint + 3-color trim)', base:9400, tax:949.40, total:10349.40},
+    ],
+    quoteMeasurements: [['Total Siding Area','2,400','sq ft'],['Trim & Fascia','480','linear ft'],['Coats','2','incl. primer']],
+    quotePayment: '10% due upon signing · 40% due at start · 50% due upon completion',
+    quoteExclusions: 'Siding repair beyond scope, structural wood rot, lead paint abatement, permits unless specified',
+  },
 };
 
 // Build functions that avoid nested template literals
@@ -960,7 +1031,7 @@ function renderNichePage(niche, data) {
       + '<div class="before-panel">'
       + '<div class="before-label-bar"><span>Current State — Before</span></div>'
       + '<img src="' + data.beforeImg + '" alt="Before the project" loading="lazy">'
-      + '<div class="before-foot"><strong>The yard today</strong><span>' + data.beforeDesc + '</span></div>'
+      + '<div class="before-foot"><strong>' + (data.beforeLabel || 'Current state') + '</strong><span>' + data.beforeDesc + '</span></div>'
       + '</div>'
       + '</div>'
 
