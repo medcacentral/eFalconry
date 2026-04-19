@@ -14,6 +14,26 @@ const NICHES = {
     afterLabel: 'After your concrete work',
     beforeDesc: 'Overgrown weeds and no defined space — customer has no vision for what it could become',
     afterDesc: 'Exposed aggregate curved walkway with clean landscape beds — same property, transformed',
+    designOptions: [
+      {
+        label: 'Option A — Exposed Aggregate',
+        img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=320&fit=crop&q=80',
+        desc: 'Rounded pea gravel finish with dark border trim. Textured, slip-resistant, upscale look.',
+        price: 'From $12/sq ft'
+      },
+      {
+        label: 'Option B — Stamped Concrete',
+        img: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=480&h=320&fit=crop&q=80',
+        desc: 'Ashlar slate or cobblestone pattern with color stain. Premium curb appeal.',
+        price: 'From $15/sq ft'
+      },
+      {
+        label: 'Option C — Broom Finish',
+        img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=480&h=320&fit=crop&q=80',
+        desc: 'Classic brushed surface with clean saw-cut joints. Durable, cost-effective, timeless.',
+        price: 'From $8/sq ft'
+      },
+    ],
     stats: [['$28K','Avg job closed with AI mockup'],['3 hrs','To generate a professional quote'],['47%','More Google calls after optimization']],
     services: [
       ['📐','AI Quote Generator','Input measurements, materials, and finish options — get a branded PDF proposal with scope of work, itemized costs, payment terms, and signature lines. Close jobs on the spot, from your phone.'],
@@ -531,8 +551,26 @@ function renderNichePage(niche, data) {
     + 'footer{background:#05080E;border-top:1px solid rgba(255,255,255,.05);padding:28px 5%;text-align:center;}\n'
     + 'footer p{font-size:12px;color:#8892A8;}\n'
     + 'footer a{color:#F07A20;}\n'
-    + '@media(max-width:900px){.svc-grid{grid-template-columns:repeat(2,1fr);}.price-grid{grid-template-columns:1fr;}.mockup-wrap{grid-template-columns:1fr;}.cta-block{padding:36px 24px;}}\n'
-    + '@media(max-width:540px){.svc-grid{grid-template-columns:1fr;}.stats-row{flex-wrap:wrap;}.hero{padding:64px 5% 52px;}.cta-block{margin:0 0 40px;border-radius:0;}.escape-valve{flex-direction:column;}}\n'
+    + '.before-wrap{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:0;}\n'
+    + '.before-panel{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.09);}\n'
+    + '.before-panel img{width:100%;height:260px;object-fit:cover;display:block;}\n'
+    + '.before-foot{padding:14px 18px;background:#0F1219;border-top:1px solid rgba(255,255,255,.06);}\n'
+    + '.before-foot strong{display:block;font-family:\'Syne\',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8892A8;margin-bottom:4px;}\n'
+    + '.before-foot span{font-size:13px;color:#C4CBDA;}\n'
+    + '.options-label{font-family:\'Syne\',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#F07A20;margin:36px 0 16px;display:flex;align-items:center;gap:10px;}\n'
+    + '.options-label::before{content:\'\';flex:1;height:1px;background:rgba(240,122,32,.25);}\n'
+    + '.options-label::after{content:\'\';flex:1;height:1px;background:rgba(240,122,32,.25);}\n'
+    + '.design-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}\n'
+    + '.design-card{background:#0F1219;border:1px solid rgba(255,255,255,.09);border-radius:16px;overflow:hidden;position:relative;transition:transform .2s,border-color .2s,box-shadow .2s;}\n'
+    + '.design-card:hover{transform:translateY(-5px);border-color:rgba(240,122,32,.35);box-shadow:0 16px 48px rgba(0,0,0,.5);}\n'
+    + '.design-card img{width:100%;height:200px;object-fit:cover;display:block;}\n'
+    + '.design-card-body{padding:16px 18px 18px;}\n'
+    + '.design-option-badge{position:absolute;top:12px;left:12px;background:linear-gradient(90deg,#F07A20,#FF9A50);color:#fff;font-family:\'Syne\',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:99px;box-shadow:0 2px 10px rgba(240,122,32,.5);}\n'
+    + '.design-card-title{font-family:\'Syne\',sans-serif;font-weight:700;font-size:13.5px;color:#EDE8DC;margin-bottom:6px;}\n'
+    + '.design-card-desc{font-size:12.5px;color:#8892A8;line-height:1.6;margin-bottom:10px;}\n'
+    + '.design-card-price{font-family:\'Syne\',sans-serif;font-size:12px;font-weight:700;color:#F07A20;}\n'
+    + '@media(max-width:900px){.svc-grid{grid-template-columns:repeat(2,1fr);}}.price-grid{grid-template-columns:1fr;}.mockup-wrap{grid-template-columns:1fr;}.cta-block{padding:36px 24px;}}\n'
+    + '@media(max-width:540px){.svc-grid{grid-template-columns:1fr;}.design-grid{grid-template-columns:1fr;}..stats-row{flex-wrap:wrap;}.hero{padding:64px 5% 52px;}.cta-block{margin:0 0 40px;border-radius:0;}.escape-valve{flex-direction:column;}}\n'
     + '</style>\n</head>\n<body>\n'
 
 
@@ -562,24 +600,40 @@ function renderNichePage(niche, data) {
     + '<div class="stats-row">' + buildStats(data.stats, acc) + '</div>\n'
 
     // Mockup demo
-    + '<section style="padding:60px 5% 0">\n<div class="section-wrap">\n'
-    + '<div class="eye">AI Project Mockups</div>\n'
-    + '<h2>Show Clients the<br><em>Finished Project</em></h2>\n'
-    + '<p class="section-sub">Before you move a single yard of material — show your customer exactly what they are getting. AI-rendered mockups close jobs that would otherwise stall.</p>\n'
-    + '<div class="mockup-wrap">\n'
-    + '<div class="mockup-panel">'
-    + '<span class="panel-badge" style="background:rgba(0,0,0,.7);color:#C4CBDA;border:1px solid rgba(255,255,255,.12)">Before</span>'
-    + '<img src="' + data.beforeImg + '" alt="' + data.beforeLabel + '" loading="lazy">'
-    + '<div class="panel-foot"><strong>Before</strong>' + data.beforeDesc + '</div>'
-    + '</div>\n'
-    + '<div class="mockup-panel">'
-    + '<span class="panel-badge" style="background:#F07A20;color:#fff;box-shadow:0 4px 14px rgba(240,122,32,.4)">AI Mockup</span>'
-    + '<img src="' + data.afterImg + '" alt="' + data.afterLabel + '" loading="lazy">'
-    + '<div class="panel-foot"><strong>After — AI Mockup</strong>' + data.afterDesc + '</div>'
-    + '</div>\n'
-    + '</div>\n'
-    + quoteSection
-    + '</div>\n</section>\n'
+    var optionsHtml = '';
+    if (data.designOptions && data.designOptions.length) {
+      optionsHtml = '<div class="options-label">Choose Your Design — ' + data.designOptions.length + ' Options</div>'
+        + '<div class="design-grid">'
+        + data.designOptions.map(function(opt, i) {
+            var letters = ['A','B','C','D'];
+            return '<div class="design-card">'
+              + '<img src="' + opt.img + '" alt="' + opt.label + '" loading="lazy">'
+              + '<div class="design-option-badge">Option ' + letters[i] + '</div>'
+              + '<div class="design-card-body">'
+              + '<div class="design-card-title">' + opt.label.replace(/^Option [A-D] — /, '') + '</div>'
+              + '<div class="design-card-desc">' + opt.desc + '</div>'
+              + '<div class="design-card-price">' + opt.price + '</div>'
+              + '</div></div>';
+          }).join('')
+        + '</div>';
+    }
+
+    var mockupSection = '<section style="padding:60px 5% 0">\n<div class="section-wrap">\n'
+      + '<div class="eye">AI Project Mockups</div>\n'
+      + '<h2>Show Clients <em>Their Options</em></h2>\n'
+      + '<p class="section-sub">Before you break ground — show the customer exactly what their property could look like. Multiple design options means they pick their favorite instead of hesitating.</p>\n'
+      // Before photo full width
+      + '<div class="before-wrap">'
+      + '<div class="before-panel">'
+      + '<span class="panel-badge" style="background:rgba(0,0,0,.75);color:#C4CBDA;border:1px solid rgba(255,255,255,.14)">Current State — Before</span>'
+      + '<img src="' + data.beforeImg + '" alt="Before" loading="lazy">'
+      + '<div class="before-foot"><strong>Before</strong><span>' + data.beforeDesc + '</span></div>'
+      + '</div>'
+      + '</div>'
+      // Design options grid
+      + optionsHtml
+      + quoteSection
+      + '</div>\n</section>\n'
 
     // Services
     + '<section style="padding:60px 5%;" id="services">\n<div class="section-wrap">\n'
