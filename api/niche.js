@@ -597,28 +597,28 @@ function renderNichePage(niche, data) {
     + '</div>\n</section>\n'
 
     // Stats
-    + '<div class="stats-row">' + buildStats(data.stats, acc) + '</div>\n'
+    + '<div class="stats-row">' + buildStats(data.stats, acc) + '</div>\n';
 
-    // Mockup demo
-    var optionsHtml = '';
-    if (data.designOptions && data.designOptions.length) {
-      optionsHtml = '<div class="options-label">Choose Your Design — ' + data.designOptions.length + ' Options</div>'
-        + '<div class="design-grid">'
-        + data.designOptions.map(function(opt, i) {
-            var letters = ['A','B','C','D'];
-            return '<div class="design-card">'
-              + '<img src="' + opt.img + '" alt="' + opt.label + '" loading="lazy">'
-              + '<div class="design-option-badge">Option ' + letters[i] + '</div>'
-              + '<div class="design-card-body">'
-              + '<div class="design-card-title">' + opt.label.replace(/^Option [A-D] — /, '') + '</div>'
-              + '<div class="design-card-desc">' + opt.desc + '</div>'
-              + '<div class="design-card-price">' + opt.price + '</div>'
-              + '</div></div>';
-          }).join('')
-        + '</div>';
-    }
+  // ── Build design-options HTML (must be before html+= sections) ────────────
+  var optionsHtml = '';
+  if (data.designOptions && data.designOptions.length) {
+    optionsHtml = '<div class="options-label">Choose Your Design — ' + data.designOptions.length + ' Options</div>'
+      + '<div class="design-grid">'
+      + data.designOptions.map(function(opt, i) {
+          var letters = ['A','B','C','D'];
+          return '<div class="design-card">'
+            + '<img src="' + opt.img + '" alt="' + opt.label + '" loading="lazy">'
+            + '<div class="design-option-badge">Option ' + letters[i] + '</div>'
+            + '<div class="design-card-body">'
+            + '<div class="design-card-title">' + opt.label.replace(/^Option [A-D] — /, '') + '</div>'
+            + '<div class="design-card-desc">' + opt.desc + '</div>'
+            + '<div class="design-card-price">' + opt.price + '</div>'
+            + '</div></div>';
+        }).join('')
+      + '</div>';
+  }
 
-    var mockupSection = '<section style="padding:60px 5% 0">\n<div class="section-wrap">\n'
+  var mockupSection = '<section style="padding:60px 5% 0">\n<div class="section-wrap">\n'
       + '<div class="eye">AI Project Mockups</div>\n'
       + '<h2>Show Clients <em>Their Options</em></h2>\n'
       + '<p class="section-sub">Before you break ground — show the customer exactly what their property could look like. Multiple design options means they pick their favorite instead of hesitating.</p>\n'
@@ -634,9 +634,11 @@ function renderNichePage(niche, data) {
       + optionsHtml
       + quoteSection
       + '</div>\n</section>\n'
+;
+  html += mockupSection;
 
     // Services
-    + '<section style="padding:60px 5%;" id="services">\n<div class="section-wrap">\n'
+  html += '<section style="padding:60px 5%;" id="services">\n<div class="section-wrap">\n'
     + '<div class="eye">Everything We Offer</div>\n'
     + '<h2>Built for<br><em>' + data.title + '</em></h2>\n'
     + '<p class="section-sub">Every tool designed specifically for how ' + niche + ' contractors win, quote, and close jobs.</p>\n'
