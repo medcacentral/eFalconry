@@ -106,6 +106,55 @@ footer a{color:#F07A20;}
 @media(max-width:900px){.svc-grid{grid-template-columns:repeat(2,1fr);}}.price-grid{grid-template-columns:1fr;}.mockup-wrap{grid-template-columns:1fr;}.cta-block{padding:36px 24px;}}
 @media(max-width:900px){.mockup-layout{grid-template-columns:1fr;}.before-col{position:static;}}
 @media(max-width:540px){.svc-grid{grid-template-columns:1fr;}.design-grid{grid-template-columns:1fr;}..stats-row{flex-wrap:wrap;}.hero{padding:64px 5% 52px;}.cta-block{margin:0 0 40px;border-radius:0;}.escape-valve{flex-direction:column;}}
+#chat-btn{position:fixed;bottom:28px;right:28px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#F07A20,#FF9A50);border:none;cursor:pointer;z-index:2000;box-shadow:0 6px 24px rgba(240,122,32,.5);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;}
+#chat-btn:hover{transform:scale(1.08);box-shadow:0 8px 32px rgba(240,122,32,.7);}
+#chat-btn svg{width:26px;height:26px;position:relative;z-index:2;transition:opacity .2s;}
+#chat-btn .icon-close{display:none;}
+#chat-btn.open .icon-open{display:none;}
+#chat-btn.open .icon-close{display:block;}
+#chat-btn .pulse-ring{position:absolute;inset:0;border-radius:50%;background:#F07A20;opacity:.5;animation:chatPulse 2.2s ease-out infinite;pointer-events:none;z-index:1;}
+#chat-btn.open .pulse-ring{display:none;}
+@keyframes chatPulse{0%{transform:scale(1);opacity:.5}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+#chat-box{position:fixed;bottom:100px;right:28px;width:368px;max-height:600px;background:#0F1219;border:1px solid rgba(255,255,255,.11);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.6);z-index:1999;display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(12px) scale(.97);pointer-events:none;transition:opacity .22s,transform .22s;}
+#chat-box.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
+#chat-header{padding:14px 18px;background:linear-gradient(135deg,#161B26,#0F1219);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+#chat-header .ch-dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 6px #4ADE80;flex-shrink:0;}
+#chat-header .ch-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#EDE8DC;line-height:1.1;}
+#chat-header .ch-sub{font-size:11px;color:#8892A8;margin-left:auto;}
+#chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;}
+#chat-messages::-webkit-scrollbar{width:4px;}
+#chat-messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.11);border-radius:2px;}
+.cm{max-width:84%;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.55;animation:cmIn .18s ease;word-wrap:break-word;}
+@keyframes cmIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.cm.bot{background:#161B26;color:#EDE8DC;border-bottom-left-radius:4px;align-self:flex-start;}
+.cm.user{background:#F07A20;color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
+.cm.bot strong{color:#F07A20;font-weight:700;}
+.cm.user strong{color:#fff;font-weight:700;}
+.cm.typing{opacity:.6;}
+.cm.typing span{display:inline-block;animation:chatBlink 1s infinite;}
+.cm.typing span:nth-child(2){animation-delay:.2s;}
+.cm.typing span:nth-child(3){animation-delay:.4s;}
+@keyframes chatBlink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.cm img.chat-img{max-width:100%;border-radius:9px;margin-bottom:6px;display:block;border:1px solid rgba(255,255,255,.08);}
+.chat-chip-row{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 12px;}
+.chat-chip{background:#161B26;border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:6px 11px;font-size:11px;color:#C4CBDA;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.chat-chip:hover{border-color:rgba(240,122,32,.4);color:#EDE8DC;background:#1A2030;}
+#chat-preview{display:none;padding:0 14px 10px;}
+#chat-preview.has{display:block;}
+#chat-preview-wrap{position:relative;display:inline-block;}
+#chat-preview img{max-height:84px;border-radius:8px;display:block;border:1px solid rgba(255,255,255,.1);}
+#chat-preview-close{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;background:#161B26;border:1px solid rgba(255,255,255,.15);color:#C4CBDA;cursor:pointer;font-size:13px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;}
+#chat-preview-close:hover{color:#F07A20;border-color:rgba(240,122,32,.4);}
+#chat-input-row{display:flex;gap:6px;padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);flex-shrink:0;align-items:flex-end;}
+#chat-input{flex:1;background:#161B26;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:9px 13px;font-size:13px;color:#EDE8DC;font-family:'DM Sans',sans-serif;outline:none;resize:none;max-height:80px;line-height:1.4;}
+#chat-input:focus{border-color:rgba(240,122,32,.4);}
+#chat-upload,#chat-send{width:36px;height:36px;border-radius:9px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+#chat-upload{background:#161B26;border:1px solid rgba(255,255,255,.1);color:#8892A8;}
+#chat-upload:hover{border-color:rgba(240,122,32,.4);color:#F07A20;}
+#chat-send{background:#F07A20;}
+#chat-send:hover{background:#e06910;}
+#chat-send:disabled{background:rgba(255,255,255,.11);cursor:not-allowed;}
+@media(max-width:640px){#chat-box{width:calc(100vw - 24px);right:12px;bottom:88px;max-height:70vh;}#chat-btn{bottom:20px;right:16px;width:56px;height:56px;}}
 </style>
 </head>
 <body>
@@ -159,5 +208,220 @@ footer a{color:#F07A20;}
 <footer>
 <p><a href="/">← Back to e-Falconry</a> &nbsp;·&nbsp; AI-First Agency for Local Contractors &nbsp;·&nbsp; <a href="mailto:hello@efalconry.com">hello@efalconry.com</a></p>
 </footer>
+
+<!-- CHATBOT WIDGET -->
+<button id="chat-btn" onclick="toggleChat()" aria-label="Chat with AI assistant">
+  <span class="pulse-ring"></span>
+  <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+  </svg>
+  <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+    <path d="M18 6L6 18M6 6l12 12"/>
+  </svg>
+</button>
+
+<div id="chat-box" role="dialog" aria-label="AI chat">
+  <div id="chat-header">
+    <div class="ch-dot"></div>
+    <div><div class="ch-title">e-Falconry AI</div></div>
+    <div class="ch-sub">Replies instantly</div>
+  </div>
+  <div id="chat-messages">
+    <div class="cm bot">Hi! I can answer questions about your project or our services. What would you like to know?</div>
+  </div>
+  <div class="chat-chip-row" id="chat-chips">
+    <button class="chat-chip" data-action="send" data-msg="How does the AI website + chatbot work?">How does this work?</button>
+    <button class="chat-chip" data-action="send" data-msg="What does this cost per month?">Pricing</button>
+    <button class="chat-chip" data-action="upload">Upload photo 📷</button>
+  </div>
+  <div id="chat-preview">
+    <div id="chat-preview-wrap">
+      <img id="chat-preview-img" alt="">
+      <button id="chat-preview-close" onclick="clearChatImage()" aria-label="Remove photo">×</button>
+    </div>
+  </div>
+  <input type="file" id="chat-upload-input" accept="image/jpeg,image/png,image/webp" style="display:none">
+  <div id="chat-input-row">
+    <button id="chat-upload" aria-label="Upload photo" title="Upload photo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="2"/>
+        <circle cx="9" cy="10" r="2"/>
+        <path d="M3 17l5-5 4 4 3-3 6 6"/>
+      </svg>
+    </button>
+    <textarea id="chat-input" rows="1" placeholder="Ask anything..." onkeydown="handleChatKey(event)"></textarea>
+    <button id="chat-send" onclick="sendChat()" aria-label="Send message">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M14 8L2 2l3 6-3 6 12-6z" fill="#fff"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var CHAT_NICHE = "plumber";
+  var chatOpen = false, chatBusy = false, chatPendingImage = null;
+  var chatHistory = [];
+
+  window.toggleChat = function() {
+    chatOpen = !chatOpen;
+    document.getElementById('chat-btn').classList.toggle('open', chatOpen);
+    document.getElementById('chat-box').classList.toggle('open', chatOpen);
+    if (chatOpen) setTimeout(function(){ document.getElementById('chat-input').focus(); }, 220);
+  };
+
+  window.handleChatKey = function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+  };
+
+  window.clearChatImage = function() {
+    chatPendingImage = null;
+    document.getElementById('chat-preview').classList.remove('has');
+  };
+
+  function handleChatFile(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 4 * 1024 * 1024) {
+      addMessage('bot', 'Photo is too large — please keep it under 4MB.');
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      var dataUrl = ev.target.result;
+      var base64 = dataUrl.split(',')[1];
+      chatPendingImage = { data: base64, mimeType: file.type, dataUrl: dataUrl };
+      document.getElementById('chat-preview-img').src = dataUrl;
+      document.getElementById('chat-preview').classList.add('has');
+      document.getElementById('chat-input').focus();
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  }
+
+  window.sendChat = async function() {
+    if (chatBusy) return;
+    var input = document.getElementById('chat-input');
+    var msg = input.value.trim();
+    if (!msg && !chatPendingImage) return;
+
+    input.value = '';
+    input.style.height = 'auto';
+    chatBusy = true;
+    document.getElementById('chat-send').disabled = true;
+
+    var chips = document.getElementById('chat-chips');
+    if (chips) chips.style.display = 'none';
+
+    var userMessage = { role: 'user', content: msg || 'Please analyze this photo.' };
+    if (chatPendingImage) {
+      userMessage.image = { data: chatPendingImage.data, mimeType: chatPendingImage.mimeType };
+      addMessageWithImage('user', msg, chatPendingImage.dataUrl);
+    } else {
+      addMessage('user', msg);
+    }
+    chatHistory.push(userMessage);
+    window.clearChatImage();
+
+    var typingId = addTyping();
+
+    try {
+      var resp = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: chatHistory, niche: CHAT_NICHE })
+      });
+      var data = await resp.json();
+      removeTyping(typingId);
+
+      if (data.error === 'rate_limited' || data.error === 'session_limit') {
+        addMessage('bot', (data.message || 'Rate limit reached.') + ' Or email **hello@efalconry.com** for more help.');
+        input.disabled = true;
+        document.getElementById('chat-send').disabled = true;
+        document.getElementById('chat-upload').disabled = true;
+        return;
+      }
+      var reply = data.reply || "Sorry, I couldn't get a response. Please try again.";
+      addMessage('bot', reply);
+      chatHistory.push({ role: 'assistant', content: reply });
+    } catch (err) {
+      removeTyping(typingId);
+      addMessage('bot', 'Something went wrong — please try again in a moment.');
+    }
+
+    chatBusy = false;
+    document.getElementById('chat-send').disabled = false;
+  };
+
+  function formatMsg(text) {
+    return String(text || '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br>');
+  }
+  function addMessage(role, text) {
+    var msgs = document.getElementById('chat-messages');
+    var div = document.createElement('div');
+    div.className = 'cm ' + role;
+    div.innerHTML = formatMsg(text);
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+  function addMessageWithImage(role, text, imgSrc) {
+    var msgs = document.getElementById('chat-messages');
+    var div = document.createElement('div');
+    div.className = 'cm ' + role;
+    var img = document.createElement('img');
+    img.src = imgSrc; img.className = 'chat-img'; img.alt = '';
+    div.appendChild(img);
+    if (text) {
+      var span = document.createElement('span');
+      span.innerHTML = formatMsg(text);
+      div.appendChild(span);
+    }
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function addTyping() {
+    var msgs = document.getElementById('chat-messages');
+    var div = document.createElement('div');
+    var id = 'typing-' + Date.now();
+    div.id = id;
+    div.className = 'cm bot typing';
+    div.innerHTML = '<span>●</span><span>●</span><span>●</span>';
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return id;
+  }
+  function removeTyping(id) {
+    var el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  document.getElementById('chat-upload-input').addEventListener('change', handleChatFile);
+  document.getElementById('chat-upload').addEventListener('click', function(){
+    document.getElementById('chat-upload-input').click();
+  });
+  document.querySelectorAll('#chat-chips .chat-chip').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var action = btn.dataset.action;
+      if (action === 'upload') {
+        document.getElementById('chat-upload-input').click();
+      } else {
+        var m = btn.dataset.msg || '';
+        document.getElementById('chat-input').value = m;
+        sendChat();
+      }
+    });
+  });
+  document.getElementById('chat-input').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+  });
+})();
+</script>
 </body>
 </html>
