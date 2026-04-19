@@ -624,12 +624,12 @@ function renderNichePage(niche, data) {
     optionsHtml = '<div class="options-label">Choose Your Design — ' + data.designOptions.length + ' Options</div>'
       + '<div class="design-grid">'
       + data.designOptions.map(function(opt, i) {
-          var letters = ['A','B','C','D'];
+          var letters = ['A','B','C','D','E','F'];
           return '<div class="design-card">'
             + '<img src="' + opt.img + '" alt="' + opt.label + '" loading="lazy">'
             + '<div class="design-option-badge">Option ' + letters[i] + '</div>'
             + '<div class="design-card-body">'
-            + '<div class="design-card-title">' + opt.label.replace(/^Option [A-D] — /, '') + '</div>'
+            + '<div class="design-card-title">' + opt.label.replace(/^Option [A-F] — /, '') + '</div>'
             + '<div class="design-card-desc">' + opt.desc + '</div>'
             + '<div class="design-card-price">' + opt.price + '</div>'
             + '</div></div>';
