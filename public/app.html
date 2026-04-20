@@ -191,7 +191,7 @@ textarea{resize:none;line-height:1.6;}
         <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 2a7 7 0 017 7v3l1.5 3h-17L4 12V9a7 7 0 017-7z"/><path d="M9 19a2 2 0 004 0"/></svg>
         <div class="t-badge"></div>
       </div>
-      <div class="t-avatar" id="t-av">?</div>
+      <div class="t-avatar" id="t-av" onclick="switchTab('settings')" style="cursor:pointer" title="Settings">?</div>
     </div>
   </div>
 
@@ -349,11 +349,72 @@ textarea{resize:none;line-height:1.6;}
       </div>
 
       <!-- Submit -->
-      <button class="sub-btn" id="sub-btn" onclick="submitJob()">
-        <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-        Send to e-Falconry
+      <button class="sub-btn" id="quote-btn" onclick="generateQuote()" style="background:linear-gradient(90deg,#F07A20,#FF9A50);margin-bottom:10px">
+        <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 4h14v14H4z"/><path d="M8 8h6M8 11h6M8 14h4"/></svg>
+        Generate AI Quote
       </button>
-      <div class="sub-note">Quote, mockups &amp; social content delivered to your email within 2 hours during business hours.</div>
+      <button class="sub-btn" id="sub-btn" onclick="submitJob()" style="background:var(--bg3);border:1px solid var(--bdr2)">
+        <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Send to e-Falconry Team
+      </button>
+      <div class="sub-note">Generate a quote instantly in-app, or send to our team for full package (quote + mockups + social content) within 2 hours.</div>
+    </div>
+  </div>
+
+  <!-- QUOTE PREVIEW screen -->
+  <div id="s-quote" class="screen" style="display:none">
+    <div style="padding:14px 16px;background:rgba(7,9,12,.98);border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px">
+      <button onclick="switchTab('submit')" style="width:32px;height:32px;border-radius:50%;background:var(--bg2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="14" height="14" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;flex:1">Quote Preview</div>
+      <button onclick="emailQuoteToClient()" style="background:var(--acc);color:#fff;font-weight:600;font-size:12px;padding:7px 14px;border-radius:8px;font-family:'Syne',sans-serif">Email Client</button>
+    </div>
+    <iframe id="quote-frame" style="width:100%;height:calc(100vh - 54px - env(safe-area-inset-bottom,0px));border:none;background:#fff"></iframe>
+  </div>
+
+  <!-- SETTINGS screen -->
+  <div id="s-settings" class="screen" style="display:none">
+    <div class="p">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+        <button onclick="switchTab('home')" style="width:32px;height:32px;border-radius:50%;background:var(--bg2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="14" height="14" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="page-title" style="margin:0">Your Profile</div>
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Your Business</label>
+        <input type="text" id="p-biz" placeholder="Business name (appears on quotes)" style="margin-bottom:8px">
+        <input type="text" id="p-name" placeholder="Your name" style="margin-bottom:8px">
+        <input type="email" id="p-email" placeholder="Your email (receive quote copies)" style="margin-bottom:8px">
+        <input type="tel" id="p-phone" placeholder="Your phone">
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Business Details</label>
+        <input type="text" id="p-address" placeholder="Business address" style="margin-bottom:8px">
+        <input type="text" id="p-license" placeholder="License # (optional)">
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Quote Defaults</label>
+        <div class="f-row">
+          <div style="flex:1">
+            <input type="text" id="p-type" placeholder="Your trade (e.g. concrete, painters)">
+            <div class="f-hint" style="margin-top:4px">Used to tune AI transcription.</div>
+          </div>
+          <div style="flex:1">
+            <input type="number" id="p-taxrate" placeholder="0.095" step="0.001" min="0" max="1">
+            <div class="f-hint" style="margin-top:4px">Tax rate as decimal (0.095 = 9.5%).</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="sub-btn" onclick="saveProfile()" style="background:var(--acc)">
+        <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M17 21v-8H7v8M7 3v5h8M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/></svg>
+        Save Profile
+      </button>
     </div>
   </div>
 
@@ -426,7 +487,9 @@ const S = {
   recorder: null,
   chunks: [],
   transcript: '',
-  profile: JSON.parse(localStorage.getItem('ef_profile')||'{"name":"","biz":"","email":"","phone":""}'),
+  extracted: null,
+  quoteHtml: '',      // last generated quote HTML for preview screen
+  profile: JSON.parse(localStorage.getItem('ef_profile')||'{"name":"","biz":"","email":"","phone":"","address":"","license":"","taxRate":"0.095","type":""}'),
 };
 function save(){localStorage.setItem('ef_jobs',JSON.stringify(S.jobs));}
 
@@ -444,14 +507,45 @@ function save(){localStorage.setItem('ef_jobs',JSON.stringify(S.jobs));}
 
 // ── Tab switching ─────────────────────────────────────────
 function switchTab(tab){
-  ['home','submit','jobs','inbox'].forEach(t=>{
-    document.getElementById('s-'+t).style.display = t===tab?'block':'none';
+  ['home','submit','jobs','inbox','quote','settings'].forEach(t=>{
+    const el = document.getElementById('s-'+t);
+    if (el) el.style.display = t===tab?'block':'none';
     document.getElementById('ni-'+t)?.classList.toggle('on',t===tab);
   });
   if(tab==='jobs') renderJobs();
   if(tab==='inbox') renderInbox();
   if(tab==='home') renderHomeJobs();
   if(tab==='submit') resetForm();
+  if(tab==='settings') loadProfileIntoForm();
+}
+
+// ── Profile save/load ─────────────────────────────────────
+function loadProfileIntoForm(){
+  document.getElementById('p-biz').value     = S.profile.biz||'';
+  document.getElementById('p-name').value    = S.profile.name||'';
+  document.getElementById('p-email').value   = S.profile.email||'';
+  document.getElementById('p-phone').value   = S.profile.phone||'';
+  document.getElementById('p-address').value = S.profile.address||'';
+  document.getElementById('p-license').value = S.profile.license||'';
+  document.getElementById('p-type').value    = S.profile.type||'';
+  document.getElementById('p-taxrate').value = S.profile.taxRate||'0.095';
+}
+function saveProfile(){
+  S.profile = {
+    biz:     document.getElementById('p-biz').value.trim(),
+    name:    document.getElementById('p-name').value.trim(),
+    email:   document.getElementById('p-email').value.trim(),
+    phone:   document.getElementById('p-phone').value.trim(),
+    address: document.getElementById('p-address').value.trim(),
+    license: document.getElementById('p-license').value.trim(),
+    type:    document.getElementById('p-type').value.trim(),
+    taxRate: document.getElementById('p-taxrate').value.trim() || '0.095'
+  };
+  localStorage.setItem('ef_profile', JSON.stringify(S.profile));
+  if (S.profile.name) document.getElementById('home-name').textContent = S.profile.name;
+  if (S.profile.name) document.getElementById('t-av').textContent = S.profile.name[0].toUpperCase();
+  showToast('Profile saved');
+  switchTab('home');
 }
 
 // ── Render jobs ───────────────────────────────────────────
@@ -551,22 +645,55 @@ async function toggleVoice(){
     S.recorder?.stop();
     S.recording=false;
     document.getElementById('v-btn').classList.remove('rec');
-    document.getElementById('v-main').textContent='Processing...';
+    document.getElementById('v-main').textContent='Transcribing...';
+    document.getElementById('v-transcript').textContent='';
     return;
   }
   try{
     const stream=await navigator.mediaDevices.getUserMedia({audio:true});
     S.chunks=[];
-    S.recorder=new MediaRecorder(stream);
-    S.recorder.ondataavailable=e=>S.chunks.push(e.data);
-    S.recorder.onstop=()=>{
+    // Prefer webm/opus (broad support) but fall back if needed
+    const mime = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+      ? 'audio/webm;codecs=opus'
+      : (MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : '');
+    S.recorder = mime ? new MediaRecorder(stream,{mimeType:mime}) : new MediaRecorder(stream);
+    S.recorder.ondataavailable=e=>{ if(e.data.size>0) S.chunks.push(e.data); };
+    S.recorder.onstop=async ()=>{
       stream.getTracks().forEach(t=>t.stop());
-      // In production: send audio to /api/transcribe (Gemini)
-      // For now: confirm recording and let notes cover the rest
-      S.transcript='Voice note recorded';
-      document.getElementById('v-main').textContent='✓ Voice note recorded — tap to add another';
-      document.getElementById('v-transcript').textContent='Voice note captured. It will be included with your submission for our team to review.';
-      document.getElementById('v-transcript').classList.add('on');
+      try{
+        const blob = new Blob(S.chunks, {type: S.recorder.mimeType || 'audio/webm'});
+        if (blob.size < 1000) {
+          document.getElementById('v-main').textContent='Recording too short — tap to try again';
+          return;
+        }
+        // Convert to base64
+        const b64 = await blobToBase64(blob);
+        document.getElementById('v-main').textContent='Transcribing with AI...';
+
+        const resp = await fetch('/api/voice-quote',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            audio:{ data:b64, mimeType: blob.type.split(';')[0] },
+            contractorType: S.profile.type || null
+          })
+        });
+        const data = await resp.json();
+        if (!resp.ok) throw new Error(data.error || 'Transcription failed');
+
+        S.transcript = data.transcript || '';
+        S.extracted = data.fields || {};
+        applyExtractedFields(S.extracted);
+
+        document.getElementById('v-main').textContent='✓ Transcribed — fields auto-filled below';
+        const tr=document.getElementById('v-transcript');
+        tr.textContent = S.transcript || 'No speech detected.';
+        tr.classList.add('on');
+      }catch(err){
+        console.error('voice-quote error:', err);
+        showToast('Transcription failed — fill fields manually');
+        document.getElementById('v-main').textContent='Tap to record again';
+      }
     };
     S.recorder.start();
     S.recording=true;
@@ -574,6 +701,61 @@ async function toggleVoice(){
     document.getElementById('v-main').textContent='Recording... tap to stop';
   }catch(e){
     showToast('Mic access needed — add notes manually');
+  }
+}
+
+// Convert a Blob to base64 string (without the data: prefix)
+function blobToBase64(blob){
+  return new Promise((resolve,reject)=>{
+    const r = new FileReader();
+    r.onload = () => resolve((r.result+'').split(',')[1] || '');
+    r.onerror = reject;
+    r.readAsDataURL(blob);
+  });
+}
+
+// Write extracted fields into the form, only where empty (don't overwrite edits)
+function applyExtractedFields(f){
+  if(!f) return;
+  const setIfEmpty = (id, val) => {
+    if (val == null || val === '') return;
+    const el = document.getElementById(id);
+    if (el && !el.value.trim()) el.value = String(val);
+  };
+  setIfEmpty('f-cname',  f.clientName);
+  setIfEmpty('f-cphone', f.clientPhone);
+  setIfEmpty('f-cemail', f.clientEmail);
+  // Pick project type: exact match if found in dropdown, else "Other"
+  if (f.projectType) {
+    const sel = document.getElementById('f-type');
+    const match = Array.from(sel.options).find(o =>
+      o.value && o.value.toLowerCase().includes(f.projectType.toLowerCase().split(' ')[0])
+    );
+    if (match && !sel.value) sel.value = match.value;
+  }
+  // Measurements → prefill tiles if present
+  const areaM = (f.measurements||[]).find(m => /area|sq ?ft|square/i.test(m.label));
+  const thickM = (f.measurements||[]).find(m => /thick/i.test(m.label));
+  if (areaM)  setIfEmpty('m-area',  areaM.value);
+  if (thickM) setIfEmpty('m-thick', thickM.value);
+  // Budget (convert to $K)
+  if (f.budget) {
+    const n = parseFloat(String(f.budget).replace(/[^0-9.]/g,''));
+    if (!isNaN(n) && n > 0) {
+      const asK = n >= 1000 ? (n/1000) : n;
+      setIfEmpty('m-budget', asK.toFixed(1).replace(/\.0$/,''));
+    }
+  }
+  // Compose notes from color/timeline/notes
+  const notesEl = document.getElementById('f-notes');
+  if (notesEl && !notesEl.value.trim()) {
+    const parts = [
+      f.projectDescription ? f.projectDescription : null,
+      f.color    ? `Color: ${f.color}` : null,
+      f.timeline ? `Timeline: ${f.timeline}` : null,
+      f.notes    ? f.notes : null
+    ].filter(Boolean);
+    if (parts.length) notesEl.value = parts.join('\n');
   }
 }
 
@@ -655,6 +837,128 @@ async function submitJob(){
   document.getElementById('sov').classList.add('on');
 }
 
+// ── Generate Quote (in-app, uses /api/quote) ─────────────
+async function generateQuote(){
+  const clientName=document.getElementById('f-cname').value.trim();
+  const type=document.getElementById('f-type').value;
+  if(!clientName){showToast('Add client name first');return;}
+  if(!type){showToast('Select a project type');return;}
+
+  if(!S.profile.biz && !S.profile.name){
+    showToast('Set up your profile first');
+    switchTab('settings');
+    return;
+  }
+
+  const quoteBtn=document.getElementById('quote-btn');
+  quoteBtn.disabled=true;
+  document.getElementById('ov').classList.add('on');
+
+  // Assemble measurements from form
+  const measurements=[];
+  const area   = document.getElementById('m-area').value.trim();
+  const thick  = document.getElementById('m-thick').value.trim();
+  if (area)  measurements.push({ label:'Area',      value:area,  unit:'sq ft' });
+  if (thick) measurements.push({ label:'Thickness', value:thick, unit:'inches' });
+  // Pull anything else extracted by AI
+  if (S.extracted?.measurements) {
+    S.extracted.measurements.forEach(m => {
+      if (!measurements.some(existing => existing.label.toLowerCase() === (m.label||'').toLowerCase())) {
+        measurements.push(m);
+      }
+    });
+  }
+
+  const budgetK = document.getElementById('m-budget').value.trim();
+  const budgetTotal = budgetK ? parseFloat(budgetK) * 1000 : null;
+
+  // If AI extracted materials/labor, pass them along; otherwise let Claude infer
+  const materials = S.extracted?.materials?.filter(m => m.item) || [];
+  const laborItems = S.extracted?.laborItems?.filter(l => l.description) || [];
+
+  // If no itemized costs but we have a budget, create one "lump sum" labor item
+  // so the quote still totals something reasonable.
+  if (!materials.length && !laborItems.length && budgetTotal) {
+    laborItems.push({
+      description: `${type} — complete installation per scope of work`,
+      hours: '1',
+      rate: String(budgetTotal)
+    });
+  }
+
+  const payload = {
+    contractorName:    S.profile.biz || S.profile.name || 'Your Business',
+    contractorPhone:   S.profile.phone || '',
+    contractorEmail:   S.profile.email || '',
+    contractorAddress: S.profile.address || '',
+    contractorLicense: S.profile.license || '',
+    clientName,
+    clientAddress: '',
+    clientPhone:   document.getElementById('f-cphone').value.trim(),
+    clientEmail:   document.getElementById('f-cemail').value.trim(),
+    projectType:   type,
+    projectDescription: document.getElementById('f-notes').value.trim(),
+    measurements,
+    materials,
+    laborItems,
+    photos: S.photos.slice(0,2).map(p=>p.split(',')[1]||p),
+    validDays: 30,
+    taxRate: parseFloat(S.profile.taxRate) || 0.095,
+    depositPercent: 0.5,
+    notes: S.transcript ? `Voice note: ${S.transcript}` : ''
+  };
+
+  try{
+    const resp = await fetch('/api/quote',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || 'Quote generation failed');
+
+    S.quoteHtml = data.html || '';
+    S.lastQuote = { number: data.quoteNumber, total: data.total, title: data.projectTitle, clientEmail: payload.clientEmail, clientName: payload.clientName };
+
+    // Save a job record
+    const jobId='J'+Date.now().toString(36).toUpperCase();
+    S.jobs.push({
+      id: jobId,
+      clientName, clientPhone: payload.clientPhone, clientEmail: payload.clientEmail,
+      type, area, thickness: thick, budget: budgetK,
+      notes: payload.projectDescription,
+      quoteNumber: data.quoteNumber,
+      quoteTotal: data.total,
+      status: 'quote-generated',
+      created: new Date().toISOString()
+    });
+    save();
+
+    // Render quote in iframe
+    const frame = document.getElementById('quote-frame');
+    frame.srcdoc = S.quoteHtml;
+
+    document.getElementById('ov').classList.remove('on');
+    quoteBtn.disabled=false;
+    switchTab('quote');
+  }catch(err){
+    console.error('generateQuote error:', err);
+    document.getElementById('ov').classList.remove('on');
+    quoteBtn.disabled=false;
+    showToast('Quote generation failed: '+(err.message||'unknown'));
+  }
+}
+
+async function emailQuoteToClient(){
+  if (!S.lastQuote) { showToast('No quote to send'); return; }
+  const to = S.lastQuote.clientEmail;
+  if (!to) { showToast('Client email is required — go back and add one'); return; }
+
+  // For MVP: just confirm to contractor. Backend email is already triggered
+  // inside /api/quote if RESEND_API_KEY is set.
+  showToast(`Quote ${S.lastQuote.number} recorded — email to ${to} requires Resend key in Vercel.`);
+}
+
 function closeSov(){
   document.getElementById('sov').classList.remove('on');
   switchTab('home');
@@ -674,6 +978,9 @@ function resetForm(){
   document.getElementById('v-main').textContent='Tap to record — describe the job';
   document.getElementById('v-btn').classList.remove('rec');
   document.getElementById('v-transcript').classList.remove('on');
+  S.transcript='';
+  S.extracted=null;
+  S.photos=[];
   renderPhotos();
 }
 
